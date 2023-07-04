@@ -27,24 +27,9 @@ public:
 
 	void delete_node(const std::string& _name);
 
-	//void save(const string& _name)
-	//{
-	//	ofstream writeFile;
-	//	Node* curNode = head;
+	void all_delete();
 
-	//	writeFile.open(_name);
-
-	//	if (writeFile.is_open())
-	//	{
-	//		while (curNode != nullptr)
-	//		{
-	//			writeFile << curNode->value << ' ' << curNode->name << ' ';
-
-	//			curNode = curNode->next;
-	//		}
-	//		writeFile.close();
-	//	}
-	//}
+	void bubble_sort();
 
 	
 	//friend std::ostream& operator << (std::ostream& out, const Node<student>& _n)
@@ -59,7 +44,7 @@ private:
 	Node<T>* create(Node<T>** _head, Node<T>** _tail, T* _data);
 
 public:
-	Node<T> head;
+	Node<T>* head;
 	Node<T>* tail;
 	static int size;
 };
@@ -103,7 +88,14 @@ void List<T>::push_back(T* _data)
 template<typename T>
 void List<T>::push_front(T* _data)
 {
+	//Node* newNode = create(&head, &tail, _value);
 
+	//head->prev = newNode;
+	//newNode->next = head;
+
+	//head = newNode;
+
+	//size++;
 }
 
 template<typename T>
@@ -138,9 +130,23 @@ void List<student>::Print_list()
 	//	curNode->data->getsubject();
 	//}
 
+	//Node<student>* curNode = head;
+
+	//while (curNode != nullptr)
+	//{
+	//	curNode->data->getsubject();
+
+	//	curNode = curNode->next;
+	//}
+
+	if (head == nullptr)
+	{
+		return;
+	}
+
 	Node<student>* curNode = head;
 
-	while (curNode != nullptr)
+	for (int i = 0; i < size; i++)
 	{
 		curNode->data->getsubject();
 
@@ -175,7 +181,6 @@ void List<student>::delete_node(const std::string& _name)
 {
 	Node<student>* delNode, * curNode, * nextNode;
 
-	curNode = head;
 
 	if (head == nullptr)
 	{
@@ -183,31 +188,135 @@ void List<student>::delete_node(const std::string& _name)
 	}
 
 	//첫번째 노드번호인가
-	if (curNode->data->getName() == _name)
+	if (head->data->getName() == _name)
 	{
+		Node<student>* temp;
+
+		temp = head;
+
 		head = head->next;
 
-		delete curNode;
+		delete temp;
+
+		size--;
 
 		return;
 	}
 	//그외
-	while (curNode != nullptr)
-	{
-		delNode = curNode->next;
+	//while (curNode != nullptr)
+	//{
+	//	delNode = curNode->next;
 
-		if (curNode->data->getName() == _name)
+	//	if (curNode->data->getName() == _name)
+	//	{
+	//		//curNode->next = delNode->next;
+	//		nextNode = delNode->next;
+	//		nextNode->prev = curNode;
+	//		curNode->next = nextNode;
+
+	//		delete delNode;
+
+	//		return;
+	//	}
+	//	curNode = curNode->next;
+	//}
+
+	curNode = head;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (curNode->next != nullptr)
 		{
-			//curNode->next = delNode->next;
-			nextNode = delNode->next;
+			delNode = curNode->next;
+		}
+		else
+		{
+			delNode = curNode;
+			curNode = curNode->prev;
+		}
+
+		if (delNode->data->getName() == _name)
+		{
+			if (delNode->next != nullptr)
+			{
+				nextNode = delNode->next;
+			}
+			//마지막 노드일 경우
+			else
+			{
+				tail = curNode;
+
+				delete delNode;
+
+				size--;
+
+				return;
+			}
 			nextNode->prev = curNode;
 			curNode->next = nextNode;
 
 			delete delNode;
 
+			size--;
+
 			return;
 		}
 		curNode = curNode->next;
+	}
+}
+
+template<>
+void List<student>::all_delete()
+{
+	if (head == nullptr)
+	{
+		return;
+	}
+
+	Node<student>* deletNode, *curNode;
+
+	curNode = head;
+
+	for (int i = 0; i < size; i++)
+	{
+		deletNode = curNode;
+
+		curNode = curNode->next;
+
+		delete deletNode;
+
+		size--;
+	}
+
+	size = 0;
+	head->next = nullptr;
+	head->prev = nullptr;
+}
+
+template<>
+void List<student>::bubble_sort()
+{
+	Node<student>* cur = head;
+
+
+	for (int i = 0; i < size && cur != nullptr; i++)
+	{
+		Node<student>* cur2 = cur;
+
+		while (cur2->next != nullptr)
+		{
+			if (cur2->data->getTotal() > cur2->next->data->getTotal())
+			{
+				int temp = cur2->data->getTotal();
+
+				cur2->data->m_Total = cur2->next->data->getTotal();
+
+				cur2->next->data->m_Total = temp;
+
+			}
+			cur2 = cur2->next;
+		}
+		cur = head;
 	}
 }
 
@@ -218,11 +327,3 @@ std::ostream& operator << (std::ostream& out, const Node<student>& _n)
 
 }
 
-//template<typename T>
-//void List<T>::Print()
-//{
-//	for (Node<T>* curNode = head; curNode != nullptr; curNode = curNode->next)
-//	{
-//		curNode->data->print();
-//	}
-//}

@@ -2,7 +2,7 @@
 
 #include "Linkedlist.h"
 #include "student.h"
-#include "test.h"
+#include "exception.h"
 
 
 class StudentManager
@@ -46,6 +46,7 @@ public:
 	{
 		student* st = newStudent();
 		m_List.push_back(st);
+		m_size++;
 	}
 	void print_list()
 	{
@@ -72,6 +73,55 @@ public:
 		std::getline(std::cin, name);
 
 		m_List.delete_node(name);
+
+		m_size--;
+	}
+
+	void sort()
+	{
+		m_List.bubble_sort();
+	}
+
+	void SaveFile(const char* filename)const
+	{
+		FileIO fileIO;
+		FILE* fpWrite = fileIO.CreateFile(filename);
+		if (fpWrite != NULL)
+		{
+			for (Node<student>* pNode = m_List.head;
+				pNode != NULL;
+				pNode = pNode->next)
+			{
+				pNode->data->save(fpWrite);
+			}
+			fileIO.CloseFile();
+		}
+	};
+
+	void LoadFile(const char* filename)
+	{
+		m_List.all_delete();
+
+		FileIO fileIO;
+		FILE* fpRead = fileIO.CreateFile(filename, "r");
+		if (fpRead != NULL)
+		{
+			while (1)
+			{
+				if (feof(fpRead))
+				{
+					break;
+				}
+				//Node<student>* pNewNode = m_LinkedList.NewNode();
+				//// todo
+				//pNewNode->m_pData = new TStudent;
+				//_ASSERT(pNewNode->m_pData);
+				//pNewNode->m_pData->Read(fpRead);
+				//pNewNode->m_pData->Compute();
+				//m_LinkedList.Push_Front(pNewNode);
+			}
+			fileIO.CloseFile();
+		}
 	}
 
 	void run()
@@ -80,13 +130,16 @@ public:
 		int choice;
 		while (1)
 		{
-			system("cls");
+			std::system("cls");
 
 			std::cout << "1. 학생 삽입" << std::endl;
 			std::cout << "2. 학생 출력" << std::endl;
 			std::cout << "3. 학생 찾기" << std::endl;
 			std::cout << "4. 학생 삭제" << std::endl;
-			std::cout << "5. 종료" << std::endl;
+			std::cout << "5. 전체 삭제" << std::endl;
+			std::cout << "6. 학생 저장" << std::endl;
+			//std::cout << "5. 학생 정렬" << std::endl;
+			std::cout << "0. 종료" << std::endl;
 			std::cout << "메뉴 선택 : [ ]\b\b";
 			std::cin >> choice;
 			
@@ -107,12 +160,17 @@ public:
 				std::getline(std::cin, nameValue);
 				delet(nameValue);
 				break;
+			case 5:
+				m_List.all_delete();
+				break;
+			case 6:
+				SaveFile("T1");
+				break;
 			case 0:
-				//unInitList();
 				exit(0);
 			}
 
-			system("pause"); //일시대기
+			std::system("pause"); //일시대기
 		}
 	}
 
@@ -120,4 +178,5 @@ public:
 public:
 
 	List<student> m_List;
+	int m_size = 0;
 };

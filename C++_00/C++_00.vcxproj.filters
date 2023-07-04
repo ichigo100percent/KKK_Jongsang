@@ -30,12 +30,15 @@
     <ClInclude Include="Node.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="exception.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="fileIO.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sample.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="student.cpp">
@@ -50,7 +53,10 @@
     <ClCompile Include="Linkedlist.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="exception.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="fileIO.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

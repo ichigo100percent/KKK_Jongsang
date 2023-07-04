@@ -34,9 +34,9 @@ Node<T>::Node()
 template<typename T>
 Node<T>::~Node()
 {
-	//if (data != nullptr)
-	//{
-	//	delete data;
-	//	data = nullptr;
-	//}
+	if (data != nullptr)
+	{
+		delete data;
+		data = nullptr;
+	}
 }

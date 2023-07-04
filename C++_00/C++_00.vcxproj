@@ -19,20 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fileIO.h" />
     <ClInclude Include="Linkedlist.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="student.h" />
     <ClInclude Include="StudentManager.h" />
     <ClInclude Include="subject.h" />
-    <ClInclude Include="test.h" />
+    <ClInclude Include="exception.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fileIO.cpp" />
     <ClCompile Include="Linkedlist.cpp" />
-    <ClCompile Include="sample.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="student.cpp" />
     <ClCompile Include="StudentManager.cpp" />
     <ClCompile Include="subject.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="exception.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
