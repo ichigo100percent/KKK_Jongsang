@@ -112,14 +112,15 @@ public:
 				{
 					break;
 				}
-				//Node<student>* pNewNode = m_LinkedList.NewNode();
+				//node<student>* pnewnode = m_linkedlist.newnode();
 				//// todo
-				//pNewNode->m_pData = new TStudent;
-				//_ASSERT(pNewNode->m_pData);
-				//pNewNode->m_pData->Read(fpRead);
-				//pNewNode->m_pData->Compute();
-				//m_LinkedList.Push_Front(pNewNode);
+				//pnewnode->m_pdata = new tstudent;
+				//_assert(pnewnode->m_pdata);
+				//pnewnode->m_pdata->read(fpread);
+				//pnewnode->m_pdata->compute();
+				//m_linkedlist.push_front(pnewnode);
 
+				//Node<student>* newNode = m_List.create();
 
 			}
 			fileIO.CloseFile();

@@ -39,9 +39,7 @@ public:
 	//	return out;
 	//}
 	
-
-private:
-	Node<T>* create(Node<T>** _head, Node<T>** _tail, T* _data);
+	Node<T>* create(T* _data, Node<T>** _head = &head, Node<T>** _tail = &tail);
 
 public:
 	Node<T>* head;
@@ -54,7 +52,7 @@ int List<T>::size = 0;
 
 
 template<typename T>
-Node<T>* List<T>::create(Node<T>** _head, Node<T>** _tail, T* _data)
+Node<T>* List<T>::create(T* _data, Node<T>** _head, Node<T>** _tail)
 {
 	Node<T>* newNode = new Node<T>;
 
