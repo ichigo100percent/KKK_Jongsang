@@ -10,7 +10,7 @@ public:
 	float m_fSecondPerFrame;
 	DWORD m_dwBeforeTime;
 	float m_fFramePerSecond;
-	float m_iFPS;
+	int m_iFPS;
 
 public:
 	int GetFPS();

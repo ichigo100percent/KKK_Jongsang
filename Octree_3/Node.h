@@ -10,8 +10,8 @@ public:
 	Box							m_Box;
 	Node*						m_pParent = nullptr;
 	std::vector<Node*>			m_child;
-	std::vector<Object3D*>		m_StaticObjectList;
-	std::vector<Object3D*>		m_DynamicObjectList;
+	std::vector<Object3D*>		m_StaticObjectList3D;
+	std::vector<Object3D*>		m_DynamicObjectList3D;
 
 public:
 	void SetParent(Node* pParent);

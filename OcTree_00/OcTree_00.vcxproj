@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2a51e5a2-6a2d-4525-8b3a-5d59e0d58800}</ProjectGuid>
-    <RootNamespace>Octree3</RootNamespace>
+    <ProjectGuid>{dcafc97d-0e9a-4886-95e8-601867b2a664}</ProjectGuid>
+    <RootNamespace>OcTree00</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../../output</OutDir>
-    <IntDir>../../output/Octree_3</IntDir>
+    <OutDir>../output</OutDir>
+    <IntDir>../output/Octree_04</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -141,16 +141,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="demo.cpp" />
     <ClCompile Include="Octree.cpp" />
     <ClCompile Include="OctreeCreate.cpp" />
     <ClCompile Include="OctreeObject.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Utlis.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.h" />
@@ -159,7 +158,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Octree.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="Utlis.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

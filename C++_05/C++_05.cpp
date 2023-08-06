@@ -45,16 +45,6 @@ void SetDynamicObject(QuadTree& quadtree)
 
 int main()
 {
-	Rect rt1, rt2;
-	rt1.Set(Point(20, 20), 100, 100);
-	rt2.Set(Point(50, 50), 100, 100);
-
-	if (Collision::RectToRect(rt1, rt2))
-	{
-		std::cout << "collision" << std::endl;
-	}
-	std::cout << "no collision" << std::endl;
-
 	QuadTree quadtree;
 	quadtree.BuildQuadtree();
 
@@ -80,9 +70,9 @@ int main()
 		quadtree.Frame();
 		quadtree.Render();
 
-		system("cls");
+		//system("cls");
 		std::cout << std::endl;
-		std::cout << "Object inform!\n";
+		//std::cout << "Object inform!\n";
 		quadtree.LevelOrder(quadtree.GetRootNode());
 		timer.Render();
 		Sleep(100);

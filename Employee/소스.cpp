@@ -32,7 +32,7 @@ int main()
     uniqueSet.insert(3);
     uniqueSet.insert(1);
     uniqueSet.insert(2);
-
+  
     std::cout << "set:" << std::endl;
     for (const auto& value : uniqueSet)
     {

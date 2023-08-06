@@ -1,15 +1,14 @@
 #include "Timer.h"
 
-bool Timer::Init()
+bool	Timer::Init()
 {
 	m_fFramePerSecond = 0.0f;
 	m_fGameTimer = 0.0f;
 	m_fSecondPerFrame = 0.0f;
-	m_dwBeforeTime = timeGetTime();
+	m_dwBeforeTime = timeGetTime();// tick coounter 1000 => 1ÃÊ
 	return true;
 }
-
-bool Timer::Frame()
+bool	Timer::Frame()
 {
 	DWORD dwCurrentTime = timeGetTime();
 	DWORD dwElapseTime = dwCurrentTime - m_dwBeforeTime;
@@ -20,8 +19,7 @@ bool Timer::Frame()
 	m_fFramePerSecond += m_fSecondPerFrame;
 	return true;
 }
-
-int Timer::GetFPS()
+int   Timer::GetFPS()
 {
 	static int iFPS = 0;
 	if (m_fFramePerSecond >= 1.0f)
@@ -33,14 +31,12 @@ int Timer::GetFPS()
 	iFPS++;
 	return m_iFPS;
 }
-
-bool Timer::Render()
+bool	Timer::Render()
 {
-	std::cout << "[FPS]" << GetFPS() << "[GT]" << m_fGameTimer << " [SPF]" << m_fSecondPerFrame << std::endl;
+	std::cout << "[FPS]" << GetFPS() << " [GT]" << m_fGameTimer << " [SPF]" << m_fSecondPerFrame << std::endl;
 	return true;
 }
-
-bool Timer::Release()
+bool	Timer::Release()
 {
 	return true;
 }

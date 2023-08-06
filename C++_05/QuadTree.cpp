@@ -170,12 +170,12 @@ void QuadTree::LevelOrder(Node* pNode)
 	if (pNode == nullptr)
 		return;
 
-	std::wcout << L"[" << pNode->m_iDepth << L"]"
-		<< pNode->m_rt.m_fx << L","
-		<< pNode->m_rt.m_fy << L","
-		<< pNode->m_rt.m_fWidth << L","
-		<< pNode->m_rt.m_fHight << L","
-		<< pNode->m_DynamicObjectList.size() << std::endl;
+	//std::wcout << L"[" << pNode->m_iDepth << L"]"
+	//	<< pNode->m_rt.m_fx << L","
+	//	<< pNode->m_rt.m_fy << L","
+	//	<< pNode->m_rt.m_fWidth << L","
+	//	<< pNode->m_rt.m_fHight << L","
+	//	<< pNode->m_DynamicObjectList.size() << std::endl;
 
 	for (int iobj = 0; iobj < pNode->m_DynamicObjectList.size(); iobj++)
 	{

@@ -6,7 +6,7 @@ class Object2D
 {
 public:
 	std::wstring m_csName;
-	Vector2		 m_position;
+	Vector2		 m_Position;
 	Rect		 m_tRT;
 
 	virtual void SetRect(Vector2& c, float w, float h);
@@ -29,9 +29,9 @@ class Object3D
 public:
 	int				m_iNodeIndex = -1;
 	std::wstring    m_csName;
-	Vector3			m_position;
+	Vector3			m_Position;
 	Box				m_Box;
-	virtual void setBox(Vector3& c, float w, float h, float z);
+	virtual void SetBox(Vector3& c, float w, float h, float z);
 	virtual void Move(float fSecond) {};
 	virtual void SetTarget(Vector3& t) {};
 };

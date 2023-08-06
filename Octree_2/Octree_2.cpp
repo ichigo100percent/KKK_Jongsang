@@ -1,24 +1,15 @@
-﻿#include "Utils.h"
+﻿#include "Octree.h"
+#include "Timer.h"
+#include <map> // key+value   bst
+#include <unordered_map> 
+#include <queue>
+using MyList = std::unordered_map<int, Object*>;
+MyList StaticObjectList;
+MyList DynamicObjectList;
+
+
 
 int main()
 {
-	int a;
-	int b = 10;
-	int c = 20;
-
-	a = min(b, c);
-
-	std::cout << a << std::endl;
-
-	a = b > c ? b : c;
-
-	std::cout << a << std::endl;
-
-	a = max(b, c);
-
-	std::cout << a << std::endl;
-
-	a = randstep(b, c);
-
-	std::cout << a;
+	
 }

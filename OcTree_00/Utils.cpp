@@ -1,159 +1,146 @@
-#include "Utlis.h"
+#include "Utils.h"
 
 bool Rect::Intersect(Rect& p, Rect& ret)
 {
-	return false;
+    return false;
 }
-
 bool Rect::operator == (Rect& p)
 {
-	if (fabs(v.x - p.v.x) > 0.0001f)
-	{
-		if (fabs(v.y - p.v.y) > 0.0001f)
-		{
-			if (fabs(m_fWidth - p.m_fWidth) > 0.0001)
-			{
-				if (fabs(m_fHeight - p.m_fHeight) > 0.0001f)
-				{
-					return true;
-				}
-			}
-		}
-	}
-	return false;
+    if (fabs(v.x - p.v.x) > 0.0001f)
+    {
+        if (fabs(v.y - p.v.y) > 0.0001f)
+        {
+            if (fabs(m_fWidth - p.m_fWidth) > 0.0001f)
+            {
+                if (fabs(m_fHeight - p.m_fHeight) > 0.0001f)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
-
 bool Rect::operator != (Rect& p)
 {
-	return !(*this == p);
+    return !(*this == p);
 }
-
-Rect Rect::operator +(Rect& p)
+Rect Rect::operator + (Rect& p)
 {
-	Rect rt;
-	float fMinX = min(v.x, p.v.x);
-	float fMinY = min(v.y, p.v.y);
-	float fMaxX = max(m_Point[2].x, p.m_Point[2].x);
-	float fMaxY = max(m_Point[2].y, p.m_Point[2].y);
-	Vector2 pos = { fMinX, fMinY };
-	rt.Set(pos, fMaxX - fMinX, fMaxY - fMinY);
-	return rt;
+    Rect rt;
+    float fMinX = min(v.x, p.v.x);
+    float fMinY = min(v.y, p.v.y);
+    float fMaxX = max(m_Point[2].x, p.m_Point[2].x);
+    float fMaxY = max(m_Point[2].y, p.m_Point[2].y);
+    Vector2 pos = { fMinX, fMinY };
+    rt.Set(pos, fMaxX - fMinX, fMaxY - fMinY);
+    return rt;
 }
-
-Rect Rect::operator -(Rect& p)
+Rect Rect::operator - (Rect& p)
 {
-	Rect rt;
-	rt.m_bEnable = false;
-	if (ToRect(p))
-	{
-		//둘 중 더 큰값 반환
-		float fx = (m_Min.x > p.m_Min.x) ? m_Min.x : p.m_Min.x;
-		float fy = (m_Min.y > p.m_Min.y) ? m_Min.y : p.m_Min.y;
-		//더 작은 값을 반환
-		float right = (m_Max.x < p.m_Max.x) ? m_Max.x : p.m_Max.x;
-		float bottom = (m_Max.y < p.m_Max.y) ? m_Max.y : p.m_Max.y;
-		rt.Set(fx, fy, right - fx, bottom - fy);
-		rt.m_bEnable = true;
-	}
-	return rt;
+    Rect rt;
+    rt.m_bEnable = false;
+    if (ToRect(p))
+    {
+        //left, top          right
+        //      bottom
+        float fx = (m_Min.x > p.m_Min.x) ? m_Min.x : p.m_Min.x;
+        float fy = (m_Min.y > p.m_Min.y) ? m_Min.y : p.m_Min.y;
+        float right = (m_Max.x < p.m_Max.x) ? m_Max.x : p.m_Max.x;
+        float bottom = (m_Max.y < p.m_Max.y) ? m_Max.y : p.m_Max.y;
+        rt.Set(fx, fy, right - fx, bottom - fy);
+        rt.m_bEnable = true;
+    }
+    return rt;
 }
-
-Rect Rect::operator -(Vector2& p)
+Rect Rect::operator - (Vector2& p)
 {
-	v.x -= p.x;
-	v.y -= p.y;
-	return Rect(v.x, v.y, m_fWidth, m_fHeight);
+    v.x -= p.x;
+    v.y -= p.y;
+    return Rect(v.x, v.y, m_fWidth, m_fHeight);
 }
-
-Rect Rect::operator *(float fValue)
+Rect Rect::operator * (float fValue)
 {
-	if (fValue <= 0.0f)
-	{
-		return *this;
-	}
-	m_fWidth *= fValue;
-	m_fHeight *= fValue;
-	return Rect(v.x, v.y, m_fWidth, m_fHeight);
+    if (fValue <= 0.0f)
+    {
+        return *this;
+    }
+    m_fWidth *= fValue;
+    m_fHeight *= fValue;
+    return Rect(v.x, v.y, m_fWidth, m_fHeight);
 }
-
-Rect Rect::operator /(float fValue)
+Rect Rect::operator / (float fValue)
 {
-	if (fValue < 0.0f)
-	{
-		return *this;
-	}
-	m_fWidth /= fValue;
-	m_fHeight /= fValue;
-	return Rect(v.x, v.y, m_fWidth, m_fHeight);
+    if (fValue <= 0.0f)
+    {
+        return *this;
+    }
+    m_fWidth /= fValue;
+    m_fHeight /= fValue;
+    return Rect(v.x, v.y, m_fWidth, m_fHeight);
 }
-
-void Rect::Set(Vector2& p)
+void Rect::Set(Vector2 p)
 {
-	v = { p.x, p.y };
-	s = { m_fWidth, m_fHeight };
-	Set(m_fWidth, m_fHeight);
+    v = { p.x, p.y };
+    s = { m_fWidth, m_fHeight };
+    Set(m_fWidth, m_fHeight);
 }
-
 void Rect::Set(float fw, float fh)
 {
-	m_fWidth = fw;
-	m_fHeight = fh;
-	m_Half = { m_fWidth * 0.5f, m_fHeight * 0.5f };
-	m_Point[0] = { v.x , v.y };
-	m_Point[1] = { v.x + m_fWidth, v.y };
-	m_Point[2] = { v.x + m_fWidth, v.y + m_fHeight };
-	m_Point[3] = { v.x, v.y + m_fHeight };
-	m_Center = (m_Point[0] + m_Point[2]) * 0.5f;
-	m_Min = m_Point[0];
-	m_Max = m_Point[2];
+    m_fWidth = fw;
+    m_fHeight = fh;
+    m_Half = { m_fWidth * 0.5f,m_fHeight * 0.5f };
+    m_Point[0] = { v.x, v.y };
+    m_Point[1] = { v.x + m_fWidth, v.y };
+    m_Point[2] = { v.x + m_fWidth, v.y + m_fHeight };
+    m_Point[3] = { v.x, v.y + m_fHeight };
+    m_Center = (m_Point[0] + m_Point[2]) * 0.5f;
+    m_Min = m_Point[0];
+    m_Max = m_Point[2];
 }
-
 void Rect::Set(Vector2 p, float fw, float fh)
 {
-	v = p;
-	s = { fw, fh };
-	Set(fw, fh);
+    v = p;
+    s = { fw, fh };
+    Set(fw, fh);
 }
-
 void Rect::Set(float fx, float fy, float fw, float fh)
 {
-	v = { fx, fy };
-	s = { fw, fh };
-	Set(fw, fh);
+    v = { fx, fy };
+    s = { fw, fh };
+    Set(fw, fh);
 }
 
 bool Rect::ToRect(Rect& rt)
 {
-	Rect sum = (*this) + rt;
-	float fX = m_fWidth + rt.m_fWidth;
-	float fY = m_fHeight + rt.m_fHeight;
-	if (sum.m_fWidth <= fX)
-	{
-		if (sum.m_fHeight <= fY)
-		{
-			return true;
-		}
-	}
-	return false;
+    Rect sum = (*this) + rt;
+    float fX = m_fWidth + rt.m_fWidth;
+    float fY = m_fHeight + rt.m_fHeight;
+    if (sum.m_fWidth <= fX)
+    {
+        if (sum.m_fHeight <= fY)
+        {
+            return true;
+        }
+    }
+    return false;
 }
-
 bool Rect::ToPoint(Vector2& p)
 {
-	if (m_Min.x <= p.x && m_Max.x >= p.x &&
-		m_Min.y <= p.y && m_Max.y >= p.y)
-	{
-		return true;
-	}
-	return false;
+    if (m_Min.x <= p.x && m_Max.x >= p.x &&
+        m_Min.y <= p.y && m_Max.y >= p.y)
+    {
+        return true;
+    }
+    return false;
 }
+Rect::Rect() : m_bEnable(true) {}
 
-Rect::Rect() :m_bEnable(true) {}
 Rect::Rect(float fx, float fy, float fw, float fh)
 {
-	m_bEnable = true;
-	Set(fx, fy, fw, fh);
+    m_bEnable = true;
+    Set(fx, fy, fw, fh);
 }
-
 
 bool Box::operator == (Box& p)
 {
@@ -182,7 +169,7 @@ bool Box::operator != (Box& p)
 {
     return !(*this == p);
 }
-// union
+
 Box Box::operator + (Box& p)
 {
     Box rt;
@@ -196,7 +183,6 @@ Box Box::operator + (Box& p)
     rt.Set(pos, fMaxX - fMinX, fMaxY - fMinY, fMaxZ - fMinZ);
     return rt;
 }
-
 Box Box::operator - (Box& p)
 {
     Box rt;
@@ -257,25 +243,19 @@ void Box::Set(float fSizeX, float fSizeY, float fSizeZ)
     m_fWidth = fSizeX;
     m_fHeight = fSizeY;
     m_fDepth = fSizeZ;
-    m_Half = { m_fWidth * 0.5f, m_fHeight * 0.5f, m_fDepth * 0.5f };
-    m_Point[0] = { v.x - m_Half.x, v.y + m_Half.y, v.z - m_Half.z };
-    m_Point[1] = m_Point[0];
-    m_Point[1].x += m_fWidth;
-    m_Point[2] = m_Point[1];
-    m_Point[2].y -= m_fHeight;
-    m_Point[3] = m_Point[2];
-    m_Point[3].x = m_Point[0].x;
+    m_Half = { m_fWidth * 0.5f,m_fHeight * 0.5f, m_fDepth * 0.5f };
+    m_Point[0] = { v.x, v.y, v.z };
+    m_Point[1] = { v.x + m_fWidth, v.y, v.z };
+    m_Point[2] = { v.x + m_fWidth, v.y + m_fHeight, v.z };
+    m_Point[3] = { v.x, v.y + m_fHeight, v.z };
 
-    m_Point[4] = { v.x - m_Half.x, v.y + m_Half.y, v.z + m_Half.z };
-    m_Point[5] = m_Point[4];
-    m_Point[5].x += m_fWidth;
-    m_Point[6] = m_Point[5];
-    m_Point[6].y -= m_fHeight;
-    m_Point[7] = m_Point[6];
-    m_Point[7].x = m_Point[4].x;
+    m_Point[4] = { v.x, v.y, v.z + fSizeZ };
+    m_Point[5] = { v.x + m_fWidth, v.y, v.z + fSizeZ };
+    m_Point[6] = { v.x + m_fWidth, v.y + m_fHeight, v.z + fSizeZ };
+    m_Point[7] = { v.x, v.y + m_fHeight, v.z + fSizeZ };
 
-    m_Min = m_Point[3];
-    m_Max = m_Point[5];
+    m_Min = m_Point[0];
+    m_Max = m_Point[6];
     m_Center = (m_Max + m_Min) * 0.5f;
 }
 void Box::Set(Vector3 p, float fw, float fh, float fz)
