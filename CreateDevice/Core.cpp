@@ -6,26 +6,25 @@ bool  Core::Release() { return true; }
 
 bool  Core::EngineInit()
 {
-	Init();
-	return true;
+    Init();
+    return true;
 }
 bool  Core::EngineFrame()
 {
-	Frame();
-	return true;
+    Frame();
+    return true;
 }
 bool  Core::EngineRender()
 {
-	Render();
-	return true;
+    Render();
+    return true;
 }
 bool  Core::EngineRelease()
 {
-	Release();
-	return true;
+    Release();
+    return true;
 }
-
-bool  Core::Run()
+bool Core::Run()
 {
     EngineInit();
     MSG msg = { 0 };
@@ -39,8 +38,10 @@ bool  Core::Run()
         else
         {
             // 게임로직을 처리
-            EngineFrame();
-            EngineRender();
+            if (!EngineFrame() || !EngineRender())
+            {
+                break;
+            }
         }
     }
     EngineRelease();

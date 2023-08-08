@@ -22,14 +22,12 @@ bool Window::SetRegisterClassWindow(HINSTANCE hInstance)
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = WndProc; //윈도우프로시저 각종이벤트->메세지큐 저장
     wcex.hInstance = hInstance;
-    wcex.hbrBackground = (HBRUSH)CreateSolidBrush(RGB(255, 200, 5));// (COLOR_WINDOW + 1);
+    wcex.hbrBackground = (HBRUSH)CreateSolidBrush(RGB(0, 0, 0));// (COLOR_WINDOW + 1);
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.lpszClassName = L"KGCA윈도우";
     WORD ret = RegisterClassExW(&wcex);
     return true;
 }
-
-
 bool Window::SetWindow(const WCHAR* szTitle,//std::wstring szTitle,
     DWORD       dwWindowWidth,
     DWORD       dwWindowHeight)
