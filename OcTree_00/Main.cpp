@@ -95,17 +95,21 @@ int main()
         tree.Frame();
         tree.Render();
 
-        system("cls");
+       // system("cls");
         std::cout << std::endl;
         std::cout << "Object inform!\n";
         for (int iObj = 0; iObj < DynamicObjectList.size(); iObj++)
         {
             std::cout << "Object[" << iObj << "]" <<
-                DynamicObjectList[iObj]->m_iNodeIndex << std::endl;
+                    DynamicObjectList[iObj]->m_iNodeIndex << "   " <<
+                (int)DynamicObjectList[iObj]->m_tBox.v.x <<  "   " <<
+                (int)DynamicObjectList[iObj]->m_tBox.v.y <<  "   " <<
+                (int)DynamicObjectList[iObj]->m_tBox.v.z
+                << std::endl;
         }
         //tree.LevelOrder(tree.m_pRootNode);
         timer.Render();
-        Sleep(1000); // tick 1000 => 1초
+        Sleep(1000);
     }
     timer.Release();
 

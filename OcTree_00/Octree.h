@@ -9,7 +9,7 @@ public:
     std::set<Node*>    m_DynamicObjectNodeList;
     std::vector<Node*> m_NodeArrayList;
 
-    /// 공간을 분할 작업 
+    // 공간을 분할 작업 
 
 public:
     void            BuildOctTree(TSpaceData data);
@@ -19,21 +19,21 @@ public:
         float x, float y, float z,
         float w, float h, float d);
 
-    /// 객체를 공간에 추가하는 작업
+    // 객체를 공간에 추가하는 작업
 
 public:
     Node* StaticAddObject(Object3D* obj);
     Node* DynamicAddObject(Object3D* obj);
     Node* FindNode(Node* pNode, Object3D* obj);
 
-    /// 분할 된 트리를 순회하는 작업
+    // 분할 된 트리를 순회하는 작업
 
 public:
     std::queue<Node*> g_Queue;
     void            PreOrder(Node* pNode);
     void            LevelOrder(Node* pNode);
 
-    /// 쿼드트리의 프로세스
+    // 쿼드트리의 프로세스
   
 public:
     bool	        Init();		// 초기화 작업
