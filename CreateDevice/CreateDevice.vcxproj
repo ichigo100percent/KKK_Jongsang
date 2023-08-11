@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{1ce40ad3-f7f6-4e96-9099-3bbd7f953dbf}</ProjectGuid>
+    <ProjectGuid>{005F3841-569B-427C-B3F1-BFC8D20A0D60}</ProjectGuid>
     <RootNamespace>CreateDevice</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
