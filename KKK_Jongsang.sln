@@ -55,6 +55,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateDevice", "CreateDevic
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateTexure", "CreateTexture\CreateTexture.vcxproj", "{01C37B7B-8547-401E-9939-6C2B4CFD5209}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateTexture_3", "CreateTextrue_3\CreateTexture_3.vcxproj", "{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -239,6 +241,14 @@ Global
 		{01C37B7B-8547-401E-9939-6C2B4CFD5209}.Release|x64.Build.0 = Release|x64
 		{01C37B7B-8547-401E-9939-6C2B4CFD5209}.Release|x86.ActiveCfg = Release|Win32
 		{01C37B7B-8547-401E-9939-6C2B4CFD5209}.Release|x86.Build.0 = Release|Win32
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Debug|x64.ActiveCfg = Debug|x64
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Debug|x64.Build.0 = Debug|x64
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Debug|x86.ActiveCfg = Debug|Win32
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Debug|x86.Build.0 = Debug|Win32
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Release|x64.ActiveCfg = Release|x64
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Release|x64.Build.0 = Release|x64
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Release|x86.ActiveCfg = Release|Win32
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +275,7 @@ Global
 		{76553B1E-3804-408D-9D66-CBF08A7ABC69} = {F9CDFE35-5048-4041-A5FD-8BE9327A16DF}
 		{005F3841-569B-427C-B3F1-BFC8D20A0D60} = {F9CDFE35-5048-4041-A5FD-8BE9327A16DF}
 		{01C37B7B-8547-401E-9939-6C2B4CFD5209} = {F9CDFE35-5048-4041-A5FD-8BE9327A16DF}
+		{A2178C03-BA5D-48BB-B6C2-65A13B237CD9} = {F9CDFE35-5048-4041-A5FD-8BE9327A16DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B15A810-D792-4DA0-A65D-7E176AB72D14}

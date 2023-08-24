@@ -1,196 +1,120 @@
-#include "Object.h"
-#include "DirectXTex.h"
-
-bool		Object::Create(std::wstring texFilename)
+#include "TObject.h"
+#include "DirectXTex.h" // 기타
+void TObject::SetPos(TVector3 p)
 {
+    m_vPos = p;
+}
+void  TObject::SetMatrix(TMatrix* matWorld, TMatrix* matView, TMatrix* matProj)
+{
+    if (matWorld != nullptr)
+    {
+        m_matWorld = *matWorld;
+    }
+    if (matView != nullptr)
+    {
+        m_matView = *matView;
+    }
+    if (matWorld != nullptr)
+    {
+        m_matProj = *matProj;
+    }
+    m_cbData.matWorld = m_matWorld.Transpose();
+    m_cbData.matView = m_matView.Transpose();
+    m_cbData.matProj = m_matProj.Transpose();
+    m_pImmediateContext->UpdateSubresource(m_pConstantBuffer, 0, nullptr, &m_cbData, 0, 0);
+
+}
+bool  TObject::Create(TTextureMgr& texMgr, std::wstring texFilename,
+    TShaderMgr& shaderMgr, std::wstring shaderFilename)
+{
+    CreateConstantBuffer();
     CreateVertexBuffer();
-    LoadVertexShader();
-    LoadPixelShader();
+    m_pShader = shaderMgr.Load(shaderFilename);
     CreateInputLayout();
-    LoadTextureFile(texFilename);
+    m_pTex = texMgr.Load(texFilename);
     return true;
 }
-
-void        Object::Set(ID3D11Device* pDevice, ID3D11DeviceContext* pImmediateContext)
+void  TObject::Set(ID3D11Device* pDevice, ID3D11DeviceContext* pImmediateContext)
 {
     m_pDevice = pDevice;
     m_pImmediateContext = pImmediateContext;
 }
-
-bool        Object::LoadTextureFile(std::wstring filename)
+bool  TObject::CreateVertexBuffer()
 {
-    //DirectX::ScratchImage 이미지 데이터를 로딩하고 조작한 후 다른 형식으로 저장하거나 전달 가능하다.
-    auto imageobj = std::make_unique<DirectX::ScratchImage>();
+    //m_VertexList.resize(6);
+    //m_VertexList[0].u = 0.0f; m_VertexList[0].v = 0.0f;
+    //m_VertexList[1].u = 1.0f; m_VertexList[1].v = 0.0f;
+    //m_VertexList[2].u = 0.0f; m_VertexList[2].v = 1.0f;
+    //m_VertexList[3].u = 0.0f; m_VertexList[3].v = 1.0f;
+    //m_VertexList[4].u = 1.0f; m_VertexList[4].v = 0.0f;
+    //m_VertexList[5].u = 1.0f; m_VertexList[5].v = 1.0f; 
 
-    //텍스터 메타데이터를 저장하는 구조체
-    DirectX::TexMetadata mdata;
+    //float x = randstep(-1.0f, +1.0f);
+    //float y = randstep(-1.0f, +1.0f);
 
-    //기본설정으로 로딩(DDS_FLAGS_NONE)
-    HRESULT hr = DirectX::GetMetadataFromDDSFile(filename.c_str(), DirectX::DDS_FLAGS_NONE, mdata);
-    if (SUCCEEDED(hr))
-    {
-        hr = DirectX::LoadFromDDSFile(filename.c_str(), DirectX::DDS_FLAGS_NONE, &mdata, *imageobj);
-        if (SUCCEEDED(hr))
-        {
-            hr = DirectX::CreateShaderResourceView(m_pDevice, imageobj->GetImages(), imageobj->GetImageCount(), mdata, &m_pTexSRV);
-            if (SUCCEEDED(hr))
-            {
-                return true;
-            }
-        }
-    }
-    hr = DirectX::GetMetadataFromWICFile(filename.c_str(), DirectX::WIC_FLAGS_NONE, mdata);
-    if (SUCCEEDED(hr))
-    {
-        hr = DirectX::LoadFromWICFile(filename.c_str(), DirectX::WIC_FLAGS_NONE, &mdata, *imageobj);
-        if (SUCCEEDED(hr))
-        {
-            hr = DirectX::CreateShaderResourceView(m_pDevice, imageobj->GetImages(), imageobj->GetImageCount(), mdata, &m_pTexSRV);
-            if (SUCCEEDED(hr))
-            {
-                return true;
-            }
-        }
-    }
-    hr = DirectX::GetMetadataFromTGAFile(filename.c_str(), DirectX::TGA_FLAGS_NONE, mdata);
-    if (SUCCEEDED(hr))
-    {
-        hr = DirectX::LoadFromTGAFile(filename.c_str(), DirectX::TGA_FLAGS_NONE, &mdata, *imageobj);
-        if (SUCCEEDED(hr))
-        {
-            hr = DirectX::CreateShaderResourceView(m_pDevice, imageobj->GetImages(), imageobj->GetImageCount(), mdata, &m_pTexSRV);
-            if (SUCCEEDED(hr))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
+    //m_VertexList[0].x = x; m_VertexList[0].y = y;  m_VertexList[0].z = 0.5f;
+    //m_VertexList[1].x = x+0.3f; m_VertexList[1].y = y;  m_VertexList[1].z = 0.5f;
+    //m_VertexList[2].x = x; m_VertexList[2].y = y-0.3f;  m_VertexList[2].z = 0.5f;
+    //m_VertexList[3]  = m_VertexList[2];
+    //m_VertexList[4] = m_VertexList[1];
+    //m_VertexList[5].x = x+0.3f; m_VertexList[5].y = y - 0.3f;  m_VertexList[5].z = 0.5f;
 
-bool Object::CreateVertexBuffer()
-{
-    
-    {
-        _vertices.resize(4);
+    ///*m_VertexList[0].x = -1.0f; m_VertexList[0].y = 1.0f; m_VertexList[0].z = 0.5f;
+    //m_VertexList[0].u = 0.0f; m_VertexList[0].v = 0.0f;
+    //m_VertexList[1].x = 1.0f; m_VertexList[1].y = 1.0f; m_VertexList[1].z = 0.5f;
+    //m_VertexList[1].u = 1.0f; m_VertexList[1].v = 0.0f;
+    //m_VertexList[2].x = -1.0f; m_VertexList[2].y = -1.0f; m_VertexList[2].z = 0.5f;
+    //m_VertexList[2].u = 0.0f; m_VertexList[2].v = 1.0f;
 
-        _vertices[0].position = Vec3(-0.5f, -0.5f, 0.f);
-        _vertices[0].uv = Vec2(0.f, 1.f);
-        //_vertices[0].color = Color(1.f, 0.f, 0.f, 1.f);
-        _vertices[1].position = Vec3(-0.5f, 0.5f, 0.f);
-        _vertices[1].uv = Vec2(0.f, 0.f);
-        //_vertices[1].color = Color(1.f, 0.f, 0.f, 1.f);
-        _vertices[2].position = Vec3(0.5f, -0.5f, 0.f);
-        _vertices[2].uv = Vec2(1.f, 1.f);
-        //_vertices[2].color = Color(1.f, 0.f, 0.f, 1.f);
-        _vertices[3].position = Vec3(0.5f, 0.5f, 0.f);
-        _vertices[3].uv = Vec2(1.f, 0.f);
-        //_vertices[3].color = Color(1.f, 0.f, 0.f, 1.f);
-     
-    }
+    //m_VertexList[3].x = -1.0f; m_VertexList[3].y = -1.0f; m_VertexList[3].z = 0.5f;
+    //m_VertexList[3].u = 0.0f; m_VertexList[3].v = 1.0f;
 
-    // VertexBuffer
-    {
-        D3D11_BUFFER_DESC desc;
-        ZeroMemory(&desc, sizeof(desc));
-        desc.Usage = D3D11_USAGE_IMMUTABLE;
-        desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-        desc.ByteWidth = (uint32)(sizeof(Vertex) * _vertices.size());
+    //m_VertexList[4].x = 1.0f; m_VertexList[4].y = 1.0f; m_VertexList[4].z = 0.5f;
+    //m_VertexList[4].u = 1.0f; m_VertexList[4].v = 0.0f;
+    //m_VertexList[5].x = 1.0f; m_VertexList[5].y = -1.0f; m_VertexList[5].z = 0.5f;
+    //m_VertexList[5].u = 1.0f; m_VertexList[5].v = 1.0f;*/
 
-        D3D11_SUBRESOURCE_DATA data;
-        ZeroMemory(&data, sizeof(data));
-        data.pSysMem = _vertices.data();
+    //D3D11_BUFFER_DESC Desc;
+    //ZeroMemory(&Desc, sizeof(Desc));
+    //Desc.ByteWidth = sizeof(PT_Vertex) * m_VertexList.size();
+    //Desc.Usage = D3D11_USAGE_DEFAULT;
+    //Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
-        HRESULT hr = m_pDevice->CreateBuffer(&desc, &data, &m_pVertexBuffer);
-        if (FAILED(hr))
-        {
- 
-        }
+    //D3D11_SUBRESOURCE_DATA InitialData;
+    //ZeroMemory(&InitialData, sizeof(InitialData));
+    //InitialData.pSysMem = &m_VertexList.at(0);
 
-        // Index
-        {
-            _indices = { 0, 1, 2, 2, 1, 3 };
-        }
+    //HRESULT hr = m_pDevice->CreateBuffer(
+    //    &Desc,
+    //    &InitialData,
+    //    &m_pVertexBuffer);
+    //if (FAILED(hr))
+    //{
+    //    return false;
+    //}
 
-        // IndexBuffer
-        {
-            D3D11_BUFFER_DESC desc;
-            ZeroMemory(&desc, sizeof(desc));
-            desc.Usage = D3D11_USAGE_IMMUTABLE;
-            desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-            desc.ByteWidth = (uint32)(sizeof(uint32) * _indices.size());
 
-            D3D11_SUBRESOURCE_DATA data;
-            ZeroMemory(&data, sizeof(data));
-            data.pSysMem = _indices.data();
-
-            HRESULT hr = m_pDevice->CreateBuffer(&desc, &data, &_indexBuffer);
-            SUCCEEDED(hr);
-        }
-
-        return true;
-    }
-}
-
-bool  Object::LoadVertexShader()
-{
-    ID3DBlob* ErrorCode;
-    // 쉐이더 컴파일
-    HRESULT hr = D3DCompileFromFile(
-        L"Plane.hlsl",
-        nullptr,
-        nullptr,
-        "VS",
-        "vs_5_0",
-        0,
-        0,
-        &m_VertexShaderCode,
-        &ErrorCode);
-    if (FAILED(hr))
-    {
-
-    }
-    //ID3D11VertexShader* m_pVS
-    hr = m_pDevice->CreateVertexShader(
-        m_VertexShaderCode->GetBufferPointer(),
-        m_VertexShaderCode->GetBufferSize(),
-        nullptr,
-        &m_pVS);
-
-    if (ErrorCode) ErrorCode->Release();
     return true;
 }
-bool  Object::LoadPixelShader()
+bool  TObject::CreateConstantBuffer()
 {
-    ID3DBlob* ShaderCode;
-    ID3DBlob* ErrorCode;
-    // 쉐이더 컴파일
-    HRESULT hr = D3DCompileFromFile(
-        L"Plane.hlsl",
+    D3D11_BUFFER_DESC Desc;
+    ZeroMemory(&Desc, sizeof(Desc));
+    Desc.ByteWidth = sizeof(CB_Data);
+    Desc.Usage = D3D11_USAGE_DEFAULT;
+    Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+    HRESULT hr = m_pDevice->CreateBuffer(
+        &Desc,
         nullptr,
-        nullptr,
-        "PS",
-        "ps_5_0",
-        0,
-        0,
-        &ShaderCode,
-        &ErrorCode);
+        &m_pConstantBuffer);
     if (FAILED(hr))
     {
-        //ErrorCode
+        return false;
     }
-    //ID3D11VertexShader* m_pVS
-    hr = m_pDevice->CreatePixelShader(
-        ShaderCode->GetBufferPointer(),
-        ShaderCode->GetBufferSize(),
-        nullptr,
-        &m_pPS);
-
-    if (ShaderCode) ShaderCode->Release();
-    if (ErrorCode) ErrorCode->Release();
     return true;
 }
-bool  Object::CreateInputLayout()
+bool  TObject::CreateInputLayout()
 {
     const D3D11_INPUT_ELEMENT_DESC layout[] =
     {
@@ -198,48 +122,62 @@ bool  Object::CreateInputLayout()
         { "TEXTURE",  0, DXGI_FORMAT_R32G32_FLOAT, 0, 12,  D3D11_INPUT_PER_VERTEX_DATA, 0 },
     };
     UINT iNumCount = sizeof(layout) / sizeof(layout[0]);
-    HRESULT hr = m_pDevice->CreateInputLayout(
-        layout,
-        iNumCount,
-        m_VertexShaderCode->GetBufferPointer(),
-        m_VertexShaderCode->GetBufferSize(),
-        &m_pVertexLayout);
-    if (FAILED(hr))
+
+    if (m_pShader)
     {
-        return false;
+        HRESULT hr = m_pDevice->CreateInputLayout(
+            layout,
+            iNumCount,
+            m_pShader->GetBufferPointer(),
+            m_pShader->GetBufferSize(),
+            &m_pVertexLayout);
+        if (FAILED(hr))
+        {
+            return false;
+        }
     }
     return true;
 }
-bool  Object::Init()
+bool  TObject::Init()
 {
 
     return true;
 }
-bool  Object::Frame()
+bool  TObject::Frame()
 {
     return true;
 }
-bool  Object::Render()
+bool  TObject::Render()
 {
-    m_pImmediateContext->PSSetShaderResources(0, 1, &m_pTexSRV);
+    m_pImmediateContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
+
+    if (m_pTex)
+    {
+        m_pTex->Apply(m_pImmediateContext, 0);
+    }
     m_pImmediateContext->IASetInputLayout(m_pVertexLayout);
-    m_pImmediateContext->IASetIndexBuffer(_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-    m_pImmediateContext->VSSetShader(m_pVS, NULL, 0);
-    m_pImmediateContext->PSSetShader(m_pPS, NULL, 0);
-    UINT stride = sizeof(Vertex);
+    if (m_pShader)
+    {
+        m_pShader->Apply(m_pImmediateContext, 0);
+    }
+
+    UINT stride = sizeof(PT_Vertex);
     UINT offset = 0;
     m_pImmediateContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
     m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    //m_pImmediateContext->Draw(_vertices.size(), 0);
-    m_pImmediateContext->DrawIndexed(_indices.size(), 0, 0);
+    m_pImmediateContext->Draw(m_VertexList.size(), 0);
     return true;
 }
-bool  Object::Release()
+bool  TObject::Release()
 {
-    if (m_pTexSRV)m_pTexSRV->Release();
     if (m_pVertexBuffer) m_pVertexBuffer->Release();
     if (m_pVertexLayout) m_pVertexLayout->Release();
-    if (m_pVS) m_pVS->Release();
-    if (m_pPS) m_pPS->Release();
+    if (m_pConstantBuffer)m_pConstantBuffer->Release();
     return true;
+}
+TObject::TObject()
+{
+    m_vPos = TVector3(0, 0, 0);
+    m_vScale = TVector3(1, 1, 1);
+    m_vRotation = TVector3(0, 0, 0);
 }
