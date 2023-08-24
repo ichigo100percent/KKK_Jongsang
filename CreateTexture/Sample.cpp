@@ -1,317 +1,39 @@
-//#include "Sample.h"
-//
-//bool Sample::CreateVertexBuffer()
-//{
-//	P3VERTEX vertices[] =
-//	{
-//		0.0f, 0.5f, 0.5f,
-//		0.5f, -0.5f, 0.5f,
-//		-0.5f, -0.5f, 0.5f
-//	};
-//
-//	D3D11_BUFFER_DESC bd;
-//	ZeroMemory(&bd, sizeof(bd));
-//	bd.Usage = D3D11_USAGE_DEFAULT;
-//	bd.ByteWidth = sizeof(P3VERTEX) * 3;
-//	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-//	bd.CPUAccessFlags = 0;
-//	bd.MiscFlags = 0;
-//
-//	D3D11_SUBRESOURCE_DATA initData;
-//	ZeroMemory(&initData, sizeof(initData));
-//	initData.pSysMem = vertices;
-//
-//	HRESULT hr = m_pDevice->CreateBuffer(
-//		&bd, &initData, &m_pVertexBuffer);
-//
-//	if (FAILED(hr))
-//	{
-//		return false;
-//	}
-//
-//	return true;
-//}
-//
-//bool Sample::LoadVertexShader()
-//{
-//	ID3DBlob* pBufferErrors;
-//
-//	HRESULT hr = D3DCompileFromFile
-//	(
-//		L"VertexShader.vsh",
-//		nullptr,
-//		nullptr,
-//		"VS_KGCA",
-//		"vs_5_0",
-//		0,
-//		0,
-//		&m_VertexShaderCode,
-//		&pBufferErrors
-//	);
-//
-//	if (FAILED(hr))
-//	{
-//		//errorcode
-//	}
-//
-//	hr = m_pDevice->CreateVertexShader
-//	(
-//		m_VertexShaderCode->GetBufferPointer(),
-//		m_VertexShaderCode->GetBufferSize(),
-//		nullptr,
-//		&m_pVS
-//	);
-//	if (pBufferErrors)
-//	{
-//		pBufferErrors->Release();
-//	}
-//
-//	return true;
-//}
-//
-//bool Sample::LoadPixelShader()
-//{
-//	ID3DBlob* pPsBuf;
-//	ID3DBlob* pBufferErrors;
-//
-//	HRESULT hr = D3DCompileFromFile
-//	(
-//		L"VertexShader.vsh",
-//		nullptr,
-//		nullptr,
-//		"VS_KGCA",
-//		"vs_5_0",
-//		0,
-//		0,
-//		&pPsBuf,
-//		&pBufferErrors
-//	);
-//
-//	if (FAILED(hr))
-//	{
-//		//errorcode
-//	}
-//
-//	hr = m_pDevice->CreatePixelShader
-//	(
-//		pPsBuf->GetBufferPointer(),
-//		pPsBuf->GetBufferSize(),
-//		nullptr,
-//		&m_pPS
-//	);
-//	if (pBufferErrors)
-//	{
-//		pBufferErrors->Release();
-//	}
-//	if (pPsBuf)
-//	{
-//		pPsBuf->Release();
-//	}
-//
-//	return true;
-//}
-//
-//bool Sample::CreateInputLayout()
-//{
-//	const D3D11_INPUT_ELEMENT_DESC layout[] =
-//	{
-//		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
-//	};
-//	UINT iNumCount = sizeof(layout) / sizeof(layout[0]);
-//
-//	HRESULT hr = m_pDevice->CreateInputLayout(layout, iNumCount , m_VertexShaderCode->GetBufferPointer(), m_VertexShaderCode->GetBufferSize(), &m_pVertexLayout);
-//
-//	if (FAILED(hr))
-//	{
-//		return false;
-//	}
-//	return true;
-//}
-//
-//bool Sample::Init()
-//{
-//	CreateVertexBuffer();
-//	LoadVertexShader();
-//	LoadPixelShader();
-//	CreateInputLayout();
-//	return true;
-//}
-//
-//bool Sample::Frame()
-//{
-//	return true;
-//}
-//
-//bool Sample::Render()
-//{
-//	m_pImmediateContext->IASetInputLayout(m_pVertexLayout);
-//	m_pImmediateContext->VSSetShader(m_pVS, nullptr, 0);
-//	m_pImmediateContext->PSSetShader(m_pPS, nullptr, 0);
-//	UINT stride = sizeof(P3VERTEX);
-//	UINT offset = 0;
-//	m_pImmediateContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
-//	m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-//	m_pImmediateContext->Draw(3, 0);
-//	return true;
-//}
-//
-//bool Sample::Release()
-//{
-//	if (m_pVertexBuffer) m_pVertexBuffer->Release();
-//	if (m_pVertexLayout) m_pVertexLayout->Release();
-//	if (m_pVS) m_pVS->Release();
-//	if (m_pPS) m_pPS->Release();
-//	return true;
-//}
-//
-//TGAME(L"kgca", 800, 600);
-
 #include "Sample.h"
-bool  Sample::CreateVertexBuffer()
-{
-    //P_Vertex vList[3];
-    //vList[0].x = -1.0f; vList[0].y = 1.0f; vList[0].z = 0.5f;
-    //vList[1].x = 1.0f; vList[1].y = 1.0f; vList[1].z = 0.5f;
-    //vList[2].x = -1.0f; vList[2].y = -1.0f; vList[2].z = 0.5f;
-
-    P_Vertex  vList[] =
-	{
-		0.0f, 0.5f, 0.5f,
-		0.5f, -0.5f, 0.5f,
-		-0.5f, -0.5f, 0.5f
-	};
-
-    D3D11_BUFFER_DESC Desc;
-    ZeroMemory(&Desc, sizeof(Desc));
-    Desc.ByteWidth = sizeof(P_Vertex) * 3;
-    Desc.Usage = D3D11_USAGE_DEFAULT;
-    Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-
-    D3D11_SUBRESOURCE_DATA InitialData;
-    ZeroMemory(&InitialData, sizeof(InitialData));
-    InitialData.pSysMem = vList;
-
-    HRESULT hr = m_pDevice->CreateBuffer(
-        &Desc,
-        &InitialData,
-        &m_pVertexBuffer);
-    if (FAILED(hr))
-    {
-        return false;
-    }
-
-
-    return true;
-}
-bool  Sample::LoadVertexShader()
-{
-    ID3DBlob* ErrorCode;
-    // 쉐이더 컴파일
-    HRESULT hr = D3DCompileFromFile(
-        L"VertexShader.vsh",
-        nullptr,
-        nullptr,
-        "VS_KGCA",
-        "vs_5_0",
-        0,
-        0,
-        &m_VertexShaderCode,
-        &ErrorCode);
-    if (FAILED(hr))
-    {
-        //ErrorCode
-    }
-    //ID3D11VertexShader* m_pVS
-    hr = m_pDevice->CreateVertexShader(
-        m_VertexShaderCode->GetBufferPointer(),
-        m_VertexShaderCode->GetBufferSize(),
-        nullptr,
-        &m_pVS);
-
-    if (ErrorCode) ErrorCode->Release();
-    return true;
-}
-bool  Sample::LoadPixelShader()
-{
-    ID3DBlob* ShaderCode;
-    ID3DBlob* ErrorCode;
-    // 쉐이더 컴파일
-    HRESULT hr = D3DCompileFromFile(
-        L"PixelShader.psh",
-        nullptr,
-        nullptr,
-        "PS",
-        "ps_5_0",
-        0,
-        0,
-        &ShaderCode,
-        &ErrorCode);
-    if (FAILED(hr))
-    {
-        //ErrorCode
-    }
-    //ID3D11VertexShader* m_pVS
-    hr = m_pDevice->CreatePixelShader(
-        ShaderCode->GetBufferPointer(),
-        ShaderCode->GetBufferSize(),
-        nullptr,
-        &m_pPS);
-
-    if (ShaderCode) ShaderCode->Release();
-    if (ErrorCode) ErrorCode->Release();
-    return true;
-}
-bool  Sample::CreateInputLayout()
-{
-    const D3D11_INPUT_ELEMENT_DESC layout[] =
-    {
-        //flaot 3*4 =12
-        { "POSITION",  0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,  D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        //{ "TEXTURE",  0, DXGI_FORMAT_R32G32_FLOAT, 0, 12,  D3D11_INPUT_PER_VERTEX_DATA, 0 }
-    };
-    UINT iNumCount = sizeof(layout) / sizeof(layout[0]);
-    HRESULT hr = m_pDevice->CreateInputLayout(
-        layout,
-        iNumCount,
-        m_VertexShaderCode->GetBufferPointer(),
-        m_VertexShaderCode->GetBufferSize(),
-        &m_pVertexLayout);
-    if (FAILED(hr))
-    {
-        return false;
-    }
-    return true;
-}
 bool  Sample::Init()
 {
-    CreateVertexBuffer();
-    LoadVertexShader();
-    LoadPixelShader();
-    CreateInputLayout();
+    std::wstring texname = { L"kgcabk.bmp" };
+
+    Object* pObj = new Object;
+    pObj->Set(m_pDevice, m_pImmediateContext);
+    pObj->Create(texname);
+    m_ObjList.push_back(pObj);
+    
     return true;
 }
 bool  Sample::Frame()
 {
+    for (auto obj : m_ObjList)
+    {
+        obj->Frame();
+    }
     return true;
 }
 bool  Sample::Render()
 {
-    m_pImmediateContext->IASetInputLayout(m_pVertexLayout);
-    m_pImmediateContext->VSSetShader(m_pVS, NULL, 0);
-    m_pImmediateContext->PSSetShader(m_pPS, NULL, 0);
-    UINT stride = sizeof(P_Vertex);
-    UINT offset = 0;
-    m_pImmediateContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
-    m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    m_pImmediateContext->Draw(3, 0);
+    for (auto obj : m_ObjList)
+    {
+        obj->Render();
+    }
     return true;
 }
 bool  Sample::Release()
 {
-    if (m_pVertexBuffer) m_pVertexBuffer->Release();
-    if (m_pVertexLayout) m_pVertexLayout->Release();
-    if (m_pVS) m_pVS->Release();
-    if (m_pPS) m_pPS->Release();
+    for (auto obj : m_ObjList)
+    {
+        obj->Release();
+        delete obj;
+    }
+    m_ObjList.clear();
     return true;
 }
 
