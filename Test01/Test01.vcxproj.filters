@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="01.Main">
+      <UniqueIdentifier>{359aad3b-b2f1-4e67-958c-adb5332c1313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Headers">
+      <UniqueIdentifier>{30620714-71ed-4ab4-a260-ba68f3138dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Headers\Andromeda">
+      <UniqueIdentifier>{33dc8f4b-e244-4f7d-a635-e05a28291477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="99.Headers\Utils">
+      <UniqueIdentifier>{8b7f5610-2248-45fb-a8fa-23171438bfa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Shader">
+      <UniqueIdentifier>{b9d7fbfd-56e3-4427-bbce-7d0da80b81d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>99.Headers\Andromeda</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99.Headers\Andromeda</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>99.Headers\Andromeda</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>01.Main</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Values.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Downloads\2주차_소스코드\GameCoding\SimpleMath.h">
+      <Filter>99.Headers\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>01.Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>01.Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Window.cpp">
+      <Filter>01.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>99.Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Downloads\2주차_소스코드\GameCoding\SimpleMath.cpp">
+      <Filter>99.Headers\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>01.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>01.Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Test01.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Test01.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Downloads\2주차_소스코드\GameCoding\SimpleMath.inl">
+      <Filter>99.Headers\Utils</Filter>
+    </None>
+  </ItemGroup>
+</Project>
