@@ -22,14 +22,19 @@ public:
 	void SetVertexBuffer(shared_ptr<VertexBuffer> buffer);
 	void SetIndexBuffer(shared_ptr<IndexBuffer> buffer);
 
-	template<typename T>
-	void SetConstantBuffer(uint32 slot, uint32 scope, shared_ptr<ConstantBuffer<T>> buffer)
-	{
-		if (scope & SS_VertexShader)
-			_deviceContext->VSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
+	//template<typename T>
+	//void SetConstantBuffer(uint32 slot, uint32 scope, shared_ptr<ConstantBuffer<T>> buffer)
+	//{
+	//	if (scope & SS_VertexShader)
+	//		_deviceContext->VSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
 
-		if (scope & SS_PixelShader)
-			_deviceContext->PSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
+	//	if (scope & SS_PixelShader)
+	//		_deviceContext->PSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
+	//}
+
+	void SetConstantBuffer(uint32 slot, shared_ptr<ConstantBuffer<TransformData>> buffer)
+	{
+		_deviceContext->VSSetConstantBuffers(slot, 1, buffer->GetComPtr().GetAddressOf());
 	}
 
 	void SetTexture(uint32 slot, uint32 scope, shared_ptr<Texture> texture);

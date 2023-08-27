@@ -82,7 +82,7 @@ void Game::Render()
 
 		_pipeline->SetVertexBuffer(_vertexBuffer);
 		_pipeline->SetIndexBuffer(_indexBuffer);
-		_pipeline->SetConstantBuffer(0, SS_VertexShader, _constantBuffer);
+		_pipeline->SetConstantBuffer(0, _constantBuffer);
 		_pipeline->SetTexture(0, SS_PixelShader, _texture1);
 		_pipeline->SetSamplerState(0, SS_PixelShader, _samplerState);
 		_pipeline->DrawIndexed(_geometry->GetIndexCount(), 0, 0);
