@@ -129,13 +129,20 @@ bool  TDxObject::Render()
     UINT offset = 0;
     m_pImmediateContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
     m_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    m_pImmediateContext->Draw(m_VertexList.size(), 0);
+    m_pImmediateContext->IASetIndexBuffer(_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+    //m_pImmediateContext->Draw(m_VertexList.size(), 0);
+    m_pImmediateContext->DrawIndexed(_indices.size(), 0, 0);
     return true;
 }
 bool  TDxObject::Release()
 {
     if (m_pVertexBuffer) m_pVertexBuffer->Release();
     if (m_pVertexLayout) m_pVertexLayout->Release();
+    if (_indexBuffer) _indexBuffer->Release();
     if (m_pConstantBuffer)m_pConstantBuffer->Release();
     return true;
+}
+
+TDxObject::TDxObject(ComponentType objtype) : _objtype(objtype)
+{
 }

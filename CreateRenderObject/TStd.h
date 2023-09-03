@@ -45,3 +45,4 @@ static void T_DebugString(const WCHAR* msg)
 extern HWND		g_hWnd;
 extern float	g_fGameTimer;
 extern float	g_fSecondPerFrame;
+using uint32 = unsigned __int32;

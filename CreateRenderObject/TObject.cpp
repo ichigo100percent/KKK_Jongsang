@@ -65,7 +65,7 @@ bool  TObject::Release()
     TDxObject::Release();
     return true;
 }
-TObject::TObject()
+TObject::TObject() : super(ComponentType::etc)
 {
     m_vPos      = TVector3(0,0,0);
     m_vScale    = TVector3(1, 1, 1);

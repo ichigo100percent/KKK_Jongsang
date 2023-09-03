@@ -2,8 +2,11 @@
 #include "TDxObject.h"
 class TObject : public TDxObject
 {     
+    using super = TDxObject;
 public:
-    bool            m_bDead=false;
+    bool            m_bDead = false;
+    bool            m_flip = false;
+    
 public:
     TVector3        m_vPos;
     TVector3        m_vScale;

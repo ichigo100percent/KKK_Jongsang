@@ -1,5 +1,7 @@
 #pragma once
 #include "TPlaneObj.h"
+
+
 class TNpcObj : public TPlaneObj
 {
 	TVector3 m_vDirection = { 1,1,0 };
