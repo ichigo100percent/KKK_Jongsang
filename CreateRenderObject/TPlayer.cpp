@@ -5,20 +5,22 @@ bool TPlayer::Frame()
 {
     if (TInput::GetInstance().m_dwKeyState['A'] > KEY_UP)
     {
-        _bFlip = false;
+        m_vRotation.z = DegreeToRadian(90.f);
         m_vPos.x -= 500.0f * g_fSecondPerFrame;
     }
     if (TInput::GetInstance().m_dwKeyState['D'] > KEY_UP)
     {
-        _bFlip = true;
+        m_vRotation.z = DegreeToRadian(0.f);
         m_vPos.x += 500.0f * g_fSecondPerFrame;
     }
     if (TInput::GetInstance().m_dwKeyState['W'] > KEY_UP)
     {
+       // m_vRotation.z = DegreeToRadian(90.f);
         m_vPos.y += 500.0f * g_fSecondPerFrame;
     }
     if (TInput::GetInstance().m_dwKeyState['S'] > KEY_UP)
     {
+        //m_vRotation.z = DegreeToRadian(270.f);
         m_vPos.y -= 500.0f * g_fSecondPerFrame;
     }
 

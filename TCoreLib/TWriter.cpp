@@ -2,7 +2,7 @@
 #include "TStd.h"
 bool TWriter::CrateDXWriteRT(IDXGISurface1* pSurface)
 {
-	FLOAT xDpi, yDpi;
+	FLOAT xDpi,			yDpi;
 	//error C4996: 'ID2D1Factory::GetDesktopDpi': Deprecated. Use DisplayInformation::LogicalDpi for Windows Store Apps or GetDpiForWindow for desktop apps.
 	//m_pD2DFactory->GetDesktopDpi(&xDpi, &yDpi);
 	float dpi = GetDpiForWindow(g_hWnd);

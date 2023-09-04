@@ -47,6 +47,7 @@ public:
 	void Init(HWND hwnd);
 	void Update();
 
+
 	// 누르고 있을 때
 	bool GetButton(KEY_TYPE key) { return GetState(key) == KEY_STATE::PRESS; }
 	// 맨 처음 눌렀을 때

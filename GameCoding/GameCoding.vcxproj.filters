@@ -84,6 +84,9 @@
     <Filter Include="소스 파일\00. Engine\Manager\Render">
       <UniqueIdentifier>{5da1ac02-b44d-454a-9db0-0d76b95406a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00. Engine\Component\Scripts">
+      <UniqueIdentifier>{f58f6098-22b0-4aa8-b480-0f5741a52a1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -218,6 +221,9 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>소스 파일\99. Headers\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>소스 파일\00. Engine\Component\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameCoding.rc">
@@ -346,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>소스 파일\99. Headers\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>소스 파일\00. Engine\Component\Scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

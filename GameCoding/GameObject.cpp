@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "MeshRenderer.h"
 #include "Animator.h"
+#include "Test.h"
 
 
 GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)

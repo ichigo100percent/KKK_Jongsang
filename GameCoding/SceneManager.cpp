@@ -71,6 +71,11 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 			meshRenderer->SetMaterial(material);
 			auto mesh = RESOURCES->Get<Mesh>(L"Rectangle");
 			meshRenderer->SetMesh(mesh);
+			auto _test = make_shared<Test>() = make_shared<Test>();
+			monster->AddComponent(_test);
+			Vec3 pos = monster->GetOrAddTransform()->GetPosition();
+			pos.x += 0.0001f;
+			monster->GetOrAddTransform()->SetPosition(pos);
 		}
 		{
 			auto animator = make_shared<Animator>();
@@ -92,6 +97,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 			meshRenderer->SetMaterial(material);
 			auto mesh = RESOURCES->Get<Mesh>(L"Rectangle");
 			meshRenderer->SetMesh(mesh);
+
 		}
 		{
 			//auto animator = make_shared<Animator>();

@@ -14,6 +14,7 @@
 #include <list>
 #include <map>
 #include <unordered_map>
+#include <string>
 using namespace std;
 
 // WIN
@@ -68,3 +69,5 @@ using namespace Microsoft::WRL;
 #include "BlendState.h"
 #include "Pipeline.h"
 #include "Transform.h"
+#include "InputManager.h"
+#include "Test.h"

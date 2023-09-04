@@ -58,7 +58,7 @@ bool  Sample::Init()
     TVector2 rt = { m_pPlayer->m_vPos.x, m_pPlayer->m_vPos.y };
     m_pPlayer->SetRect(rt,
                        m_pPlayer->m_vScale.x*2.0f, m_pPlayer->m_vScale.y*2.0f);
-    m_pPlayer->Create(  L"../res/Golem.png", L"Plane.hlsl");
+    m_pPlayer->Create(  L"../res/air.png", L"Plane.hlsl");
 
     m_MainCamera.Create(m_pPlayer->m_vPos,
                        { (float)m_dwWindowWidth, (float)m_dwWindowHeight });
