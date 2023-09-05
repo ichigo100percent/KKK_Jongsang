@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../output/Debug</OutDir>
-    <IntDir>../output/Debug/TCoreLib</IntDir>
+    <OutDir>../../output/Debug</OutDir>
+    <IntDir>../../output/Debug/TCoreLib</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -120,7 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../FMOD/Inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../FMOD/Inc;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -128,9 +128,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy "*.h" "..\\TCoreLib\\include"
-copy "*.inl" "..\\TCoreLib\\include"
-copy "..\\output\\TCoreLib.lib" "..\\TCoreLib\\lib"
+      <Command>copy "*.h" "..\\CoreLib\\include"
+copy "*.inl" "..\\CoreLib\\include"
+copy "..\\output\\Debug\\*.lib" "..\\CoreLib\\lib"
 copy "..\\FMOD\lib\\x64\\fmod.dll" "..\\output\\Deubg"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

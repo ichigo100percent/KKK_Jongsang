@@ -47,6 +47,13 @@ public:
 	void Init(HWND hwnd);
 	void Update();
 
+	// InputManager의 유일한 인스턴스를 반환하는 정적 함수
+	static InputManager& GetInstance()
+	{
+		static InputManager instance; // 유일한 인스턴스
+		return instance;
+	}
+
 
 	// 누르고 있을 때
 	bool GetButton(KEY_TYPE key) { return GetState(key) == KEY_STATE::PRESS; }

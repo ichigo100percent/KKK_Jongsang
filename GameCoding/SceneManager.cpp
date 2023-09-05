@@ -62,6 +62,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	// Monster
 	{
 		shared_ptr<GameObject> monster = make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+		//shared_ptr<ConstantBuffer>
 		monster->GetOrAddTransform()->SetPosition(Vec3{1.f, 1.f, 0.f});
 		{
 			monster->GetOrAddTransform();
@@ -71,11 +72,11 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 			meshRenderer->SetMaterial(material);
 			auto mesh = RESOURCES->Get<Mesh>(L"Rectangle");
 			meshRenderer->SetMesh(mesh);
-			auto _test = make_shared<Test>() = make_shared<Test>();
+			auto _test = make_shared<Test>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 			monster->AddComponent(_test);
-			Vec3 pos = monster->GetOrAddTransform()->GetPosition();
-			pos.x += 0.0001f;
-			monster->GetOrAddTransform()->SetPosition(pos);
+			//Vec3 pos = monster->GetOrAddTransform()->GetPosition();
+			//pos.x += 0.0001f;
+			//monster->GetOrAddTransform()->SetPosition(pos);
 		}
 		{
 			auto animator = make_shared<Animator>();

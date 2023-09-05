@@ -71,3 +71,7 @@ using namespace Microsoft::WRL;
 #include "Transform.h"
 #include "InputManager.h"
 #include "Test.h"
+
+
+#define randstep(fmin, fmax) ((float)fmin+((float)fmax-(float)fmin)* rand() / RAND_MAX)
+
