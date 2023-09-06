@@ -1,5 +1,5 @@
 #pragma once
-//#include "TCore.h"
+#include "TCore.h"
 #include "TNpcObj.h"
 #include "TPlayer.h"
 

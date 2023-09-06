@@ -1,15 +1,13 @@
 #pragma once
 #include "TCore.h"
-#include "Sprite.h"
+#include "TPlaneObj.h"
+#include "Player.h"
 
 class Sample : public TCore
 {
 	TObject* m_pMapObj = nullptr;
-	TSpriteObj* m_pSpriteTexObj = nullptr;
-	TSpriteObj* m_pSpriteUVObj = nullptr;
-	TSpriteObj* m_pSpriteAirObj = nullptr;
+	Player* m_pPlayer = new Player;
 public:
-	void CreateBlendState();
 	bool Init();
 	bool Frame();
 	bool Render();
