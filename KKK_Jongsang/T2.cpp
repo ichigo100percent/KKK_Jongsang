@@ -23,6 +23,5 @@ bool Sample::Release()
 
 int main()
 {
-	Sample s;
-	s.Run();
+
 }

@@ -20,11 +20,6 @@ bool Sample::Init()
 
 	m_pPlayer->Init();
 	
-
-
-
-
-
 	m_pMainCamera->Create({0.0f,0.0f, 0.0f },	{ (float)m_dwWindowWidth, (float)m_dwWindowHeight });
 	return true;
 }

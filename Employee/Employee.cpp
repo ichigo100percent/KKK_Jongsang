@@ -51,4 +51,32 @@ namespace Records
 	{
 		return mFirstName;
 	}
+	void Employee::SetLastName(const std::string& lastNmae)
+	{
+		mLastName = lastNmae;
+	}
+	const std::string& Employee::getLastName() const
+	{
+		return mLastName;
+	}
+	void Employee::setEmployeeNumber(int employeeNumber)
+	{
+		mEmployeeNumber = employeeNumber;
+	}
+	int Employee::getEmployeeNumber() const
+	{
+		return mEmployeeNumber;
+	}
+	void Employee::setSalary(int newSalary)
+	{
+		mSalary = newSalary;
+	}
+	int Employee::getSalary() const
+	{
+		return mSalary;
+	}
+	bool Employee::isHired() const
+	{
+		return mHired;
+	}
 }
