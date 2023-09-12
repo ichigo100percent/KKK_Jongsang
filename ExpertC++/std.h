@@ -1,5 +1,10 @@
 #pragma once
 #include <iostream>
+#include <array>
+#include <format>
+#include <utility>
+#include <memory>
+#include <vector>
 
 using namespace std;
 

@@ -12,9 +12,9 @@ using uint16 = unsigned __int16;
 using uint32 = unsigned __int32;
 using uint64 = unsigned __int64;
 
-//using Vec2 = DirectX::XMFLOAT2;
-//using Vec3 = DirectX::XMFLOAT3;
-//using Vec4 = DirectX::XMFLOAT4;
+//using vec2 = directx::xmfloat2;
+//using vec3 = directx::xmfloat3;
+//using vec4 = directx::xmfloat4;
 using Color = DirectX::XMFLOAT4;
 
 using Vec2	 = DirectX::SimpleMath::Vector2;

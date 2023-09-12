@@ -46,12 +46,30 @@
 //	return color;
 //}
 
-float4 VS_KGCA(in float4 p : POSITION) : SV_POSITION
+struct VS_INPUT
 {
-    return p;
+	float4 position : POSITION;
+	float4 color : COLOR;
+};
+
+struct VS_OUTPUT
+{
+	float4 position : SV_POSITION;
+	float4 color : COLOR;
+};
+
+VS_OUTPUT VS(VS_INPUT input)
+{
+	VS_OUTPUT output;
+	output.position = input.position;
+	output.color = input.color;
+
+	return output;
 }
 
-float4 PS(in float4 p : SV_POSITION) : SV_Target
+float4 PS(VS_OUTPUT input) : SV_Target
 {
-	return float4(1,1,0,1);
+
+
+	return input.color;
 }

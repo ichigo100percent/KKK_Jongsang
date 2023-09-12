@@ -20,8 +20,9 @@ bool  Core::EngineFrame()
 }
 bool  Core::EngineRender()
 {
-    Device::Render();
+    Device::RenderBegin();
     Render();
+    Device::RenderEnd();
     return true;
 }
 bool  Core::EngineRelease()

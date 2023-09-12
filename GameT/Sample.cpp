@@ -4,20 +4,29 @@ void Sample::CreateGeometry()
 {
 	// VertexData
 	{
-		_vertices.resize(4);
+		//_vertices.resize(4);
+
+		//_vertices[0].position = Vec3(-0.5f, -0.5f, 0.f);
+		////_vertices[0].uv = Vec2(0.f, 1.f);
+		//_vertices[0].color = Color(1.f, 0.f, 0.f, 1.f);
+		//_vertices[1].position = Vec3(-0.5f, 0.5f, 0.f);
+		////_vertices[1].uv = Vec2(0.f, 0.f);
+		//_vertices[1].color = Color(1.f, 0.f, 0.f, 1.f);
+		//_vertices[2].position = Vec3(0.5f, -0.5f, 0.f);
+		////_vertices[2].uv = Vec2(1.f, 1.f);
+		//_vertices[2].color = Color(1.f, 0.f, 0.f, 1.f);
+		//_vertices[3].position = Vec3(0.5f, 0.5f, 0.f);
+		////_vertices[3].uv = Vec2(1.f, 0.f);
+		//_vertices[3].color = Color(1.f, 0.f, 0.f, 1.f);
+
+		_vertices.resize(3);
 
 		_vertices[0].position = Vec3(-0.5f, -0.5f, 0.f);
-		//_vertices[0].uv = Vec2(0.f, 1.f);
-		//_vertices[0].color = Color(1.f, 0.f, 0.f, 1.f);
-		_vertices[1].position = Vec3(-0.5f, 0.5f, 0.f);
-		//_vertices[1].uv = Vec2(0.f, 0.f);
-		//_vertices[1].color = Color(1.f, 0.f, 0.f, 1.f);
+		_vertices[0].color = Color(1.f, 0.f, 0.f, 1.f);
+		_vertices[1].position = Vec3(0.f, 0.5f, 0.f);
+		_vertices[1].color = Color(0.f, 1.f, 0.f, 1.f);
 		_vertices[2].position = Vec3(0.5f, -0.5f, 0.f);
-		//_vertices[2].uv = Vec2(1.f, 1.f);
-		//_vertices[2].color = Color(1.f, 0.f, 0.f, 1.f);
-		_vertices[3].position = Vec3(0.5f, 0.5f, 0.f);
-		//_vertices[3].uv = Vec2(1.f, 0.f);
-		//_vertices[3].color = Color(1.f, 0.f, 0.f, 1.f);
+		_vertices[2].color = Color(0.f, 0.f, 1.f, 1.f);
 	}
 
 	// VertexBuffer
@@ -36,26 +45,26 @@ void Sample::CreateGeometry()
 		CHECK(hr);
 	}
 
-	// Index
-	{
-		_indices = { 0, 1, 2, 2, 1, 3 };
-	}
+	//// Index
+	//{
+	//	_indices = { 0, 1, 2, 2, 1, 3 };
+	//}
 
-	// IndexBuffer
-	{
-		D3D11_BUFFER_DESC desc;
-		ZeroMemory(&desc, sizeof(desc));
-		desc.Usage = D3D11_USAGE_IMMUTABLE;
-		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-		desc.ByteWidth = (uint32)(sizeof(uint32) * _indices.size());
+	//// IndexBuffer
+	//{
+	//	D3D11_BUFFER_DESC desc;
+	//	ZeroMemory(&desc, sizeof(desc));
+	//	desc.Usage = D3D11_USAGE_IMMUTABLE;
+	//	desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	//	desc.ByteWidth = (uint32)(sizeof(uint32) * _indices.size());
 
-		D3D11_SUBRESOURCE_DATA data;
-		ZeroMemory(&data, sizeof(data));
-		data.pSysMem = _indices.data();
+	//	D3D11_SUBRESOURCE_DATA data;
+	//	ZeroMemory(&data, sizeof(data));
+	//	data.pSysMem = _indices.data();
 
-		HRESULT hr = _device->CreateBuffer(&desc, &data, _indexBuffer.GetAddressOf());
-		CHECK(hr);
-	}
+	//	HRESULT hr = _device->CreateBuffer(&desc, &data, _indexBuffer.GetAddressOf());
+	//	CHECK(hr);
+	//}
 }
 
 void Sample::CreateInputLayout()
@@ -63,7 +72,7 @@ void Sample::CreateInputLayout()
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		//{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
 
 	const int32 count = sizeof(layout) / sizeof(D3D11_INPUT_ELEMENT_DESC);
@@ -72,7 +81,7 @@ void Sample::CreateInputLayout()
 
 void Sample::CreateVS()
 {
-	LoadShaderFromFile(L"Default.hlsl", "VS_KGCA", "vs_5_0", _vsBlob);
+	LoadShaderFromFile(L"Default.hlsl", "VS", "vs_5_0", _vsBlob);
 	HRESULT hr = _device->CreateVertexShader(_vsBlob->GetBufferPointer(), _vsBlob->GetBufferSize(), nullptr, _vertexShader.GetAddressOf());
 	CHECK(hr);
 }
@@ -107,8 +116,8 @@ bool  Sample::Init()
 {
 	CreateGeometry();
 	CreateVS();
-	CreateInputLayout();
 	CreatePS();
+	CreateInputLayout();
     return true;
 }
 bool  Sample::Frame()
@@ -121,7 +130,7 @@ bool  Sample::Render()
 	uint32 offset = 0;
 	// IA
 	_deviceContext->IASetVertexBuffers(0, 1, _vertexBuffer.GetAddressOf(), &stride, &offset);
-	_deviceContext->IASetIndexBuffer(_indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	//_deviceContext->IASetIndexBuffer(_indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 	_deviceContext->IASetInputLayout(_inputLayout.Get());
 	_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
@@ -132,8 +141,8 @@ bool  Sample::Render()
 	_deviceContext->PSSetShader(_pixelShader.Get(), nullptr, 0);
 
 	// OM
-	//_deviceContext->Draw(_vertices.size(), 0);
-	_deviceContext->DrawIndexed(_indices.size(), 0, 0);
+	_deviceContext->Draw(_vertices.size(), 0);
+	//_deviceContext->DrawIndexed(_indices.size(), 0, 0);
     return true;
 }
 bool  Sample::Release()
