@@ -1,5 +1,5 @@
 #pragma once
-#include "GameT.h"
+#include "Windows.h"
 
 class Device : public TWindow
 {

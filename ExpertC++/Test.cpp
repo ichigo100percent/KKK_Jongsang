@@ -4,9 +4,6 @@
 
 bool Test::Init()
 {
-
-	
-
 	return true;
 }
 
