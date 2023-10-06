@@ -1,14 +1,33 @@
-#include "SpreadSheet.h"
+#include <iostream>
 
-void printSpreadSheet(SpreadSheet s)
+using namespace std;
+
+class Something
 {
+public:
+	Something() { cout << "2"; }
+	virtual ~Something() { cout << "2"; }
+};
 
-}
+class Base
+{
+public:
+	Base() { cout << "1"; }
+	virtual ~Base() { cout << "1"; }
+};
+
+class Derived : public Base
+{
+public:
+	Derived() { cout << "3"; }
+	virtual ~Derived() { cout << "3"; }
+
+private:
+	Something mDataMember;
+};
 
 int main()
 {
-	SpreadSheet s1(4, 3);
-	printSpreadSheet(s1);
-
+	Derived myDerived;
 	return 0;
 }

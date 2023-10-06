@@ -1,58 +1,33 @@
 #include <iostream>
-#include <string>
-#include <string_view>
-#include <memory>
-#include <vector>
-#include <initializer_list>
+
 using namespace std;
 
-
-class EvenSequence
+class Something
 {
 public:
-	EvenSequence(initializer_list<double> args)
-	{
-		if (args.size() % 2 != 0)
-		{
-			throw invalid_argument("initializer_list should "
-				"contain even number of elements.");
-		}
+	Something() { cout << "2"; }
+	virtual ~Something() { cout << "2"; }
+};
 
-		//mSequence.reserve(args.size());
-		mSequence.assign(args);
+class Base
+{
+public:
+	Base() { cout << "1"; }
+	virtual ~Base() { cout << "1"; }
+};
 
-		//for (const auto& value : args)
-		//{
-		//	mSequence.push_back(value);
-		//}
-	}
-
-	void dump() const
-	{
-		for (const auto& value : mSequence)
-		{
-			cout << value << ", ";
-		}
-		cout << endl;
-	}
+class Derived : public Base
+{
+public:
+	Derived() { cout << "3"; }
+	virtual ~Derived() { cout << "3"; }
 
 private:
-	vector<double> mSequence;
+	Something mDataMember;
 };
 
 int main()
 {
-	EvenSequence p1 = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
-	p1.dump();
-
-	try
-	{
-		EvenSequence p2 = { 1.0, 2.0, 3.0 };
-		p2 = p1;
-	}
-	catch (const invalid_argument& e)
-	{
-		cout << e.what() << endl;
-	}
-
+	Derived myDerived;
+	return 0;
 }
