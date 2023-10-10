@@ -15,21 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SpreadSheetCell.h">
+    <ClInclude Include="SpreadSheet.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SpreadSheet.h">
+    <ClInclude Include="StringSpreadsheetCell.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleSpreadsheetCell.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SpreadSheetCell.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SpreadSheet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StringSpreadsheetCell.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleSpreadsheetCell.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
