@@ -140,14 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DoubleSpreadsheetCell.h" />
-    <ClInclude Include="SpreadSheet.h" />
-    <ClInclude Include="StringSpreadsheetCell.h" />
+    <ClCompile Include="GameBoard.cpp" />
+    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DoubleSpreadsheetCell.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="StringSpreadsheetCell.cpp" />
+    <ClInclude Include="GameBoard.h" />
+    <ClInclude Include="Grid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
