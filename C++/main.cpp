@@ -1,30 +1,61 @@
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <string_view>
+#include <vector>
+#include <fstream>
+#include <exception>
 
 using namespace std;
 
-string readName(istream& stream);
+
+vector<int> readIntegerFile(string_view fileName)
+{
+	ifstream inputStream(fileName.data());
+
+	if (inputStream.fail())
+	{
+		//파일 열기에 실패: 익셉션을 던진다.
+		throw 5;
+	}
+
+	//파일에 담긴 정숫값을 하나씩 읽어서 벡터에 추가한다.
+
+	vector<int> integers;
+
+	int temp;
+
+	while (inputStream >> temp)
+	{
+		integers.push_back(temp);
+	}
+
+	return integers;
+}
 
 int main()
 {
-	cout << "Type a name followed by Enter followed by Control-D (Control-Z in Windows) and another Enter: ";
-	string theName = readName(cin);
+	const string fileName = "IntegerFile.txt";
 
-	cout << "The name is \"" << theName << "\"" << endl;
+	//vector<int> myInts = readIntegerFile(fileName);
+
+	vector<int> myInts;
+
+	try
+	{
+		myInts = readIntegerFile(fileName);
+	}
+	catch (int e) {
+		cerr << "Unable to open file " << fileName << " (" << e << ")" << endl;
+		return 1;
+	}
+
+	for (const auto& element : myInts)
+	{
+		cout << element << " ";
+	}
+
+	cout << endl;
 
 	return 0;
 }
-
-
-string readName(istream& stream)
-{
-	string name;
-	while (stream) { // 또는: while (!stream.fail()) {
-		int next = stream.get();
-		if (!stream || next == std::char_traits<char>::eof())
-			break;
-		name += static_cast<char>(next);// 문자 추가
-	}
-	return name;
-}
-

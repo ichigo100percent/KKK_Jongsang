@@ -1,26 +1,49 @@
 ﻿#include "CLang_01.h"
-//#include <list>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fstream>
-#include <vector>
 
-using namespace std;
-
-char name[100];
-
-void getchar(char* ch)
+void Queue::Enqueue(int data)
 {
-	strcpy(name, ch);
+	item[++rear] = data;
 }
 
-int main()
+int Queue::Dequeue()
 {
-	char cc[100];
+	return item[front++];
+}
 
-	cin >> cc;
+int Queue::Size()
+{
+	return (rear - front + 1);
+}
 
-	getchar(cc);
+bool Queue::isEmpty()
+{
+	if (front > rear)
+	{
+		return true;
+	}
+	return false;
+}
 
-	cout << name;
+bool Queue::isFull()
+{
+	if (Size() > MAX_SIZE)
+	{
+		return true;
+	}
+	return false;
+}
+
+void Queue::Display()
+{
+	if (!isEmpty())
+	{
+		for (size_t i = front; i < rear; i++)
+		{
+			std::cout << item[i] << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Queue Underflow" << std::endl;
+	}
 }
