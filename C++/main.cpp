@@ -1,61 +1,91 @@
 #include <iostream>
-#include <sstream>
-#include <string>
-#include <string_view>
-#include <vector>
-#include <fstream>
-#include <exception>
 
-using namespace std;
+template <typename T>
+class Node {
+public:
+    T data;
+    Node* prev;
+    Node* next;
 
+    Node(const T& val) : data(val), prev(nullptr), next(nullptr) {}
+};
 
-vector<int> readIntegerFile(string_view fileName)
-{
-	ifstream inputStream(fileName.data());
+template <typename T>
+class DoublyLinkedList {
+public:
+    DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 
-	if (inputStream.fail())
-	{
-		//파일 열기에 실패: 익셉션을 던진다.
-		throw 5;
-	}
+    void push_back(const T& val) {
+        Node<T>* newNode = new Node<T>(val);
+        if (!head) {
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            tail->next = newNode;
+            newNode->prev = tail;
+            tail = newNode;
+        }
+    }
 
-	//파일에 담긴 정숫값을 하나씩 읽어서 벡터에 추가한다.
+    void print() {
+        Node<T>* current = head;
+        while (current) {
+            std::cout << current->data << " ";
+            current = current->next;
+        }
+        std::cout << std::endl;
+    }
 
-	vector<int> integers;
+    // 정렬 함수
+    void sort() {
+        if (!head || head == tail) {
+            return; // 노드가 0개 또는 1개인 경우 이미 정렬되어 있음
+        }
 
-	int temp;
+        bool swapped;
+        Node<T>* temp;
 
-	while (inputStream >> temp)
-	{
-		integers.push_back(temp);
-	}
+        do {
+            swapped = false;
+            Node<T>* current = head;
 
-	return integers;
-}
+            while (current->next) {
+                if (current->data > current->next->data) {
+                    // 두 노드의 데이터를 교환
+                    temp = current->data;
+                    current->data = current->next->data;
+                    current->next->data = temp;
+                    swapped = true;
+                }
+                current = current->next;
+            }
+        } while (swapped);
+    }
 
-int main()
-{
-	const string fileName = "IntegerFile.txt";
+private:
+    Node<T>* head;
+    Node<T>* tail;
+};
 
-	//vector<int> myInts = readIntegerFile(fileName);
+int main() {
+    DoublyLinkedList<int> list;
 
-	vector<int> myInts;
+    // 데이터 추가
+    list.push_back(5);
+    list.push_back(3);
+    list.push_back(8);
+    list.push_back(1);
+    list.push_back(6);
 
-	try
-	{
-		myInts = readIntegerFile(fileName);
-	}
-	catch (int e) {
-		cerr << "Unable to open file " << fileName << " (" << e << ")" << endl;
-		return 1;
-	}
+    std::cout << "Before sorting: ";
+    list.print();
 
-	for (const auto& element : myInts)
-	{
-		cout << element << " ";
-	}
+    // 리스트 정렬
+    list.sort();
 
-	cout << endl;
+    std::cout << "After sorting: ";
+    list.print();
 
-	return 0;
+    return 0;
 }

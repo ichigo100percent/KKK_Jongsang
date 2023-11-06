@@ -1,33 +1,24 @@
 #include <iostream>
-
+#include <memory>
+#include <vector>
+#include <string>
+#include <functional>
 using namespace std;
 
-class Something
-{
-public:
-	Something() { cout << "2"; }
-	virtual ~Something() { cout << "2"; }
-};
 
-class Base
+template<typename T>
+void printVector(const vector<T>& v)
 {
-public:
-	Base() { cout << "1"; }
-	virtual ~Base() { cout << "1"; }
-};
-
-class Derived : public Base
-{
-public:
-	Derived() { cout << "3"; }
-	virtual ~Derived() { cout << "3"; }
-
-private:
-	Something mDataMember;
-};
+	for (auto& element : v)
+	{
+		cout << element << " ";
+	}
+	cout << endl;
+}
 
 int main()
 {
-	Derived myDerived;
-	return 0;
+
 }
+
+
