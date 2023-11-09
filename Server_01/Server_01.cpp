@@ -18,8 +18,7 @@ int main()
     //error C4996 : 'inet_addr' : Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
     sa.sin_addr.s_addr = inet_addr("192.168.0.12");
     sa.sin_port = htons(port);
-    int ret = connect(sock, (SOCKADDR*)&s
-        a, sizeof(sa));
+    int ret = connect(sock, (SOCKADDR*)&sa, sizeof(sa));
     if (ret == 0)
     {
         printf("서버 접속 ip=%s, Port:%d 했습니다.\n",
@@ -36,7 +35,7 @@ int main()
     int iLen = strlen(buf);
     int iSendByte;
     while (1)
-    {
+    {        
         ZeroMemory(buf, sizeof(char) * 256);
         fgets(buf, 256, stdin);
         if (buf[0] == '\n') break;

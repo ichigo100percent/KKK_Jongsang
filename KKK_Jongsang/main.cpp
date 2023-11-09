@@ -6,18 +6,13 @@
 using namespace std;
 
 
-template<typename T>
-void printVector(const vector<T>& v)
-{
-	for (auto& element : v)
-	{
-		cout << element << " ";
-	}
-	cout << endl;
-}
 
 int main()
 {
+	vector<int> a{ 1,10,100,1000 };
+
+	a.insert(a.cend(), a.begin(), a.end());
+
 
 }
 

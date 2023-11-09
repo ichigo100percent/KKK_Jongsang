@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{552eb3fa-004a-49a6-88d8-4fc7eda25cf3}</ProjectGuid>
-    <RootNamespace>RoundRobin</RootNamespace>
+    <ProjectGuid>{c66d2b1d-f667-41e9-956f-021dd854c2a3}</ProjectGuid>
+    <RootNamespace>StudentEnrollment</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -79,7 +79,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>../../output/</OutDir>
-    <IntDir>../../output/RoundRobin/</IntDir>
+    <IntDir>../../output/studentEnroll</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -142,10 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="RoundRobin.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="RoundRobin.h" />
+    <ClCompile Include="StudentEnrollment.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

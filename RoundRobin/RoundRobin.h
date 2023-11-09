@@ -9,7 +9,7 @@ template <typename T>
 class RoundRobin
 {
 public:
-	//효율을 높이기 위해 우 ㅓㄴ소의 예상 갯수를 클라이언트로 받는다.
+	//효율을 높이기 위해 원소의 예상 갯수를 클라이언트로 받는다.
 	RoundRobin(size_t numExpected = 0);
 	virtual ~RoundRobin() = default;
 
