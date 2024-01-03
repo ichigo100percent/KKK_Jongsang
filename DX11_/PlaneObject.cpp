@@ -4,19 +4,12 @@ bool PlaneObject::CreateVertexBuffer()
 {
 	m_VertexList.resize(6);
 
-	//m_VertexList[0].p = Vec3(-1.0f, 1.0f, 0.0f);
-	//m_VertexList[1].p = Vec3(-1.0f, -1.0f, 0.0f);
-	//m_VertexList[2].p = Vec3(1.0f, 1.0f, 0.0f);
-	//m_VertexList[3].p = m_VertexList[2].p;
-	//m_VertexList[4].p = m_VertexList[1].p;
-	//m_VertexList[5].p = Vec3(1.0f, -1.0f, 0.0f);
-
-	m_VertexList[0].p = Vec3(-10.0f, 10.0f, 0.0f);
-	m_VertexList[1].p = Vec3(10.0f, 10.0f, 0.0f);
-	m_VertexList[2].p = Vec3(-10.0f, -10.0f, 0.0f);
+	m_VertexList[0].p = Vec3(-1.0f, 1.0f, 0.0f);
+	m_VertexList[1].p = Vec3(-1.0f, -1.0f, 0.0f);
+	m_VertexList[2].p = Vec3(1.0f, 1.0f, 0.0f);
 	m_VertexList[3].p = m_VertexList[2].p;
 	m_VertexList[4].p = m_VertexList[1].p;
-	m_VertexList[5].p = Vec3(10.0f, -10.0f, 0.0f);
+	m_VertexList[5].p = Vec3(1.0f, -1.0f, 0.0f);
 
 	m_VertexList[0].t = Vec2(0.0f, 0.0f);
 	m_VertexList[1].t = Vec2(1.0f, 0.0f);
