@@ -119,8 +119,6 @@ public:
 				//pNewNode->m_pData->Read(fpRead);
 				//pNewNode->m_pData->Compute();
 				//m_LinkedList.Push_Front(pNewNode);
-
-
 			}
 			fileIO.CloseFile();
 		}
