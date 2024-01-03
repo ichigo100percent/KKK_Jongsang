@@ -60,3 +60,5 @@ bool  Game::Release()
 }
 
 GAME(L"GameEngine", 800, 600);
+
+//ㅎㅇ
