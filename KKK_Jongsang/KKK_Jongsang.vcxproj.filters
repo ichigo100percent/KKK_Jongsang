@@ -4,10 +4,4 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="소스.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="소스.h" />
-  </ItemGroup>
 </Project>

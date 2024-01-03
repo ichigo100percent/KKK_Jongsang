@@ -1,6 +1,5 @@
 #pragma once
 //STL
-#include <Windows.h>
 #include <memory>
 #include <string>
 #include <vector>
@@ -17,7 +16,9 @@
 //#include "DirectXTex.inl"
 //#include "SimpleMath.h"
 //
-//#pragma comment (lib, "d3d11.lib")
-//#pragma comment (lib, "d3dcompiler.lib")
-//#pragma comment (lib, "winmm.lib")
+#pragma comment (lib, "d3d11.lib")
+#pragma comment (lib, "d3dcompiler.lib")
+#pragma comment (lib, "winmm.lib")
 
+#include "DirectXTex.inl"
+#include "SimpleMath.h"

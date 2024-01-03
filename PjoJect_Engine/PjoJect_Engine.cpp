@@ -1,9 +1,8 @@
-﻿// API__.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// PjoJect_Engine.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
-#include <Windows.h>
-
+#include "PjoJect_Engine.h"
 
 
 #define MAX_LOADSTRING 100
@@ -20,7 +19,7 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance, 
+                     _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
@@ -31,16 +30,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_API, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_PJOJECTENGINE, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
-     
+
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_API));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_PJOJECTENGINE));
 
     MSG msg;
 
@@ -75,10 +74,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_API));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_PJOJECTENGINE));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_API);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_PJOJECTENGINE);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -148,12 +147,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-
-            HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, brush);
-
-            Rectangle(hdc, 10, 10, 150, 150);
-
+            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
         break;
