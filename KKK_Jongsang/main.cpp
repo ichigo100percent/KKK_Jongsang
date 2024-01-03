@@ -1,19 +1,29 @@
-#include <iostream>
-#include <memory>
+#include "¼Ò½º.h"
 #include <vector>
+#include <map>
 #include <string>
-#include <functional>
-using namespace std;
+class test1
+{
+public:
+	unique_ptr<int> t1()
+	{
+	    auto a = make_unique<int>(10);
+
+		return a;
+	}
+
+};
 
 
 
 int main()
 {
-	vector<int> a{ 1,10,100,1000 };
+	shared_ptr<int> a = make_shared<int>(10);
 
-	a.insert(a.cend(), a.begin(), a.end());
+	auto b = a;
+	
+	//int* c = b;
 
+	b.reset();
 
 }
-
-

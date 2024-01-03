@@ -42,6 +42,7 @@ void Sample::CreateGeometry()
 		data.pSysMem = _vertices.data();
 
 		HRESULT hr = _device->CreateBuffer(&desc, &data, _vertexBuffer.GetAddressOf());
+
 		CHECK(hr);
 	}
 

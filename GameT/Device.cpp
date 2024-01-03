@@ -90,8 +90,8 @@ bool  Device::Frame()
 
 bool  Device::Render()
 {
-	RenderBegin();
-	RenderEnd();
+/*	RenderBegin();
+	RenderEnd()*/;
 
 	return true;
 }
