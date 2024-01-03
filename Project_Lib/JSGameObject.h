@@ -12,7 +12,7 @@ namespace J
 	public:
 		virtual bool Init();
 		virtual bool Frame();
-		virtual bool Render(HWND _hwnd);
+		virtual bool Render(HDC _hdc);
 		virtual bool Release();
 
 	public:

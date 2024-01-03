@@ -3,10 +3,10 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Std.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="JSGameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="JSGameObject.cpp" />
   </ItemGroup>
 </Project>

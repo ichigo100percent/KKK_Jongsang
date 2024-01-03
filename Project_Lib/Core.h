@@ -1,6 +1,6 @@
 #pragma once
 #include "Std.h"
-#include "GameObject.h"
+#include "JSGameObject.h"
 
 namespace J
 {
@@ -22,6 +22,8 @@ namespace J
 	private:
 		HWND m_Hwnd;
 		HDC  m_Hdc;
-		float m_fSpeed;
+
+		GameObject obj;
+		//float m_fSpeed;
 	};
 }
