@@ -2,8 +2,7 @@
 
 float g_fMapHalfSizeX = 400.0f;
 float g_fMapHalfSizeY = 300.0f;
-int a = 0;
-int b = 0;
+
 void  Game::CreateBlendState()
 {
     // alpha blending
@@ -62,4 +61,3 @@ bool  Game::Release()
 
 GAME(L"GameEngine", 800, 600);
 
-//ㅎㅇ
