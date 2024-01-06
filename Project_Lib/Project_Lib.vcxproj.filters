@@ -4,9 +4,13 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Std.h" />
     <ClInclude Include="JSGameObject.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="JSGameObject.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
 </Project>

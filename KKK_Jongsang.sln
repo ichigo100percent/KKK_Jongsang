@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33529.622
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KKK_Jongsang", "KKK_Jongsang\KKK_Jongsang.vcxproj", "{37D35310-6708-4489-B4D5-C88D49F98D25}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C_00", "CLang_00\CLang_00.vcxproj", "{67CEDA99-7E8C-4746-BAB0-70B928865300}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C", "C", "{CE6FD965-8BE1-4E83-8788-98F20CAB62DB}"
@@ -145,9 +143,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DX11_", "DX11_\DX11_.vcxpro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameEngine", "GameEngine", "{BA36209D-CB8E-4123-BB6B-F6E889ADD900}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project_Lib", "Project_Lib\Project_Lib.vcxproj", "{38FDC278-DD19-4644-8BF0-7A2B5AA6181F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_Lib", "Project_Lib\Project_Lib.vcxproj", "{38FDC278-DD19-4644-8BF0-7A2B5AA6181F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project4", "Project4\Project4.vcxproj", "{339A2792-1209-415E-9A19-45FCD1889670}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JSGame", "Project4\Project4.vcxproj", "{339A2792-1209-415E-9A19-45FCD1889670}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project5", "Project5\Project5.vcxproj", "{6EE9B308-783D-462E-8996-B0C261349810}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -157,14 +157,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Debug|x64.ActiveCfg = Debug|x64
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Debug|x64.Build.0 = Debug|x64
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Debug|x86.ActiveCfg = Debug|Win32
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Debug|x86.Build.0 = Debug|Win32
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Release|x64.ActiveCfg = Release|x64
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Release|x64.Build.0 = Release|x64
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Release|x86.ActiveCfg = Release|Win32
-		{37D35310-6708-4489-B4D5-C88D49F98D25}.Release|x86.Build.0 = Release|Win32
 		{67CEDA99-7E8C-4746-BAB0-70B928865300}.Debug|x64.ActiveCfg = Debug|x64
 		{67CEDA99-7E8C-4746-BAB0-70B928865300}.Debug|x64.Build.0 = Debug|x64
 		{67CEDA99-7E8C-4746-BAB0-70B928865300}.Debug|x86.ActiveCfg = Debug|Win32
@@ -653,6 +645,14 @@ Global
 		{339A2792-1209-415E-9A19-45FCD1889670}.Release|x64.Build.0 = Release|x64
 		{339A2792-1209-415E-9A19-45FCD1889670}.Release|x86.ActiveCfg = Release|Win32
 		{339A2792-1209-415E-9A19-45FCD1889670}.Release|x86.Build.0 = Release|Win32
+		{6EE9B308-783D-462E-8996-B0C261349810}.Debug|x64.ActiveCfg = Debug|x64
+		{6EE9B308-783D-462E-8996-B0C261349810}.Debug|x64.Build.0 = Debug|x64
+		{6EE9B308-783D-462E-8996-B0C261349810}.Debug|x86.ActiveCfg = Debug|Win32
+		{6EE9B308-783D-462E-8996-B0C261349810}.Debug|x86.Build.0 = Debug|Win32
+		{6EE9B308-783D-462E-8996-B0C261349810}.Release|x64.ActiveCfg = Release|x64
+		{6EE9B308-783D-462E-8996-B0C261349810}.Release|x64.Build.0 = Release|x64
+		{6EE9B308-783D-462E-8996-B0C261349810}.Release|x86.ActiveCfg = Release|Win32
+		{6EE9B308-783D-462E-8996-B0C261349810}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

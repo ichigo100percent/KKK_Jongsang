@@ -1,4 +1,6 @@
 #include "Core.h"
+#include "Input.h"
+#include "Time.h"
 
 namespace J
 {
@@ -18,12 +20,17 @@ namespace J
 	{
 		m_Hwnd = _hwnd;
 		m_Hdc = GetDC(m_Hwnd);
+		Time::Init();
+		Input::Init();
+
 		obj.SetPosition(0, 0);
 		return true;
 	}
 
 	bool Core::Frame()
 	{
+		Time::Frame();
+		Input::Frame();
 		obj.Frame();
 
 		return true;
@@ -31,6 +38,7 @@ namespace J
 
 	bool Core::Render()
 	{
+		Time::Render(m_Hdc);
 		obj.Render(m_Hdc);
 
 		return true;

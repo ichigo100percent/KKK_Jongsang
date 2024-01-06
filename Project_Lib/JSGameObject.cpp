@@ -1,4 +1,6 @@
 #include "JSGameObject.h"
+#include "Input.h"
+#include "Time.h"
 
 namespace J
 {
@@ -18,24 +20,26 @@ namespace J
 
 	bool GameObject::Frame()
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		const int speed = 150.0f;
+
+		if (Input::Getkey(eKeyCode::A))
 		{
-			m_fX -= 0.01f;
+			m_fX -= speed * Time::DeltaTime();
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (Input::Getkey(eKeyCode::D))
 		{
-			m_fX += 0.01f;
+			m_fX += speed * Time::DeltaTime();
 		}
 
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		if (Input::Getkey(eKeyCode::W))
 		{
-			m_fY -= 0.01f;
+			m_fY -= speed * Time::DeltaTime();
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (Input::Getkey(eKeyCode::S))
 		{
-			m_fY += 0.01f;
+			m_fY += speed * Time::DeltaTime();
 		}
 
 		return true;
