@@ -1,11 +1,51 @@
 #include <iostream>
+#include <vector>
 
-int main()
-{
-	wchar_t str[50];
-	int value = 42;
+class Observer {
+public:
+    virtual void update(const std::string& message) = 0;
+};
 
-	swprintf_s(str, 50, L"The value is %d", value);
+class Subject {
+private:
+    std::vector<Observer*> observers;
 
-	wprintf(L"%s\n", str);
+public:
+    void addObserver(Observer* observer) {
+        observers.push_back(observer);
+    }
+
+    void removeObserver(Observer* observer) {
+        auto it = std::find(observers.begin(), observers.end(), observer);
+        if (it != observers.end()) {
+            observers.erase(it);
+        }
+    }
+
+    void notifyObservers(const std::string& message) {
+        for (Observer* observer : observers) {
+            observer->update(message);
+        }
+    }
+};
+
+class ConcreteObserver : public Observer {
+public:
+    void update(const std::string& message) override {
+        std::cout << "Received message: " << message << std::endl;
+    }
+};
+
+int main() {
+    Subject subject;
+
+    ConcreteObserver observer1;
+    ConcreteObserver observer2;
+
+    subject.addObserver(&observer1);
+    subject.addObserver(&observer2);
+
+    subject.notifyObservers("Hello, observers!");
+
+    return 0;
 }

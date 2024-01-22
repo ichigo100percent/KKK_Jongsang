@@ -11,7 +11,7 @@ namespace J
 		virtual ~Core();
 
 	public:
-		bool Init(HWND _hwnd);
+		bool Init(HWND _hwnd, UINT _width, UINT _height);
 		bool Frame();
 		bool Render();
 		bool Release();
@@ -22,6 +22,12 @@ namespace J
 	private:
 		HWND m_Hwnd;
 		HDC  m_Hdc;
+
+		HDC		m_BackHdc;
+		HBITMAP m_Backbitmap;
+
+		UINT	m_Width;
+		UINT	m_Height;
 
 		GameObject obj;
 		//float m_fSpeed;

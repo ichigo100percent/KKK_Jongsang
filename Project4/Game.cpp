@@ -115,7 +115,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   test.Init(hWnd);
+   test.Init(hWnd, width, height);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
