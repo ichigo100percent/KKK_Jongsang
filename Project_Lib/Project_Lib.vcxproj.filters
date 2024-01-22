@@ -6,11 +6,17 @@
     <ClInclude Include="JSGameObject.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="JSGameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
 </Project>
