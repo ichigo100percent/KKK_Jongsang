@@ -11,9 +11,15 @@ namespace J
 		return true;
 	}
 
-	bool SceneManager::Frame()
+	bool SceneManager::Update()
 	{
-		m_ActiveScene->Frame();
+		m_ActiveScene->Update();
+		return true;
+	}
+
+	bool SceneManager::LateUpdate()
+	{
+		m_ActiveScene->LateUpdate();
 		return true;
 	}
 

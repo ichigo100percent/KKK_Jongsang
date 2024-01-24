@@ -20,7 +20,7 @@ namespace J
 		return true;
 	}
 
-	bool Input::Frame()
+	bool Input::Update()
 	{
 		updateKeys();
 		

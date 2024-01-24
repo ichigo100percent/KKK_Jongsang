@@ -36,7 +36,8 @@ namespace J
 		}
 
 		static bool Init();
-		static bool Frame();
+		static bool Update();
+		static bool LateUpdate();
 		static bool Render(HDC _hdc);
 		static bool Release();
 

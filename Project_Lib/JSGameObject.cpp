@@ -5,6 +5,8 @@
 namespace J
 {
 	GameObject::GameObject()
+		: m_fX(0)
+		, m_fY(0)
 	{
 
 	}
@@ -18,7 +20,7 @@ namespace J
 		return true;
 	}
 
-	bool GameObject::Frame()
+	bool GameObject::Update()
 	{
 		const int speed = 150.0f;
 
@@ -42,6 +44,11 @@ namespace J
 			m_fY += speed * Time::DeltaTime();
 		}
 
+		return true;
+	}
+
+	bool GameObject::LateUpdate()
+	{
 		return true;
 	}
 

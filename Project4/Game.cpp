@@ -3,7 +3,7 @@
 #include "framework.h"
 #include "Game.h"
 #include "Core.h"
-
+#include "LoadScene.h"
 
 J::Core test;
 
@@ -118,6 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    test.Init(hWnd, width, height);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+   J::LoadScenes();
 
    return TRUE;
 }

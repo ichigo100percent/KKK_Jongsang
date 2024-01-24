@@ -12,7 +12,8 @@ namespace J
 		~Scene();
 
 		virtual bool Init();
-		virtual bool Frame();
+		virtual bool Update();
+		virtual bool LateUpdate();
 		virtual bool Render(HDC _hdc);
 		virtual bool Release();
 

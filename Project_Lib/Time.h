@@ -8,7 +8,7 @@ namespace J
 	{
 	public:
 		static void Init();
-		static void Frame();
+		static void Update();
 		static void Render(HDC _hdc);
 
 		static float DeltaTime() { return DeltaTimeValue; }

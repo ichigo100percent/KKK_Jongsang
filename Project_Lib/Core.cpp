@@ -1,6 +1,8 @@
 #include "Core.h"
 #include "Input.h"
 #include "Time.h"
+#include "SceneManager.h"
+
 
 namespace J
 {
@@ -22,6 +24,68 @@ namespace J
 
 	bool Core::Init(HWND _hwnd, UINT _width, UINT _height)
 	{
+		adjustWindowRect(_hwnd, _width, _height);
+		CreateBuffer(_width, _height);
+		InitEtc();
+
+		SceneManager::Init();
+
+		//obj.SetPosition(50, 500);
+		return true;
+	}
+
+	bool Core::Update()
+	{
+		Time::Update();
+		Input::Update();
+
+		SceneManager::Update;
+
+		//obj.Update();
+
+		return true;
+	}
+
+	bool Core::LateUpdate()
+	{
+
+		SceneManager::LateUpdate();
+		return true;
+	}
+
+	bool Core::Render()
+	{
+		clearRenderTarget();
+
+		Time::Render(m_BackHdc);
+		//obj.Render(m_BackHdc);
+		copyRenderTarget();
+		SceneManager::Render(m_BackHdc);
+
+		return true;
+	}
+
+	bool Core::Release()
+	{
+		return true;
+	}
+
+	bool Core::clearRenderTarget()
+	{
+		Rectangle(m_BackHdc, -1, -1, 1601, 901);
+		return true;
+	}
+
+	bool Core::copyRenderTarget()
+	{
+		// BackBuffer에 있는걸 원본 Buffer에 복사(그려준다)
+		BitBlt(m_Hdc, 0, 0, m_Width, m_Height
+			, m_BackHdc, 0, 0, SRCCOPY);
+		return true;
+	}
+
+	bool Core::adjustWindowRect(HWND _hwnd, UINT _width, UINT _height)
+	{
 		m_Hwnd = _hwnd;
 		m_Hdc = GetDC(m_Hwnd);
 
@@ -34,6 +98,11 @@ namespace J
 		SetWindowPos(m_Hwnd, nullptr, 0, 0, m_Width, m_Height, 0);
 		ShowWindow(m_Hwnd, true);
 
+		return true;
+	}
+
+	bool Core::CreateBuffer(UINT _width, UINT _height)
+	{
 		//윈도우 해상도에 맞는 백버퍼(도화지)생성
 		m_Backbitmap = CreateCompatibleBitmap(m_Hdc, _width, _height);
 
@@ -42,45 +111,20 @@ namespace J
 
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(m_BackHdc, m_Backbitmap);
 		DeleteObject(oldBitmap);
+		return true;
+	}
 
+	bool Core::InitEtc()
+	{
 		Time::Init();
 		Input::Init();
 
-		obj.SetPosition(50, 500);
-		return true;
-	}
-
-	bool Core::Frame()
-	{
-		Time::Frame();
-		Input::Frame();
-		obj.Frame();
-
-		return true;
-	}
-
-	bool Core::Render()
-	{
-		Rectangle(m_BackHdc, 0, 0, 1600, 900);
-
-		Time::Render(m_BackHdc);
-		obj.Render(m_BackHdc);
-
-		// BackBuffer에 있는걸 원본 Buffer에 복사(그려준다)
-		BitBlt(m_Hdc, 0, 0, m_Width, m_Height
-			, m_BackHdc, 0, 0, SRCCOPY);
-
-		return true;
-	}
-
-	bool Core::Release()
-	{
 		return true;
 	}
 
 	bool Core::Run()
 	{
-		Frame();
+		Update();
 		Render();
 
 		return true;

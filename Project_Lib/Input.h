@@ -32,7 +32,7 @@ namespace J
 		};
 
 		static bool Init();
-		static bool Frame();
+		static bool Update();
 
 		static bool GetkeyDown(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Down; }
 		static bool GetkeyUp(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Up; }

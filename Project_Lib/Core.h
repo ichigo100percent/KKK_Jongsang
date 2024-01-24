@@ -12,10 +12,16 @@ namespace J
 
 	public:
 		bool Init(HWND _hwnd, UINT _width, UINT _height);
-		bool Frame();
+		bool Update();
+		bool LateUpdate();
 		bool Render();
 		bool Release();
 
+		bool clearRenderTarget();
+		bool copyRenderTarget();
+		bool adjustWindowRect(HWND _hwnd, UINT _width, UINT _height);
+		bool CreateBuffer(UINT _width, UINT _height);
+		bool InitEtc();
 
 		bool Run();
 

@@ -17,7 +17,7 @@ namespace J
 		QueryPerformanceCounter(&PrevFrequency);
 	}
 
-	void Time::Frame()
+	void Time::Update()
 	{
 		QueryPerformanceCounter(&CurrentFrequency);
 

@@ -19,13 +19,18 @@ namespace J
         return true;
     }
 
-    bool Scene::Frame()
+    bool Scene::Update()
     {
         for (auto gameObj : m_GameObjects)
         {
-            gameObj->Frame();
+            gameObj->Update();
         }
 
+        return true;
+    }
+
+    bool Scene::LateUpdate()
+    {
         return true;
     }
 
