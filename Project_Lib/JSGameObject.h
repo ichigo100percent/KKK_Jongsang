@@ -1,5 +1,6 @@
 #pragma once
 #include "Std.h"
+#include "Component.h"
 
 namespace J
 {
@@ -16,19 +17,44 @@ namespace J
 		virtual bool Render(HDC _hdc);
 		virtual bool Release();
 
-	public:
-		void SetPosition(float _x, float _y)
+		template<typename T>
+		T* AddComponent()
 		{
-			m_fX = _x;
-			m_fY = _y;
+			T* comp = new T();
+			comp->SetOwner(this);
+			m_Components.push_back(comp);
+
+			return comp;
 		}
 
-		float GetX() const { return m_fX; }
-		float GetY() const { return m_fY; }
+		template<typename T>
+		T* GetComponent()
+		{
+			T* component = nullptr;
+			for (auto comp : m_Components)
+			{
+				component = dynamic_cast<T*>(comp);
+
+				if (component)
+					break;
+			}
+
+			return component;
+		}
+
+		//void SetPosition(float _x, float _y)
+		//{
+		//	m_fX = _x;
+		//	m_fY = _y;
+		//}
+
+		//float GetX() const { return m_fX; }
+		//float GetY() const { return m_fY; }
 
 	private:
-		float m_fX;
-		float m_fY;
+		vector<Component*> m_Components;
+		//float m_fX;
+		//float m_fY;
 	};
 }
 

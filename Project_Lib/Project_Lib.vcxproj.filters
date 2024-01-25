@@ -2,11 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Core.h" />
-    <ClInclude Include="Std.h" />
-    <ClInclude Include="JSGameObject.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Entity.h" />
     <ClInclude Include="LoadScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -19,13 +14,36 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="JSGameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Std.h">
+      <Filter>Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="JSGameObject.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="PlayScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -35,10 +53,43 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="JSGameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
       <UniqueIdentifier>{e4de22a3-34f7-4d5e-9a2c-297530ae5796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{f3169eac-9841-4120-86c0-1c3d48bbc972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{dfed1555-81b6-480a-b913-945f2030985c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Etc">
+      <UniqueIdentifier>{bedba717-88b7-4931-8ffb-326b359d3ee4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
