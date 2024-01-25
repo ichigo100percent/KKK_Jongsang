@@ -7,10 +7,18 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="LoadScene.h" />
-    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="LoadScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -18,8 +26,19 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{e4de22a3-34f7-4d5e-9a2c-297530ae5796}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

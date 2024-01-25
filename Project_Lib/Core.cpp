@@ -39,7 +39,7 @@ namespace J
 		Time::Update();
 		Input::Update();
 
-		SceneManager::Update;
+		SceneManager::Update();
 
 		//obj.Update();
 
@@ -59,9 +59,11 @@ namespace J
 
 		Time::Render(m_BackHdc);
 		//obj.Render(m_BackHdc);
-		copyRenderTarget();
 		SceneManager::Render(m_BackHdc);
 
+
+
+		copyRenderTarget();
 		return true;
 	}
 
@@ -125,6 +127,7 @@ namespace J
 	bool Core::Run()
 	{
 		Update();
+		LateUpdate();
 		Render();
 
 		return true;
