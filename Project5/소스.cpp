@@ -1,62 +1,21 @@
 #include <iostream>
-#include <memory>
 #include <vector>
 
 using namespace std;
 
-class Animal
-{
-public:
-	virtual void bark() = 0;
-};
 
-class Dog : public Animal
-{
-public:
-	void bark() override
-	{
-		cout << "港港" << endl;
-	}
-};
-
-class Cat : public Animal
-{
-public:
-	void bark() override
-	{
-		cout << "具克" << endl;
-	}
-};
-
-vector<Animal*> vec = {};
-
-template<typename T>
-T* GetAnimal()
-{
-	T* ani = nullptr;
-
-	for (auto element : vec)
-	{
-		ani = dynamic_cast<T*>(element);
-
-		if (ani)
-		{
-			break;
-		}
-	}
-
-	return ani;
-}
 
 int main()
 {
-	Animal* dog = new Dog();
-	Animal* cat = new Cat();
+	int a = 100;
 
-	vec.push_back(dog);
-	vec.push_back(cat);
+	auto mylamda = [&a](int _a) { a += _a; return a; };
 
-	Dog* dog2 = GetAnimal<Dog>();
 
-	dog2->bark();
-}
+	auto c = mylamda(5);
+
+	double data = 1.23;
+	auto capturingVLambda = [data] {cout << "Data = " << data << endl; };
+	capturingVLambda();
+
+};

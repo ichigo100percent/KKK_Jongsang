@@ -4,14 +4,14 @@
 
 namespace J
 {
-	using SceneMap = map<wstring, Scene*>;
-	using SceneIter = map<std::wstring, Scene*>::iterator;
+	using SceneMap = std::map<std::wstring, Scene*>;
+	using SceneIter = std::map<std::wstring, Scene*>::iterator;
 
 	class SceneManager
 	{
 	public:
 		template<typename T>
-		static Scene* CreateScene(const wstring& _name)
+		static Scene* CreateScene(const std::wstring& _name)
 		{
 			T* scene = new T();
 			scene->SetName(_name);
@@ -23,7 +23,7 @@ namespace J
 
 		}
 
-		static Scene* LoadScene(const wstring& _name)
+		static Scene* LoadScene(const std::wstring& _name)
 		{
 			SceneIter iter = m_Scene.find(_name);
 

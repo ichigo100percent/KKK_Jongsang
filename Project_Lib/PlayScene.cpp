@@ -18,46 +18,29 @@ namespace J
 		//obj->SetPosition(50, 500);
 		//AddGameObject(obj);
 
-		{
-			Player* pl = new Player();
-			Transform* tr = pl->AddComponent<Transform>();
-			tr->SetPos(800, 450);
-			tr->SetName(L"TR");
+		//{
+		//	Player* pl = new Player();
+		//	Transform* tr = pl->AddComponent<Transform>();
+		//	tr->SetPos(800, 450);
+		//	tr->SetName(L"TR");
 
-			SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
+		//	SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
+		//	sr->SetName(L"SR");
 
-			AddGameObject(pl);
-		}
-
-		{
-			Player* pl = new Player();
-			Transform* tr
-				= pl->AddComponent<Transform>();
-			tr->SetPos(300, 450);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr
-				= pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(pl);
-		}
+		//	AddGameObject(pl);
+		//}
 
 		{
-			Player* pl = new Player();
-			Transform* tr
-				= pl->AddComponent<Transform>();
-			tr->SetPos(100, 650);
-
+			Player* bg = new Player();
+			Transform* tr = bg->AddComponent<Transform>();
+			tr->SetPos(Vector2(0, 0));
 			tr->SetName(L"TR");
 
-			SpriteRenderer* sr
-				= pl->AddComponent<SpriteRenderer>();
+			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 			sr->SetName(L"SR");
+			sr->ImageLoad(L"../../data/CloudOcean.png");
 
-			AddGameObject(pl);
+			AddGameObject(bg);
 		}
 
 		return true;

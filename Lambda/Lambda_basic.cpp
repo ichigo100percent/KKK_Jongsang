@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-/*
+
 int main()
 {
 	//가장 간단한 람다 표현식
@@ -20,7 +20,7 @@ int main()
 	//값을 리턴하는 람다 표현식, 리턴 타입은 생략
 	auto returningLambda2 = [](int a, int b) {return a + b; };
 	sum = returningLambda2(11, 22);
-	cout << "The result is" << sum << endl;
+	cout << "The result is " << sum << endl;
 
 	//변수를 값으로 캡처하는 람다 표현식
 	double data = 1.23;
@@ -38,4 +38,3 @@ int main()
 	
 	return 0;
 }
-*/

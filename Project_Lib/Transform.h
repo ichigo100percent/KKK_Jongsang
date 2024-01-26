@@ -1,14 +1,10 @@
 #pragma once
-//#include "Entity.h"
+#include "Entity.h"
 #include "Component.h"
 
 namespace J
 {
-	struct Pos
-	{
-		float m_fX;
-		float m_fY;
-	};
+	using namespace math;
 
 	class Transform : public Component
 	{
@@ -23,18 +19,24 @@ namespace J
 		bool Release() override;
 
 
-		void SetPos(float _x, float _y)
+		//void SetPos(float _x, float _y)
+		//{
+		//	m_fX = _x;
+		//	m_fY = _y;
+		//}
+
+		//float GetX() const { return m_fX; }
+		//float GetY() const { return m_fY; }
+
+		void SetPos(Vector2 _pos)
 		{
-			m_fX = _x;
-			m_fY = _y;
+			m_Position.x = _pos.x;
+			m_Position.y = _pos.y;
 		}
 
-		float GetX() const { return m_fX; }
-		float GetY() const { return m_fY; }
-
+		Vector2 GetPos() { return m_Position; }
 
 	private:
-		float m_fX;
-		float m_fY;
+		Vector2		m_Position;
 	};
 }

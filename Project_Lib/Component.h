@@ -1,6 +1,9 @@
 #pragma once
 #include "Entity.h"
 
+//순환참조 오류일어남
+//#include "JSGameObject.h"
+
 namespace J
 {
 	class GameObject;

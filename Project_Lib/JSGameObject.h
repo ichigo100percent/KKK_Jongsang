@@ -52,7 +52,7 @@ namespace J
 		//float GetY() const { return m_fY; }
 
 	private:
-		vector<Component*> m_Components;
+		std::vector<Component*> m_Components;
 		//float m_fX;
 		//float m_fY;
 	};

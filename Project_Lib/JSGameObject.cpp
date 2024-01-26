@@ -30,6 +30,7 @@ namespace J
 
 	bool GameObject::Update()
 	{
+
 		//const int speed = 150.0f;
 
 		//if (Input::Getkey(eKeyCode::A))
@@ -51,6 +52,7 @@ namespace J
 		//{
 		//	m_fY += speed * Time::DeltaTime();
 		//}
+
 		for (auto comp : m_Components)
 		{
 			comp->Update();

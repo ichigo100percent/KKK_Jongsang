@@ -1,48 +1,58 @@
 #include <iostream>
 #include <vector>
-#include <memory>
 
-using namespace std;
-
-class Animal
-{
+class Observer {
 public:
-	virtual void bark()
-	{
-		cout << " " << endl;
-	}
+    virtual void update(const std::string& message) = 0;
 };
 
-class Dog : public Animal
-{
+class Subject {
+private:
+    std::vector<Observer*> observers;
+
 public:
-	void bark()override
-	{
-		cout << "멍멍" << endl;
-	}
+    void addObserver(Observer* observer) {
+        observers.push_back(observer);
+    }
+
+    void removeObserver(Observer* observer) {
+        // 옵저버를 찾아 제거
+        auto it = std::find(observers.begin(), observers.end(), observer);
+        if (it != observers.end()) {
+            observers.erase(it);
+        }
+    }
+
+    void notifyObservers(const std::string& message) {
+        for (Observer* observer : observers) {
+            observer->update(message);
+        }
+    }
 };
 
+class ConcreteObserver : public Observer {
+public:
+    void update(const std::string& message) override {
+        std::cout << "Received message: " << message << std::endl;
+    }
+};
 
-int main()
-{
-	Animal* a = new Animal();
+int main() {
+    Subject subject;
 
-	Dog* b = new Dog();
+    ConcreteObserver observer1;
+    ConcreteObserver observer2;
 
-	a->bark();
+    subject.addObserver(&observer1);
+    subject.addObserver(&observer2);
 
-	// a를 Dog*로 dynamic_cast하여 타입 변경
-	Dog* dogA = dynamic_cast<Dog*>(a);
+    subject.notifyObservers("Hello, observers!");
 
-	if (dogA) {
-		// 타입이 정상적으로 변경되었다면 Dog의 bark 호출
-		dogA->bark();
-	}
-	else {
-		cout << "Dynamic cast failed" << endl;
-	}
+    // observer1을 제거
+    subject.removeObserver(&observer1);
 
-	delete a;
-	delete b;
+    // 다시 알림 전송
+    subject.notifyObservers("After removal");
 
+    return 0;
 }

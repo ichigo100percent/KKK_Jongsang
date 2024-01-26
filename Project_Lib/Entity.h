@@ -8,11 +8,11 @@ namespace J
 	public:
 		Entity();
 		virtual ~Entity();
-
-		void SetName(const wstring& _name) { m_Name = _name; }
-		wstring& GetNmae() { return m_Name; }
+		
+		void SetName(const std::wstring& _name) { m_Name = _name; }
+		std::wstring& GetNmae() { return m_Name; }
 
 	private:
-		wstring m_Name;
+		std::wstring m_Name;
 	};
 }

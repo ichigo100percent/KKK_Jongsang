@@ -13,5 +13,6 @@ int main()
     std::unique_ptr<Leaf1> file3 = std::make_unique<Leaf1>(L"file3");
     Composite test2(L"Test2");
     test2.addComponent(std::move(test));
+    test2.addComponent(std::move(file3));
     test2.showInfo();
 }

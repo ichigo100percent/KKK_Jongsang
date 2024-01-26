@@ -1,5 +1,5 @@
 #pragma once
-//#include "Entity.h"
+#include "Entity.h"
 #include "Component.h"
 
 namespace J
@@ -16,7 +16,11 @@ namespace J
 		 bool Render(HDC _hdc) override;
 		 bool Release() override;
 
+		 void ImageLoad(const std::wstring& path);
+		 
 	private:
-
+		Gdiplus::Image* m_Image;
+		UINT			m_Width;
+		UINT			m_Height;
 	};
 }

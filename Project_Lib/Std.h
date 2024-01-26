@@ -5,4 +5,14 @@
 #include <string>
 #include <map>
 
-using namespace std;
+#include <mmsystem.h>
+
+#define DIRECTINPUT_VERSION 0x0800
+#include <dinput.h>
+#pragma comment(lib, "Msimg32.lib")
+#pragma comment(lib, "winmm.lib")
+
+#include <gdiplus.h>
+#pragma comment(lib, "gdiplus.lib")
+
+#include "JSMath.h"

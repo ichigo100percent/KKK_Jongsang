@@ -48,7 +48,7 @@ namespace J
 		//static void clearKeys();
 
 	private:
-		static vector<key> keys;
+		static std::vector<key> keys;
 	};
 }
 

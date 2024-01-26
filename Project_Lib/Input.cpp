@@ -2,7 +2,7 @@
 
 namespace J
 {
-	vector<Input::key> Input::keys = {};
+	std::vector<Input::key> Input::keys = {};
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -42,7 +42,7 @@ namespace J
 
 	void Input::updateKeys()
 	{
-		for_each(keys.begin(), keys.end(),
+		std::for_each(keys.begin(), keys.end(),
 			[](key& _key) -> void
 			{
 				updateKey(_key);

@@ -6,6 +6,8 @@
 #include "LoadScene.h"
 
 J::Core test;
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
 
 #define MAX_LOADSTRING 100
 
@@ -73,6 +75,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             test.Run();
         }
     }
+    Gdiplus::GdiplusShutdown(gpToken);
 
     return (int) msg.wParam;
 }
@@ -118,6 +121,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    test.Init(hWnd, width, height);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
+
    J::LoadScenes();
 
    return TRUE;

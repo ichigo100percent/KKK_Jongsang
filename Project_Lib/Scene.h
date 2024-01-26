@@ -20,7 +20,7 @@ namespace J
 		void AddGameObject(GameObject* _gameObject);
 
 	private:
-		vector<GameObject*> m_GameObjects;
+		std::vector<GameObject*> m_GameObjects;
 
 	};
 
