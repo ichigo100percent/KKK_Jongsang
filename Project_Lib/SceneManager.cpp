@@ -8,7 +8,7 @@ namespace J
 
 	bool SceneManager::Init()
 	{
-		
+
 		return true;
 	}
 

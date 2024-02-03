@@ -5,7 +5,7 @@
 #include "Core.h"
 #include "LoadScene.h"
 
-J::Core test;
+J::Core core;
 ULONG_PTR gpToken;
 Gdiplus::GdiplusStartupInput gpsi;
 
@@ -72,7 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             // 메세지가 없을 경우 여기서 처리
             // 게임 로직이 들어가면 된다.
 
-            test.Run();
+            core.Run();
         }
     }
     Gdiplus::GdiplusShutdown(gpToken);
@@ -118,7 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   test.Init(hWnd, width, height);
+   core.Init(hWnd, width, height);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 

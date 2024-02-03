@@ -160,9 +160,11 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="JSEnums.h" />
     <ClInclude Include="JSGameObject.h" />
-    <ClInclude Include="LoadScene.h" />
     <ClInclude Include="JSMath.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="LoadScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Resource.h" />
@@ -171,6 +173,7 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Std.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +183,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JSGameObject.cpp" />
     <ClCompile Include="JSMath.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Resource.cpp" />
@@ -187,6 +191,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

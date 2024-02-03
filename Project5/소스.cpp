@@ -1,21 +1,27 @@
-#include <iostream>
-#include <vector>
-
-using namespace std;
+#include "Test1.h"
 
 
+extern int a = 100;
+
+vector<shared_ptr<int>> vec1;
+vector<unique_ptr<int>> vec2;
 
 int main()
 {
-	int a = 100;
+	shared_ptr<int> t1 = fun2(50);
+	shared_ptr<int> t2 = fun2(50);
+	shared_ptr<int> t3 = fun2(50);
 
-	auto mylamda = [&a](int _a) { a += _a; return a; };
+	vec1.push_back(t1);
+	vec1.push_back(t2);
+	vec1.push_back(t3);
 
+	unique_ptr<int> t4 = fun3(10);
 
-	auto c = mylamda(5);
+	vec2.push_back(move(t4));
 
-	double data = 1.23;
-	auto capturingVLambda = [data] {cout << "Data = " << data << endl; };
-	capturingVLambda();
-
-};
+	for (auto& t : vec2)
+	{
+		cout << *t << endl;
+	}
+}

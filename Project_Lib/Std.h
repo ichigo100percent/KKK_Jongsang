@@ -16,3 +16,4 @@
 #pragma comment(lib, "gdiplus.lib")
 
 #include "JSMath.h"
+#include "JSEnums.h"

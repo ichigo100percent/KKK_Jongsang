@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "JSGameObject.h"
-
+#include "Layer.h"
 
 namespace J
 {
@@ -17,11 +17,18 @@ namespace J
 		virtual bool Render(HDC _hdc);
 		virtual bool Release();
 
-		void AddGameObject(GameObject* _gameObject);
+		virtual void OnEnter();
+		virtual void OnExit();
+
+		void AddGameObject(GameObject* _gameObject, const eLayerType _type);
 
 	private:
-		std::vector<GameObject*> m_GameObjects;
+		void CreateLayers();
 
+	private:
+		//std::vector<GameObject*> m_GameObjects;
+		std::vector<Layer*> m_Layer;
 	};
 
 }
+

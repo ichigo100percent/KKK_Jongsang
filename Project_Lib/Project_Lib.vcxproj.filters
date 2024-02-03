@@ -2,18 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Core.h" />
-    <ClInclude Include="LoadScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Component</Filter>
     </ClInclude>
@@ -43,18 +31,28 @@
     </ClInclude>
     <ClInclude Include="JSMath.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="JSEnums.h">
+      <Filter>Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="PlayScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Component</Filter>
     </ClCompile>
@@ -81,11 +79,21 @@
     </ClCompile>
     <ClCompile Include="JSMath.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{e4de22a3-34f7-4d5e-9a2c-297530ae5796}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{f3169eac-9841-4120-86c0-1c3d48bbc972}</UniqueIdentifier>
     </Filter>
@@ -94,6 +102,9 @@
     </Filter>
     <Filter Include="Etc">
       <UniqueIdentifier>{bedba717-88b7-4931-8ffb-326b359d3ee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{5fb8c03c-d3b7-4c1a-bebf-8ff1566c0f7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

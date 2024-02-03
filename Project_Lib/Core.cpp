@@ -58,7 +58,6 @@ namespace J
 		clearRenderTarget();
 
 		Time::Render(m_BackHdc);
-		//obj.Render(m_BackHdc);
 		SceneManager::Render(m_BackHdc);
 
 

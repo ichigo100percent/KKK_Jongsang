@@ -25,12 +25,16 @@ namespace J
 
 		static Scene* LoadScene(const std::wstring& _name)
 		{
+			if (m_ActiveScene)
+				m_ActiveScene->OnExit();
+
 			SceneIter iter = m_Scene.find(_name);
 
 			if (iter == m_Scene.end())
 				return nullptr;
 
 			m_ActiveScene = iter->second;
+			m_ActiveScene->OnEnter();
 
 			return iter->second;
 		}
@@ -43,6 +47,6 @@ namespace J
 
 	private:
 		static SceneMap				m_Scene;
-		static Scene*				m_ActiveScene;
+		static Scene* m_ActiveScene;
 	};
 }

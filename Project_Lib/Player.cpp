@@ -1,4 +1,7 @@
 #include "Player.h"
+#include "Input.h"
+#include "Transform.h"
+#include "Time.h"
 
 
 namespace J
@@ -18,6 +21,14 @@ namespace J
 	bool Player::LateUpdate()
 	{
 		GameObject::LateUpdate();
+
+		if (Input::Getkey(eKeyCode::Right))
+		{
+			Transform* tr = GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+			pos.x += 100.0f * Time::DeltaTime();
+			tr->SetPos(pos);
+		}
 		return true;
 	}
 

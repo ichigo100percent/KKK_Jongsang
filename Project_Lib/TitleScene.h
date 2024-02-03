@@ -3,11 +3,11 @@
 
 namespace J
 {
-	class PlayScene : public Scene
+	class TitleScene : public Scene
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		TitleScene();
+		~TitleScene();
 
 		bool Init() override;
 		bool Update() override;
@@ -15,10 +15,7 @@ namespace J
 		bool Render(HDC _hdc) override;
 		bool Release() override;
 
-		void OnEnter() override;
-		void OnExit() override;
-
 	private:
-		class Player* bg;
+
 	};
 }
