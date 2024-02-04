@@ -165,6 +165,7 @@
     <ClInclude Include="JSMath.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LoadScene.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Resource.h" />

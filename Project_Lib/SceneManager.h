@@ -15,6 +15,7 @@ namespace J
 		{
 			T* scene = new T();
 			scene->SetName(_name);
+			m_ActiveScene = scene;
 			scene->Init();
 
 			m_Scene.insert(make_pair(_name, scene));
@@ -23,21 +24,9 @@ namespace J
 
 		}
 
-		static Scene* LoadScene(const std::wstring& _name)
-		{
-			if (m_ActiveScene)
-				m_ActiveScene->OnExit();
+		static Scene* LoadScene(const std::wstring& _name);
+		static Scene* GetActiveScene() { return m_ActiveScene; }
 
-			SceneIter iter = m_Scene.find(_name);
-
-			if (iter == m_Scene.end())
-				return nullptr;
-
-			m_ActiveScene = iter->second;
-			m_ActiveScene->OnEnter();
-
-			return iter->second;
-		}
 
 		static bool Init();
 		static bool Update();
@@ -47,6 +36,6 @@ namespace J
 
 	private:
 		static SceneMap				m_Scene;
-		static Scene* m_ActiveScene;
+		static Scene*				m_ActiveScene;
 	};
 }

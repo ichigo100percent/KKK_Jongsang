@@ -25,9 +25,9 @@ namespace J
 		if (Input::Getkey(eKeyCode::Right))
 		{
 			Transform* tr = GetComponent<Transform>();
-			Vector2 pos = tr->GetPos();
+			Vector2 pos = tr->GetPosition();
 			pos.x += 100.0f * Time::DeltaTime();
-			tr->SetPos(pos);
+			tr->SetPosition(pos);
 		}
 		return true;
 	}

@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
+#include "Object.h"
 
 namespace J
 {
@@ -17,33 +18,29 @@ namespace J
 	}
 	bool PlayScene::Init()
 	{
-		//GameObject* obj = new GameObject();
-		//obj->SetPosition(50, 500);
-		//AddGameObject(obj);
 
 		//{
-		//	Player* pl = new Player();
-		//	Transform* tr = pl->AddComponent<Transform>();
-		//	tr->SetPos(800, 450);
+		//	bg = new Player();
+		//	Transform* tr = bg->AddComponent<Transform>();
+		//	tr->SetPosition(Vector2(0, 0));
 		//	tr->SetName(L"TR");
 
-		//	SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
+		//	SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 		//	sr->SetName(L"SR");
+		//	sr->ImageLoad(L"../../data/CloudOcean.png");
 
-		//	AddGameObject(pl);
+		//	AddGameObject(bg, enums::eLayerType::BackGround);
 		//}
 
 		{
-			bg = new Player();
-			Transform* tr = bg->AddComponent<Transform>();
-			tr->SetPos(Vector2(0, 0));
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
+			bg = object::Instantiate<Player>
+				(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
+			bg->SetName(L"BG");
+			auto sr = bg->AddComponent<SpriteRenderer>();
 			sr->ImageLoad(L"../../data/CloudOcean.png");
 
-			AddGameObject(bg, eLayerType::BackGround);
+			//게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수 호출
+			Scene::Init();
 		}
 
 		return true;
@@ -81,7 +78,7 @@ namespace J
 	}
 	void PlayScene::OnExit()
 	{
-		auto tr = bg->GetComponent<Transform>();
-		tr->SetPos(Vector2(0, 0));
+		//auto tr = bg->GetComponent<Transform>();
+		//tr->SetPosition(Vector2(0, 0));
 	}
 }

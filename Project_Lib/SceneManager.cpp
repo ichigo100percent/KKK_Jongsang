@@ -6,6 +6,22 @@ namespace J
 	SceneMap SceneManager::m_Scene = {};
 	Scene* SceneManager::m_ActiveScene = nullptr;
 
+	Scene* SceneManager::LoadScene(const std::wstring& _name)
+	{
+		if (m_ActiveScene)
+			m_ActiveScene->OnExit();
+
+		SceneIter iter = m_Scene.find(_name);
+
+		if (iter == m_Scene.end())
+			return nullptr;
+
+		m_ActiveScene = iter->second;
+		m_ActiveScene->OnEnter();
+
+		return iter->second;
+	}
+
 	bool SceneManager::Init()
 	{
 

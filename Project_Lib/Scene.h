@@ -20,14 +20,15 @@ namespace J
 		virtual void OnEnter();
 		virtual void OnExit();
 
-		void AddGameObject(GameObject* _gameObject, const eLayerType _type);
+		void AddGameObject(GameObject* _gameObject, const enums::eLayerType _type);
+		Layer* GetLayer(const enums::eLayerType _type) { return m_Layers[(UINT)_type]; }
 
 	private:
-		void CreateLayers();
+		void createLayers();
 
 	private:
 		//std::vector<GameObject*> m_GameObjects;
-		std::vector<Layer*> m_Layer;
+		std::vector<Layer*> m_Layers;
 	};
 
 }

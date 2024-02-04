@@ -18,23 +18,13 @@ namespace J
 		bool Render(HDC _hdc) override;
 		bool Release() override;
 
-
-		//void SetPos(float _x, float _y)
-		//{
-		//	m_fX = _x;
-		//	m_fY = _y;
-		//}
-
-		//float GetX() const { return m_fX; }
-		//float GetY() const { return m_fY; }
-
-		void SetPos(Vector2 _pos)
+		void SetPosition(Vector2 _pos)
 		{
 			m_Position.x = _pos.x;
 			m_Position.y = _pos.y;
 		}
 
-		Vector2 GetPos() { return m_Position; }
+		Vector2 GetPosition() { return m_Position; }
 
 	private:
 		Vector2		m_Position;

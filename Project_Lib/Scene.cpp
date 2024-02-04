@@ -4,9 +4,9 @@
 namespace J
 {
     Scene::Scene()
-        :m_Layer{}
+        :m_Layers{}
     {
-        CreateLayers();
+        createLayers();
     }
 
     Scene::~Scene()
@@ -16,7 +16,7 @@ namespace J
 
     bool Scene::Init()
     {
-        for (auto layer : m_Layer)
+        for (auto layer : m_Layers)
         {
             if (layer == nullptr)
                 continue;
@@ -29,7 +29,7 @@ namespace J
 
     bool Scene::Update()
     {
-        for (auto layer : m_Layer)
+        for (auto layer : m_Layers)
         {
             if (layer == nullptr)
                 continue;
@@ -42,7 +42,7 @@ namespace J
 
     bool Scene::LateUpdate()
     {
-        for (auto layer : m_Layer)
+        for (auto layer : m_Layers)
         {
             if (layer == nullptr)
                 continue;
@@ -54,7 +54,7 @@ namespace J
 
     bool Scene::Render(HDC _hdc)
     {
-        for (auto layer : m_Layer)
+        for (auto layer : m_Layers)
         {
             if (layer == nullptr)
                 continue;
@@ -68,7 +68,7 @@ namespace J
     bool Scene::Release()
     {
 
-        for (auto layer : m_Layer)
+        for (auto layer : m_Layers)
         {
             if (layer == nullptr)
                 continue;
@@ -87,17 +87,17 @@ namespace J
     {
     }
 
-    void Scene::AddGameObject(GameObject* _gameObject, const eLayerType _type)
+    void Scene::AddGameObject(GameObject* _gameObject, const enums::eLayerType _type)
     {
-        m_Layer[(UINT)_type]->AddGameObject(_gameObject);
+        m_Layers[(UINT)_type]->AddGameObject(_gameObject);
     }
-    void Scene::CreateLayers()
+    void Scene::createLayers()
     {
-        m_Layer.resize((UINT)eLayerType::Max);
+        m_Layers.resize((UINT)enums::eLayerType::Max);
 
-        for (int i = 0; i < (UINT)eLayerType::Max; i++)
+        for (int i = 0; i < (UINT)enums::eLayerType::Max; i++)
         {
-            m_Layer[i] = new Layer();
+            m_Layers[i] = new Layer();
         }
     }
 }

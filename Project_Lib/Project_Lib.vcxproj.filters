@@ -50,6 +50,7 @@
     <ClInclude Include="LoadScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />

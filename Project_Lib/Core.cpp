@@ -30,7 +30,7 @@ namespace J
 
 		SceneManager::Init();
 
-		//obj.SetPosition(50, 500);
+		//obj.SetPositionition(50, 500);
 		return true;
 	}
 
