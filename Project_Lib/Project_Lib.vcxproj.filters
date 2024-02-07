@@ -30,7 +30,6 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="JSMath.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="JSEnums.h">
       <Filter>Etc</Filter>
@@ -51,6 +50,18 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadResources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -79,7 +90,6 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="JSMath.cpp" />
-    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
@@ -92,6 +102,15 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources.cpp">
+      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +125,9 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{5fb8c03c-d3b7-4c1a-bebf-8ff1566c0f7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{11c99507-eb06-47ed-bed6-e86b461e479d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -11,4 +11,14 @@ namespace J::enums
 		//
 		Max = 16,
 	};
+
+	enum class eResourceType
+	{
+		Texture,
+		//Mesh
+		//Shader,
+		AudioClip,
+		Prefab,
+		End,
+	};
 }

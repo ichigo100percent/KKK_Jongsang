@@ -1,6 +1,25 @@
 #include "Test1.h"
 
 
+class Test
+{
+public:
+	Test() {}
+	virtual ~Test() {}
+
+	virtual void T1() = 0;
+};
+
+
+class Test2 : public Test
+{
+public:
+	Test2() {}
+	~Test2() {}
+
+
+};
+
 extern int a = 100;
 
 vector<shared_ptr<int>> vec1;
@@ -24,4 +43,13 @@ int main()
 	{
 		cout << *t << endl;
 	}
+	int x = 5;
+	int y = 10;
+
+	// x와 y가 같은 경우에만 프로그램이 계속됨
+	assert(true);
+
+	// 이 줄은 assert 실패 시 실행되지 않음
+	// 따라서 이 줄은 실행되지 않음
+	std::cout << "이 줄은 실행되지 않음" << std::endl;
 }

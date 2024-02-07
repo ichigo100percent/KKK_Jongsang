@@ -17,13 +17,16 @@ namespace J
 		bool Render();
 		bool Release();
 
+		bool Run();
+		HDC  GetHdc() { return m_Hdc; }
+
+	private:
 		bool clearRenderTarget();
 		bool copyRenderTarget();
 		bool adjustWindowRect(HWND _hwnd, UINT _width, UINT _height);
 		bool CreateBuffer(UINT _width, UINT _height);
 		bool InitEtc();
 
-		bool Run();
 
 	private:
 		HWND m_Hwnd;

@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Core.h"
 #include "LoadScene.h"
+#include "LoadResources.h"
 
 J::Core core;
 ULONG_PTR gpToken;
@@ -124,6 +125,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
+   J::LoadResources();
    J::LoadScenes();
 
    return TRUE;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Component.h"
+#include "Texture.h"
 
 namespace J
 {
@@ -16,11 +17,11 @@ namespace J
 		 bool Render(HDC _hdc) override;
 		 bool Release() override;
 
-		 void ImageLoad(const std::wstring& path);
+		 void SetTexture(graphics::Texture* _texture) { m_Texture = _texture; }
+		 void SetSize(math::Vector2 _size) { m_Size = _size; }
 		 
 	private:
-		Gdiplus::Image* m_Image;
-		UINT			m_Width;
-		UINT			m_Height;
+		graphics::Texture* m_Texture;
+		math::Vector2	   m_Size;
 	};
 }

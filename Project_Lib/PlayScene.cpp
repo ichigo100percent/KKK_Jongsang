@@ -7,6 +7,8 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
 #include "Object.h"
+#include "Texture.h"
+#include "Resources.h"
 
 namespace J
 {
@@ -20,26 +22,23 @@ namespace J
 	{
 
 		//{
-		//	bg = new Player();
-		//	Transform* tr = bg->AddComponent<Transform>();
-		//	tr->SetPosition(Vector2(0, 0));
-		//	tr->SetName(L"TR");
+		//	//게임오브젝트를 만들기전에 리소스를 전부 Load
+		//	bg = object::Instantiate<Player>
+		//		(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
+		//	bg->SetName(L"BG");
+		//	auto sr = bg->AddComponent<SpriteRenderer>();
+		//	//sr->ImageLoad(L"../../data/CloudOcean.png");
 
-		//	SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-		//	sr->SetName(L"SR");
-		//	sr->ImageLoad(L"../../data/CloudOcean.png");
-
-		//	AddGameObject(bg, enums::eLayerType::BackGround);
+		//	//게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수 호출
+		//	Scene::Init();
 		//}
 
 		{
-			bg = object::Instantiate<Player>
-				(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
-			bg->SetName(L"BG");
+			bg = object::Instantiate<Player>(enums::eLayerType::BackGround);
 			auto sr = bg->AddComponent<SpriteRenderer>();
-			sr->ImageLoad(L"../../data/CloudOcean.png");
+			graphics::Texture* bg = Resources::Find<graphics::Texture>(L"BG");
+			sr->SetTexture(bg);
 
-			//게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수 호출
 			Scene::Init();
 		}
 
