@@ -23,7 +23,8 @@ namespace J
 			T* comp = new T();
 			comp->Init();
 			comp->SetOwner(this);
-			m_Components.push_back(comp);
+			//m_Components.push_back(comp);
+			m_Components[(UINT)comp->GetType()] = comp;
 
 			return comp;
 		}

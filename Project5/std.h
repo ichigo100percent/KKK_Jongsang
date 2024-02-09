@@ -4,14 +4,7 @@
 #include <memory>
 #include <string>
 #include <assert.h>
+#include <Windows.h>
 
-int a;
 
 using namespace std;
-
-void fun1()
-{
-	a++;
-
-	cout << a << endl;
-}

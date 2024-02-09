@@ -6,9 +6,8 @@
 namespace J
 {
 	GameObject::GameObject()
-		//: m_fX(0)
-		//, m_fY(0)
 	{
+		m_Components.resize((UINT)enums::EComponentType::End);
 		initializeTransform();
 	}
 	GameObject::~GameObject()

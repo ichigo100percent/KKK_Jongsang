@@ -1,25 +1,20 @@
 #pragma once
-#include "Scene.h"
+#include "Component.h"
 
 namespace J
 {
-	class PlayScene : public Scene
+	class Script : public Component
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		Script();
+		~Script();
 
 		bool Init() override;
 		bool Update() override;
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
 		bool Release() override;
-
-		void OnEnter() override;
-		void OnExit() override;
-
 	private:
-		class Player* m_Player;
-		//class GameObject* m_bg;
+
 	};
 }

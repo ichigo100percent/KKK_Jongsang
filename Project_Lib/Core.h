@@ -19,6 +19,8 @@ namespace J
 
 		bool Run();
 		HDC  GetHdc() { return m_Hdc; }
+		UINT GetWidth() { return m_Width; }
+		UINT GetHeight() { return m_Height; }
 
 	private:
 		bool clearRenderTarget();
@@ -39,6 +41,5 @@ namespace J
 		UINT	m_Height;
 
 		GameObject obj;
-		//float m_fSpeed;
 	};
 }

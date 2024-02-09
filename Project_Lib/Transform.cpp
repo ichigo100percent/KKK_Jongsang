@@ -5,8 +5,7 @@
 namespace J
 {
 	Transform::Transform()
-		//:m_fX(0)
-		//,m_fY(0)
+		: Component(enums::EComponentType::Transform)
 	{
 
 	}

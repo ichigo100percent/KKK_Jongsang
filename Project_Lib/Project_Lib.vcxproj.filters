@@ -62,6 +62,16 @@
     <ClInclude Include="LoadResources.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerScript.h">
+      <Filter>Component\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -112,6 +122,16 @@
     <ClCompile Include="Resources.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerScript.cpp">
+      <Filter>Component\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Camera.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">
@@ -128,6 +148,9 @@
     </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{11c99507-eb06-47ed-bed6-e86b461e479d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Scripts">
+      <UniqueIdentifier>{e9425c7a-0194-441c-aaf3-b6e92dba770b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

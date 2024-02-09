@@ -1,16 +1,39 @@
 #pragma once
 #include "std.h"
 
-extern int a;
 
-shared_ptr<int> fun2(int _num)
+
+enum class Type
 {
-	return make_shared<int>(_num);
-}
+	texture,
+	script,
+	end = 16,
+};
 
-unique_ptr<int> fun3(int _num)
+class component
 {
-	unique_ptr<int> p = make_unique<int>(_num);
+public:
+	component(Type _type) : m_type(_type) {}
+	virtual ~component() {}
 
-	return p;
-}
+	Type GetType() { return m_type; }
+
+private:
+	Type m_type;
+
+};
+
+class texture : public component
+{
+public:
+	texture() : component(Type::texture) {}
+	~texture() {}
+};
+
+class script : public component
+{
+public:
+	script() : component(Type::script) {}
+	~script() {}
+
+};

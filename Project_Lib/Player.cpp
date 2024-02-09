@@ -22,13 +22,13 @@ namespace J
 	{
 		GameObject::LateUpdate();
 
-		if (Input::Getkey(eKeyCode::Right))
-		{
-			Transform* tr = GetComponent<Transform>();
-			Vector2 pos = tr->GetPosition();
-			pos.x += 100.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
-		}
+		//if (Input::Getkey(eKeyCode::Right))
+		//{
+		//	Transform* tr = GetComponent<Transform>();
+		//	Vector2 pos = tr->GetPosition();
+		//	pos.x += 100.0f * Time::DeltaTime();
+		//	tr->SetPosition(pos);
+		//}
 		return true;
 	}
 

@@ -2,8 +2,9 @@
 
 namespace J
 {
-	Component::Component()
-		:m_Owner(nullptr)
+	Component::Component(enums::EComponentType _type)
+		: m_Type(_type),
+		  m_Owner(nullptr)
 	{
 	}
 	Component::~Component()

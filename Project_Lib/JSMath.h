@@ -25,5 +25,25 @@ namespace J::math
 		{
 
 		}
+
+		Vector2 operator+ (Vector2 _other)
+		{
+			return Vector2(x + _other.x, y + _other.y);
+		}
+
+		Vector2 operator- (Vector2 _other)
+		{
+			return Vector2(x - _other.x, y - _other.y);
+		}
+
+		Vector2 operator* (float _value)
+		{
+			return Vector2(x * _value, y * _value);
+		}
+
+		Vector2 operator/ (float _value)
+		{
+			return Vector2(x / _value, y / _value);
+		}
 	};
 }

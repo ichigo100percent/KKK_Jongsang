@@ -2,11 +2,12 @@
 #include "JSGameObject.h"
 #include "Transform.h"
 #include "Texture.h"
+#include "Renderer.h"
 
 namespace J
 {
 	SpriteRenderer::SpriteRenderer()
-		: Component()
+		: Component(enums::EComponentType::SpriteRenderer)
 		, m_Texture(nullptr)
 		, m_Size(Vector2::One)
 	{
@@ -39,6 +40,7 @@ namespace J
 
 		auto tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		pos = renderer::mainCamera->CalculatePosition(pos);
 
 		if (m_Texture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
 		{
@@ -63,10 +65,5 @@ namespace J
 	{
 		return true;
 	}
-	//void SpriteRenderer::ImageLoad(const std::wstring& path)
-	//{
-	//	m_Image = Gdiplus::Image::FromFile(path.c_str());
-	//	m_Width = m_Image->GetWidth();
-	//	m_Height = m_Image->GetHeight();
-	//}
+
 }

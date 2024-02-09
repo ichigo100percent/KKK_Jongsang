@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Entity.h" />
@@ -168,11 +169,14 @@
     <ClInclude Include="LoadScene.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerScript.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Script.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Std.h" />
     <ClInclude Include="Texture.h" />
@@ -181,6 +185,7 @@
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -189,11 +194,14 @@
     <ClCompile Include="JSMath.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerScript.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Script.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />

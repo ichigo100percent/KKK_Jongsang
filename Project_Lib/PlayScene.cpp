@@ -9,6 +9,9 @@
 #include "Object.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "PlayerScript.h"
+#include "Camera.h"
+#include "Renderer.h"
 
 namespace J
 {
@@ -20,28 +23,38 @@ namespace J
 	}
 	bool PlayScene::Init()
 	{
+		{
+			//bg = object::Instantiate<Player>(enums::eLayerType::BackGround);
+			//SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+			//graphics::Texture* bg = Resources::Find<graphics::Texture>(L"BG");
+			//sr->SetTexture(bg);
 
-		//{
-		//	//게임오브젝트를 만들기전에 리소스를 전부 Load
-		//	bg = object::Instantiate<Player>
-		//		(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
-		//	bg->SetName(L"BG");
-		//	auto sr = bg->AddComponent<SpriteRenderer>();
-		//	//sr->ImageLoad(L"../../data/CloudOcean.png");
-
-		//	//게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수 호출
-		//	Scene::Init();
-		//}
+			//Scene::Init();
+		}
 
 		{
-			bg = object::Instantiate<Player>(enums::eLayerType::BackGround);
-			auto sr = bg->AddComponent<SpriteRenderer>();
-			graphics::Texture* bg = Resources::Find<graphics::Texture>(L"BG");
-			sr->SetTexture(bg);
+			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 422.0f));
+			Camera* cameraComp = camera->AddComponent<Camera>();
+			renderer::mainCamera = cameraComp;
+
+			m_Player = object::Instantiate<Player>(enums::eLayerType::Player, Vector2(100.0f, 100.0f));
+			SpriteRenderer* sr = m_Player->AddComponent<SpriteRenderer>();
+			sr->SetSize(Vector2(3.0f, 3.0f));
+			m_Player->AddComponent<PlayerScript>();
+
+			graphics::Texture* playerTexture = Resources::Find<graphics::Texture>(L"Player");
+			sr->SetTexture(playerTexture);
+
+			GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::BackGround);
+			SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
+			bgSr->SetSize(Vector2(3.0f, 3.0f));
+
+			graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
+			bgSr->SetTexture(bgTexture);
 
 			Scene::Init();
 		}
-
+		
 		return true;
 	}
 	bool PlayScene::Update()

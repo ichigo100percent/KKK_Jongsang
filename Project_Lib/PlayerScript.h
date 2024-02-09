@@ -1,13 +1,13 @@
 #pragma once
-#include "Scene.h"
+#include "Script.h"
 
 namespace J
 {
-	class PlayScene : public Scene
+	class PlayerScript : public Script
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		PlayerScript();
+		~PlayerScript();
 
 		bool Init() override;
 		bool Update() override;
@@ -15,11 +15,7 @@ namespace J
 		bool Render(HDC _hdc) override;
 		bool Release() override;
 
-		void OnEnter() override;
-		void OnExit() override;
-
 	private:
-		class Player* m_Player;
-		//class GameObject* m_bg;
+
 	};
 }

@@ -3,6 +3,15 @@
 
 namespace J::enums
 {
+	enum class EComponentType
+	{
+		Transform,
+		SpriteRenderer,
+		Script,
+		Camera,
+		End,
+	};
+
 	enum class eLayerType
 	{
 		None,
