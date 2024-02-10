@@ -12,6 +12,7 @@
 #include "PlayerScript.h"
 #include "Camera.h"
 #include "Renderer.h"
+#include "JsScript.h"
 
 namespace J
 {
@@ -33,21 +34,23 @@ namespace J
 		}
 
 		{
-			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 422.0f));
+			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(808.0f,439.5f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			renderer::mainCamera = cameraComp;
 
-			m_Player = object::Instantiate<Player>(enums::eLayerType::Player, Vector2(100.0f, 100.0f));
+			m_Player = object::Instantiate<Player>(enums::eLayerType::Player, Vector2(400.0f,250.0f));
 			SpriteRenderer* sr = m_Player->AddComponent<SpriteRenderer>();
-			sr->SetSize(Vector2(3.0f, 3.0f));
-			m_Player->AddComponent<PlayerScript>();
+			sr->SetSize(Vector2(1.0f, 1.0f));
+			//m_Player->AddComponent<PlayerScript>();
+			m_Player->AddScript<PlayerScript>();
+			m_Player->AddScript<JsScript>();
 
 			graphics::Texture* playerTexture = Resources::Find<graphics::Texture>(L"Player");
 			sr->SetTexture(playerTexture);
 
 			GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::BackGround);
 			SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
-			bgSr->SetSize(Vector2(3.0f, 3.0f));
+			//bgSr->SetSize(Vector2(3.0f, 3.0f));
 
 			graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
 			bgSr->SetTexture(bgTexture);

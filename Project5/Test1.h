@@ -3,37 +3,10 @@
 
 
 
-enum class Type
-{
-	texture,
-	script,
-	end = 16,
-};
-
-class component
+class test
 {
 public:
-	component(Type _type) : m_type(_type) {}
-	virtual ~component() {}
+	vector<int> vec;
 
-	Type GetType() { return m_type; }
-
-private:
-	Type m_type;
-
-};
-
-class texture : public component
-{
-public:
-	texture() : component(Type::texture) {}
-	~texture() {}
-};
-
-class script : public component
-{
-public:
-	script() : component(Type::script) {}
-	~script() {}
-
+	
 };

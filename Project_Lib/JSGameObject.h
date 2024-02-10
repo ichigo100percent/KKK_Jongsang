@@ -1,6 +1,7 @@
 #pragma once
 #include "Std.h"
 #include "Component.h"
+#include "Script.h"
 
 namespace J
 {
@@ -44,12 +45,24 @@ namespace J
 			return component;
 		}
 
+		template<typename T>
+		T* AddScript()
+		{
+			T* script = new T();
+			script->Init();
+			script->SetOwner(this);
+			m_Scripts.push_back(script);
+			//m_Components[(UINT)comp->GetType()] = comp;
+
+			return script;
+		}
+
 	private:
 		void initializeTransform();
 
 	private:
 		std::vector<Component*> m_Components;
-
+		std::vector<Script*>    m_Scripts;
 	};
 }
 

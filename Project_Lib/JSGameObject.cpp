@@ -6,6 +6,7 @@
 namespace J
 {
 	GameObject::GameObject()
+		: m_Scripts{}
 	{
 		m_Components.resize((UINT)enums::EComponentType::End);
 		initializeTransform();
@@ -31,6 +32,14 @@ namespace J
 
 			comp->Init();
 		}
+
+		for (auto scr : m_Scripts)
+		{
+			if (scr == nullptr)
+				continue;
+
+			scr->Init();
+		}
 		return true;
 	}
 
@@ -45,6 +54,13 @@ namespace J
 			comp->Update();
 		}
 
+		for (auto scr : m_Scripts)
+		{
+			if (scr == nullptr)
+				continue;
+
+			scr->Update();
+		}
 		return true;
 	}
 
@@ -56,6 +72,14 @@ namespace J
 				continue;
 
 			comp->LateUpdate();
+		}
+
+		for (auto scr : m_Scripts)
+		{
+			if (scr == nullptr)
+				continue;
+
+			scr->LateUpdate();
 		}
 
 		return true;
@@ -71,6 +95,14 @@ namespace J
 
 			comp->Render(_hdc);
 		}
+
+		for (auto scr : m_Scripts)
+		{
+			if (scr == nullptr)
+				continue;
+
+			scr->Render(_hdc);
+		}
 		return true;
 	}
 
@@ -82,6 +114,14 @@ namespace J
 				continue;
 
 			comp->Release();
+		}
+
+		for (auto scr : m_Scripts)
+		{
+			if (scr == nullptr)
+				continue;
+
+			scr->Release();
 		}
 		return true;
 	}
