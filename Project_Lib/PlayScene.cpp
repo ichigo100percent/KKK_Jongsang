@@ -13,6 +13,7 @@
 #include "Camera.h"
 #include "Renderer.h"
 #include "JsScript.h"
+#include "Animator.h"
 
 namespace J
 {
@@ -34,19 +35,24 @@ namespace J
 		}
 
 		{
-			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(808.0f,439.5f));
+			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(758.0f,540.0f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			renderer::mainCamera = cameraComp;
 
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player, Vector2(400.0f,250.0f));
-			SpriteRenderer* sr = m_Player->AddComponent<SpriteRenderer>();
-			sr->SetSize(Vector2(1.0f, 1.0f));
+			//SpriteRenderer* sr = m_Player->AddComponent<SpriteRenderer>();
+			//sr->SetSize(Vector2(5.0f, 5.0f));
 			//m_Player->AddComponent<PlayerScript>();
 			m_Player->AddScript<PlayerScript>();
 			m_Player->AddScript<JsScript>();
 
-			graphics::Texture* playerTexture = Resources::Find<graphics::Texture>(L"Player");
-			sr->SetTexture(playerTexture);
+			//graphics::Texture* playerTexture = Resources::Find<graphics::Texture>(L"1");
+			//sr->SetTexture(playerTexture);
+			graphics::Texture* CatTexture = Resources::Find<graphics::Texture>(L"Cat");
+			Animator* animator = m_Player->AddComponent<Animator>();
+			animator->CreateAnimaiton(L"CatFrontMove", CatTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.5f);
+			animator->PlayAnimaiton(L"CatFrontMove", true);
+
 
 			GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::BackGround);
 			SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
@@ -80,7 +86,7 @@ namespace J
 	{
 		Scene::Render(_hdc);
 		std::wstring str = L"Play Scene";
-		TextOut(_hdc, 0, 0, str.c_str(), str.length());
+		//TextOut(_hdc, 0, 0, str.c_str(), str.length());
 		return true;
 	}
 	bool PlayScene::Release()

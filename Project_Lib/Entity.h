@@ -1,6 +1,8 @@
 #pragma once
 #include "Std.h"
 
+using namespace J::math;
+
 namespace J
 {
 	class Entity

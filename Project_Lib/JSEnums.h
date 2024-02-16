@@ -7,6 +7,7 @@ namespace J::enums
 	{
 		Transform,
 		SpriteRenderer,
+		Animator,
 		Script,
 		Camera,
 		End,
@@ -24,6 +25,7 @@ namespace J::enums
 	enum class eResourceType
 	{
 		Texture,
+		Animation,
 		//Mesh
 		//Shader,
 		AudioClip,
