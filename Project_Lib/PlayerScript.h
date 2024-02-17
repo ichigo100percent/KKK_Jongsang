@@ -6,6 +6,14 @@ namespace J
 	class PlayerScript : public Script
 	{
 	public:
+		enum class eState
+		{
+			SitDown,
+			Walk,
+			Sleep,
+			Attack,
+		};
+
 		PlayerScript();
 		~PlayerScript();
 
@@ -16,6 +24,12 @@ namespace J
 		bool Release() override;
 
 	private:
+		void sitDown();
+		void move();
+	
 
+	private:
+		eState m_State;
+		class Animator* m_Animator;
 	};
 }

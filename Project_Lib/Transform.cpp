@@ -6,6 +6,8 @@ namespace J
 {
 	Transform::Transform()
 		: Component(enums::EComponentType::Transform)
+		, m_Scale(Vector2::One)
+		, m_Rotation(0.0f)
 	{
 
 	}

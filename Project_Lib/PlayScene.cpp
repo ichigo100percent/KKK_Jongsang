@@ -39,27 +39,42 @@ namespace J
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			renderer::mainCamera = cameraComp;
 
-			m_Player = object::Instantiate<Player>(enums::eLayerType::Player, Vector2(400.0f,250.0f));
+			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
+
 			//SpriteRenderer* sr = m_Player->AddComponent<SpriteRenderer>();
 			//sr->SetSize(Vector2(5.0f, 5.0f));
-			//m_Player->AddComponent<PlayerScript>();
+			//graphics::Texture* playerTexture = Resources::Find<graphics::Texture>(L"Cat2");
+			//sr->SetTexture(playerTexture);
+
+			m_Player->AddComponent<PlayerScript>();
 			m_Player->AddScript<PlayerScript>();
 			m_Player->AddScript<JsScript>();
 
-			//graphics::Texture* playerTexture = Resources::Find<graphics::Texture>(L"1");
-			//sr->SetTexture(playerTexture);
+
+			//graphics::Texture* CatTexture = Resources::Find<graphics::Texture>(L"Cat");
+			//Animator* animator = m_Player->AddComponent<Animator>();
+			//animator->CreateAnimaiton(L"CatFrontMove", CatTexture, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.5f);
+			//animator->PlayAnimaiton(L"CatFrontMove", true);
 			graphics::Texture* CatTexture = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* animator = m_Player->AddComponent<Animator>();
-			animator->CreateAnimaiton(L"CatFrontMove", CatTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.5f);
-			animator->PlayAnimaiton(L"CatFrontMove", true);
+			animator->CreateAnimaiton(L"DownWalk", CatTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimaiton(L"RightWalk", CatTexture, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimaiton(L"UpWalk", CatTexture, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimaiton(L"LeftWalk", CatTexture, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimaiton(L"SitDown", CatTexture, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
+			animator->PlayAnimaiton(L"SitDown", false);
+
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(250.0f, 250.0f));
+			m_Player->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			m_Player->GetComponent<Transform>()->SetRotation(60.0f);
 
 			GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::BackGround);
 			SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
-			//bgSr->SetSize(Vector2(3.0f, 3.0f));
 
 			graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
 			bgSr->SetTexture(bgTexture);
+			bg->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
 
 			Scene::Init();
 		}
@@ -86,7 +101,7 @@ namespace J
 	{
 		Scene::Render(_hdc);
 		std::wstring str = L"Play Scene";
-		//TextOut(_hdc, 0, 0, str.c_str(), str.length());
+		TextOut(_hdc, 0, 0, str.c_str(), str.length());
 		return true;
 	}
 	bool PlayScene::Release()

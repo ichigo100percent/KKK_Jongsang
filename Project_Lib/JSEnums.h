@@ -18,6 +18,7 @@ namespace J::enums
 		None,
 		BackGround,
 		Player,
+		Particle,
 		//
 		Max = 16,
 	};

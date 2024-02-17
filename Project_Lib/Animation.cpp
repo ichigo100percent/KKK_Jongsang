@@ -59,30 +59,65 @@ namespace J
 		GameObject* gameObj = m_Animator->GetOwner();
 		Transform* tr = gameObj->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		float   rot = tr->GetRotation();
+		Vector2 scale = tr->GetScale();
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		BLENDFUNCTION func = {};
-		func.BlendOp = AC_SRC_OVER;
-		func.BlendFlags = 0;
-		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 255; // 0(transparent) ~ 255(Opaque)
-
 		Sprite sprite = m_AnimationSheet[m_Index];
-		HDC imgHdc = m_Texture->GetHdc();
+		graphics::Texture::eTextureType type = m_Texture->GetTextureType();
 
-		AlphaBlend(_hdc
-			, pos.x
-			, pos.y
-			, sprite.size.x * 5.f
-			, sprite.size.y * 5.f
-			, imgHdc
-			, sprite.leftTop.x
-			, sprite.leftTop.y
-			, sprite.size.x
-			, sprite.size.y
-			, func);
+		if (type == graphics::Texture::eTextureType::Bmp)
+		{
+			BLENDFUNCTION func = {};
+			func.BlendOp = AC_SRC_OVER;
+			func.BlendFlags = 0;
+			func.AlphaFormat = AC_SRC_ALPHA;
+			func.SourceConstantAlpha = 255; // 0(transparent) ~ 255(Opaque)
+
+
+			HDC imgHdc = m_Texture->GetHdc();
+
+			AlphaBlend(_hdc
+					, pos.x - (sprite.size.x /2.0f), pos.y - (sprite.size.y / 2.0f)
+					, sprite.size.x * scale.x, sprite.size.y * scale.y
+					, imgHdc
+					, sprite.leftTop.x, sprite.leftTop.y
+					, sprite.size.x, sprite.size.y
+					, func);
+
+		}
+		else if (type == graphics::Texture::eTextureType::Png)
+		{
+			//내가 원하는 픽셀을 투명화 시킬 경우
+			Gdiplus::ImageAttributes imgAtt = {};
+
+			//투명화 시킬 픽셀의 색 범위
+			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
+
+			Gdiplus::Graphics graphics(_hdc);
+
+			graphics.TranslateTransform(pos.x, pos.y);
+			graphics.RotateTransform(rot);
+			graphics.TranslateTransform(-pos.x, -pos.y);
+
+			graphics.DrawImage(m_Texture->GetImage()
+				, Gdiplus::Rect
+				(
+					  pos.x - (sprite.size.x / 2.0f)
+					, pos.y - (sprite.size.y / 2.0f)
+					, sprite.size.x * scale.x
+					, sprite.size.y * scale.y
+				)
+				, sprite.leftTop.x
+				, sprite.leftTop.y
+				, sprite.size.x
+				, sprite.size.y
+				, Gdiplus::UnitPixel
+				, /*&imgAtt*/nullptr
+			);
+		}
 
 		return true;
 
