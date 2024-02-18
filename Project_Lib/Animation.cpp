@@ -1,5 +1,5 @@
 #include "Animation.h"
-#include "Time.h"
+#include "JSTime.h"
 #include "Transform.h"
 #include "JSGameObject.h"
 #include "Animator.h"
@@ -94,7 +94,7 @@ namespace J
 			Gdiplus::ImageAttributes imgAtt = {};
 
 			//투명화 시킬 픽셀의 색 범위
-			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
+			imgAtt.SetColorKey(Gdiplus::Color(255, 0, 255), Gdiplus::Color(255, 0, 255));
 
 			Gdiplus::Graphics graphics(_hdc);
 
@@ -115,7 +115,7 @@ namespace J
 				, sprite.size.x
 				, sprite.size.y
 				, Gdiplus::UnitPixel
-				, /*&imgAtt*/nullptr
+				, &imgAtt//nullptr
 			);
 		}
 
@@ -123,7 +123,7 @@ namespace J
 
 	}
 
-	void Animation::CreateAnimaiton(const std::wstring& _name
+	void Animation::CreateAnimation(const std::wstring& _name
 		, graphics::Texture* _spriteSheet
 		, Vector2 _leftTop
 		, Vector2 _size

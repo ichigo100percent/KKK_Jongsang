@@ -20,6 +20,5 @@ namespace J
 
 	private:
 		class Player* m_Player;
-		//class GameObject* m_bg;
 	};
 }

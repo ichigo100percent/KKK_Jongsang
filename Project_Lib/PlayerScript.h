@@ -8,10 +8,12 @@ namespace J
 	public:
 		enum class eState
 		{
-			SitDown,
+			Idle,
 			Walk,
 			Sleep,
 			Attack,
+			GiveWater,
+
 		};
 
 		PlayerScript();
@@ -24,9 +26,9 @@ namespace J
 		bool Release() override;
 
 	private:
-		void sitDown();
+		void idle();
 		void move();
-	
+		void giveWater();
 
 	private:
 		eState m_State;

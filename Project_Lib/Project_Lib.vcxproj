@@ -185,7 +185,7 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Std.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="Time.h" />
+    <ClInclude Include="JSTime.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
@@ -214,7 +214,7 @@
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="JSTime.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>

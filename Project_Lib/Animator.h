@@ -7,6 +7,29 @@ namespace J
 	class Animator : public Component 
 	{
 	public:
+		struct Event
+		{
+			void operator=(std::function<void()> _fun)
+			{
+				m_Event = std::move(_fun);
+			}
+
+			void operator()()
+			{
+				if (m_Event)
+					m_Event;
+			}
+
+			std::function<void()> m_Event;
+		};
+
+		struct Events
+		{
+			Event m_StartEvent;
+			Event m_CompleteEvent;
+			Event m_EndEvent;
+		};
+
 		Animator();
 		~Animator();
 
@@ -16,7 +39,7 @@ namespace J
 		bool Render(HDC _hdc) override;
 		bool Release() override;
 
-		void CreateAnimaiton(const std::wstring& _name
+		void CreateAnimation(const std::wstring& _name
 			, graphics::Texture* _spriteSheet
 			, Vector2 _leftTop
 			, Vector2 _size
@@ -31,6 +54,8 @@ namespace J
 		std::map<std::wstring, Animation*> m_Animations;
 		Animation*						   m_ActiveAnimation;
 		bool							   m_bLoop;
+
+		std::map<std::wstring, Events*> m_Events;
 	};
 }
 

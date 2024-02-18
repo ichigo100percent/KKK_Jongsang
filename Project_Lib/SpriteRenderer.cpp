@@ -29,12 +29,6 @@ namespace J
 	}
 	bool SpriteRenderer::Render(HDC _hdc)
 	{
-		//Transform* tr = GetOwner()->GetComponent<Transform>();
-		//Vector2 pos = tr->GetPosition();
-
-		//Gdiplus::Graphics graphics(_hdc);
-		//graphics.DrawImage(m_Image, Gdiplus::Rect(pos.x, pos.y, m_Width, m_Height));
-
 		if (m_Texture == nullptr)
 			assert(false);
 
@@ -60,7 +54,7 @@ namespace J
 			Gdiplus::ImageAttributes imgAtt = {};
 
 			//투명화 시킬 픽셀의 색 범위
-			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
+			imgAtt.SetColorKey(Gdiplus::Color(255, 0, 255), Gdiplus::Color(255, 0, 255));
 
 			Gdiplus::Graphics graphics(_hdc);
 
@@ -78,7 +72,8 @@ namespace J
 				, 0, 0
 				, m_Texture->GetWidth(), m_Texture->GetHeight()
 				, Gdiplus::UnitPixel
-				, nullptr/*&imgAtt*/);
+				, &imgAtt//nullptr
+			);
 		}
 	
 		

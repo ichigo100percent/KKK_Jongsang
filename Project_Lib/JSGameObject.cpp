@@ -1,6 +1,6 @@
 #include "JSGameObject.h"
 #include "Input.h"
-#include "Time.h"
+#include "JSTime.h"
 #include "Transform.h"
 
 namespace J

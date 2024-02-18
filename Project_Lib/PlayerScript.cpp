@@ -1,14 +1,14 @@
 #include "PlayerScript.h"
 #include "Input.h"
 #include "Transform.h"
-#include "Time.h"
+#include "JSTime.h"
 #include "JSGameObject.h"
 #include "Animator.h"
 
 namespace J
 {
 	PlayerScript::PlayerScript()
-		: m_State(PlayerScript::eState::SitDown)
+		: m_State(PlayerScript::eState::Idle)
 		, m_Animator(nullptr)
 	{
 	}
@@ -26,8 +26,8 @@ namespace J
 		
 		switch (m_State)
 		{
-		case J::PlayerScript::eState::SitDown:
-			sitDown();
+		case J::PlayerScript::eState::Idle:
+			idle();
 			break;
 		case J::PlayerScript::eState::Walk:
 			move();
@@ -35,6 +35,9 @@ namespace J
 		case J::PlayerScript::eState::Sleep:
 			break;
 		case J::PlayerScript::eState::Attack:
+			break;
+		case J::PlayerScript::eState::GiveWater:
+			giveWater();
 			break;
 		default:
 			break;
@@ -54,8 +57,16 @@ namespace J
 	{
 		return true;
 	}
-	void PlayerScript::sitDown()
+	void PlayerScript::idle()
 	{
+		if (Input::Getkey(eKeyCode::LButton))
+		{
+			m_State = PlayerScript::eState::GiveWater;
+			m_Animator->PlayAnimaiton(L"FrontGiveWater", false);
+
+			Vector2 mousePos = Input::GetMousePosition();
+		}
+
 		if (Input::Getkey(eKeyCode::Right))
 		{
 			m_State = PlayerScript::eState::Walk;
@@ -110,8 +121,11 @@ namespace J
 		if (Input::GetkeyUp(eKeyCode::Right) || Input::GetkeyUp(eKeyCode::Left) ||
 			Input::GetkeyUp(eKeyCode::Up) || Input::GetkeyUp(eKeyCode::Down))
 		{
-			m_State = PlayerScript::eState::SitDown;
+			m_State = PlayerScript::eState::Idle;
 			m_Animator->PlayAnimaiton(L"SitDown", false);
 		}
+	}
+	void PlayerScript::giveWater()
+	{
 	}
 }

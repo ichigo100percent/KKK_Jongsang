@@ -32,7 +32,7 @@ namespace J
 		bool Update();
 		bool Render(HDC _hdc);
 
-		void CreateAnimaiton(const std::wstring& _name
+		void CreateAnimation(const std::wstring& _name
 			, graphics::Texture* _spriteSheet
 			, Vector2 _leftTop
 			, Vector2 _size

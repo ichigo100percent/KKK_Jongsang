@@ -1,8 +1,12 @@
 #include "Input.h"
+#include "Core.h"
+
+extern J::Core core;
 
 namespace J
 {
 	std::vector<Input::key> Input::keys = {};
+	math::Vector2 Input::m_MousePosition = math::Vector2::One;
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -51,13 +55,18 @@ namespace J
 
 	void Input::updateKey(Input::key& _key)
 	{
-		if (isKeyDown(_key.keyCode))
+		if (GetFocus())
 		{
-			updateKeyDown(_key);
+			if (isKeyDown(_key.keyCode))
+				updateKeyDown(_key);
+			else
+				updateKeyUp(_key);
+
+			getMousePositionByWindow();
 		}
 		else
 		{
-			updateKeyUp(_key);
+			clearKeys();
 		}
 	}
 
@@ -86,5 +95,26 @@ namespace J
 			_key.state = eKeyState::None;
 
 		_key.bPressed = false;
+	}
+	void Input::getMousePositionByWindow()
+	{
+		POINT mousePos = { };
+		GetCursorPos(&mousePos);
+		ScreenToClient(core.GetHwnd(), &mousePos);
+
+		m_MousePosition.x = mousePos.x;
+		m_MousePosition.y = mousePos.y;
+	}
+	void Input::clearKeys()
+	{
+		for (key& key : keys)
+		{
+			if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
+				key.state = eKeyState::Up;
+			else if (key.state == eKeyState::Up)
+				key.state = eKeyState::None;
+
+			key.bPressed = false;
+		}
 	}
 }

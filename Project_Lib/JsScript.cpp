@@ -1,7 +1,7 @@
 #include "JsScript.h"
 #include "Input.h"
 #include "Transform.h"
-#include "Time.h"
+#include "JSTime.h"
 #include "JSGameObject.h"
 #include "PlayerScript.h"
 

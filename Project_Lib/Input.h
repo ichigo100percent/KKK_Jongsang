@@ -37,7 +37,8 @@ namespace J
 		static bool GetkeyDown(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Down; }
 		static bool GetkeyUp(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Up; }
 		static bool Getkey(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Pressed; }
-		
+		static math::Vector2 GetMousePosition() { return m_MousePosition; }
+
 	private:
 		static void createKeys();
 		static void updateKeys();
@@ -45,10 +46,12 @@ namespace J
 		static bool isKeyDown(eKeyCode _code);
 		static void updateKeyDown(Input::key& _key);
 		static void updateKeyUp(Input::key& _key);
-		//static void clearKeys();
+		static void getMousePositionByWindow();
+		static void clearKeys();
 
 	private:
 		static std::vector<key> keys;
+		static math::Vector2    m_MousePosition;
 	};
 }
 

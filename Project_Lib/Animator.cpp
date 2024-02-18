@@ -52,7 +52,7 @@ namespace J
 		return true;
 	}
 
-	void Animator::CreateAnimaiton(const std::wstring& _name
+	void Animator::CreateAnimation(const std::wstring& _name
 		, graphics::Texture* _spriteSheet
 		, Vector2 _leftTop
 		, Vector2 _size
@@ -66,7 +66,7 @@ namespace J
 			return;
 
 		animation = new Animation();
-		animation->CreateAnimaiton(_name
+		animation->CreateAnimation(_name
 			, _spriteSheet
 			, _leftTop
 			, _size

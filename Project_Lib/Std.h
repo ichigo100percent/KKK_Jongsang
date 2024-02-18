@@ -1,15 +1,19 @@
 #pragma once
 #include <Windows.h>
+#include <assert.h>
+#include <iostream>
+
 #include <vector>
 #include <algorithm>
 #include <string>
 #include <map>
-#include <assert.h>
+#include <functional>
 
-#include <mmsystem.h>
+
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
+#include <mmsystem.h>
 #pragma comment(lib, "Msimg32.lib")
 #pragma comment(lib, "winmm.lib")
 

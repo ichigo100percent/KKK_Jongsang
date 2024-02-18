@@ -1,7 +1,7 @@
 #include "Monster.h"
 #include "Input.h"
 #include "Transform.h"
-#include "Time.h"
+#include "JSTime.h"
 
 namespace J
 {
