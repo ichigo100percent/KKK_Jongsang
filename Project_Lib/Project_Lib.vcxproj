@@ -170,6 +170,8 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LoadResources.h" />
     <ClInclude Include="LoadScene.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterScript.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerScript.h" />
@@ -199,6 +201,8 @@
     <ClCompile Include="JSMath.cpp" />
     <ClCompile Include="JsScript.cpp" />
     <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterScript.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerScript.cpp" />
     <ClCompile Include="PlayScene.cpp" />

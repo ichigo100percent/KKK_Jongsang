@@ -75,6 +75,12 @@
     <ClInclude Include="JsScript.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="Monster.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterScript.h">
+      <Filter>Component\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -138,6 +144,12 @@
     <ClCompile Include="JsScript.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="Monster.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterScript.cpp">
+      <Filter>Component\Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">

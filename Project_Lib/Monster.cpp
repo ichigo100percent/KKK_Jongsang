@@ -1,36 +1,31 @@
-#include "Player.h"
+#include "Monster.h"
 #include "Input.h"
 #include "Transform.h"
 #include "Time.h"
 
-
 namespace J
 {
-	bool Player::Init()
+	bool Monster::Init()
 	{
 		GameObject::Init();
 		return true;
 	}
-
-	bool Player::Update()
+	bool Monster::Update()
 	{
 		GameObject::Update();
 		return true;
 	}
-
-	bool Player::LateUpdate()
+	bool Monster::LateUpdate()
 	{
 		GameObject::LateUpdate();
 		return true;
 	}
-
-	bool Player::Render(HDC _hdc)
+	bool Monster::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
 		return true;
 	}
-
-	bool Player::Release()
+	bool Monster::Release()
 	{
 		GameObject::Release();
 		return true;

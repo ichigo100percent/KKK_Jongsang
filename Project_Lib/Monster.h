@@ -1,14 +1,11 @@
 #pragma once
-#include "Component.h"
+#include "JSGameObject.h"
 
 namespace J
 {
-	class Script : public Component
+	class Monster : public GameObject
 	{
 	public:
-		Script();
-		~Script();
-
 		bool Init() override;
 		bool Update() override;
 		bool LateUpdate() override;
@@ -19,3 +16,4 @@ namespace J
 
 	};
 }
+
