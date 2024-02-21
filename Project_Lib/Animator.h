@@ -17,7 +17,7 @@ namespace J
 			void operator()()
 			{
 				if (m_Event)
-					m_Event;
+					m_Event();
 			}
 
 			std::function<void()> m_Event;
@@ -25,9 +25,9 @@ namespace J
 
 		struct Events
 		{
-			Event m_StartEvent;
-			Event m_CompleteEvent;
-			Event m_EndEvent;
+			Event startEvent;
+			Event completeEvent;
+			Event endEvent;
 		};
 
 		Animator();
@@ -49,6 +49,13 @@ namespace J
 		Animation* FindAnimation(const std::wstring& _name);
 		void PlayAnimaiton(const std::wstring& _name, bool _loop = true);
 
+
+		Events* FindEvents(const std::wstring& _name);
+		std::function<void()>& GetStartEvent(const std::wstring& _name);
+		std::function<void()>& GetCompleteEvent(const std::wstring& _name);
+		std::function<void()>& GetEndEvent(const std::wstring& _name);
+
+		bool IsComplete() { return m_ActiveAnimation->IsComplete(); }
 
 	private:
 		std::map<std::wstring, Animation*> m_Animations;

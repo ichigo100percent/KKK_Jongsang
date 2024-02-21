@@ -57,6 +57,10 @@ namespace J
 	{
 		return true;
 	}
+	void PlayerScript::AttackEffect()
+	{
+		int a = 0;
+	}
 	void PlayerScript::idle()
 	{
 		if (Input::Getkey(eKeyCode::LButton))
@@ -127,5 +131,10 @@ namespace J
 	}
 	void PlayerScript::giveWater()
 	{
+		if (m_Animator->IsComplete())
+		{
+			m_State = eState::Idle;
+			m_Animator->PlayAnimaiton(L"Idle", false);
+		}
 	}
 }

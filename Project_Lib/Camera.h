@@ -19,6 +19,8 @@ namespace J
 		bool Render(HDC _hdc) override;
 		bool Release() override;
 
+		void SetTarget(GameObject* _target) { m_Target = _target; }
+
 	private:
 		class GameObject* m_Target;
 		Vector2 m_Distance;

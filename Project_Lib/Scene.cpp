@@ -11,7 +11,11 @@ namespace J
 
     Scene::~Scene()
     {
-
+        for (Layer* layer : m_Layers)
+        {
+            delete layer;
+            layer = nullptr;
+        }
     }
 
     bool Scene::Init()
@@ -67,14 +71,6 @@ namespace J
 
     bool Scene::Release()
     {
-
-        for (auto layer : m_Layers)
-        {
-            if (layer == nullptr)
-                continue;
-
-            layer->Release();
-        }
 
         return true;
     }

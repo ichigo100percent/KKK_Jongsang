@@ -1,22 +1,35 @@
-#include "Test1.h"
+#include <iostream>
+#include <functional>
 
+struct Event
+{
+	void operator=(std::function<void()> _fun)
+	{
+		m_Event = std::move(_fun);
+	}
+
+	void operator()()
+	{
+		if (m_Event)
+			m_Event();
+	}
+
+	std::function<void()> m_Event;
+};
+
+void test()
+{
+	std::cout << "gd" << std::endl;
+}
 
 int main()
 {
-	
+	Event e;
+	Event e2;
 
-	for (size_t i = 0; i < 100; i++)
-	{
-		int a = rand() % 2;
+	e2.m_Event = std::move(test);
 
-		if (a)
-		{
-			cout << "is true" << endl;
-		}
-		else
-		{
-			cout << "is false" << endl;
-		}
-	}
+	e = e2;
 
+	return 0;
 }

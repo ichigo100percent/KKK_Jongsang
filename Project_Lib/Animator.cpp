@@ -13,7 +13,17 @@ namespace J
 
 	Animator::~Animator()
 	{
+		for (auto& iter : m_Animations)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
 
+		for (auto& iter : m_Events)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
 	}
 
 	bool Animator::Init()
@@ -26,10 +36,15 @@ namespace J
 		{
 			m_ActiveAnimation->Update();
 
-			if (m_ActiveAnimation->IsComplete() == true &&
-				m_bLoop == true)
+			Events* events = FindEvents(m_ActiveAnimation->GetNmae());
+
+			if (m_ActiveAnimation->IsComplete() == true)
 			{
-				m_ActiveAnimation->Reset();
+				if (events)
+					events->completeEvent();
+
+				if (m_bLoop == true)
+					m_ActiveAnimation->Reset();
 			}
 		}
 
@@ -66,6 +81,7 @@ namespace J
 			return;
 
 		animation = new Animation();
+		animation->SetName(_name);
 		animation->CreateAnimation(_name
 			, _spriteSheet
 			, _leftTop
@@ -75,6 +91,10 @@ namespace J
 			, _duration);
 
 		animation->SetAnimator(this);
+
+		Events* events = new Events();
+
+		m_Events.insert(std::make_pair(_name, events));
 		m_Animations.insert(std::make_pair(_name, animation));
 
 	}
@@ -92,8 +112,44 @@ namespace J
 		if (animation == nullptr)
 			return;
 
+		if (m_ActiveAnimation)
+		{
+			Events* currentEvents = FindEvents(m_ActiveAnimation->GetNmae());
+
+			if (currentEvents)
+				currentEvents->endEvent();
+		}
+
+		Events* nextEvents = FindEvents(animation->GetNmae());
+
+		if (nextEvents)
+			nextEvents->startEvent();
+
 		m_ActiveAnimation = animation;
 		m_ActiveAnimation->Reset();
 		m_bLoop = _loop;
+	}
+	Animator::Events* Animator::FindEvents(const std::wstring& _name)
+	{
+		auto iter = m_Events.find(_name);
+		if (iter == m_Events.end())
+			return nullptr;
+
+		return iter->second;
+	}
+	std::function<void()>& Animator::GetStartEvent(const std::wstring& _name)
+	{
+		Events* events = FindEvents(_name);
+		return events->startEvent.m_Event;
+	}
+	std::function<void()>& Animator::GetCompleteEvent(const std::wstring& _name)
+	{
+		Events* events = FindEvents(_name);
+		return events->completeEvent.m_Event;
+	}
+	std::function<void()>& Animator::GetEndEvent(const std::wstring& _name)
+	{
+		Events* events = FindEvents(_name);
+		return events->endEvent.m_Event;
 	}
 }

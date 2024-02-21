@@ -2,7 +2,7 @@
 #include "Input.h"
 #include "JSTime.h"
 #include "SceneManager.h"
-
+#include "Resources.h"
 
 namespace J
 {
@@ -30,7 +30,6 @@ namespace J
 
 		SceneManager::Init();
 
-		//obj.SetPositionition(50, 500);
 		return true;
 	}
 
@@ -40,8 +39,6 @@ namespace J
 		Input::Update();
 
 		SceneManager::Update();
-
-		//obj.Update();
 
 		return true;
 	}
@@ -68,6 +65,9 @@ namespace J
 
 	bool Core::Release()
 	{
+		SceneManager::Release();
+		Resources::Release();
+
 		return true;
 	}
 

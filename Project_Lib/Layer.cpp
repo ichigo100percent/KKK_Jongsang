@@ -10,7 +10,14 @@ namespace J
 	}
 	Layer::~Layer()
 	{
+		for (GameObject* gameObj : m_GameObjects)
+		{
+			if (gameObj == nullptr)
+				continue;
 
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 	bool Layer::Init()
 	{

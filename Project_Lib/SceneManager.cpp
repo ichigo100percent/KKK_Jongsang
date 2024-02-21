@@ -48,6 +48,11 @@ namespace J
 
 	bool SceneManager::Release()
 	{
+		for (auto& iter : m_Scene)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
 		return true;
 	}
 }

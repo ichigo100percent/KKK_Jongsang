@@ -37,7 +37,7 @@ namespace J
 
 		case J::MonsterScript::eState::Sleep:
 			break;
-		case J::MonsterScript::eState::LayDown:\
+		case J::MonsterScript::eState::LayDown:
 			layDown();
 			break;
 		case J::MonsterScript::eState::Attack:

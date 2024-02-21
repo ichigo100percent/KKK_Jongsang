@@ -33,12 +33,14 @@ namespace J
 	{
 		if (m_Target)
 		{
-			auto tr = m_Target->GetComponent<Transform>();
+			Transform* tr = m_Target->GetComponent<Transform>();
 			m_LookPosition = tr->GetPosition();
 		}
-
-		auto cameraTr = GetOwner()->GetComponent<Transform>();
-		m_LookPosition = cameraTr->GetPosition();
+		else
+		{
+			Transform* cameraTr = GetOwner()->GetComponent<Transform>();
+			m_LookPosition = cameraTr->GetPosition();
+		}
 
 		m_Distance = m_LookPosition - (m_Resolution / 2.0f);
 

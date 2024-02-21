@@ -25,6 +25,8 @@ namespace J
 		bool Render(HDC _hdc) override;
 		bool Release() override;
 
+		void AttackEffect();
+
 	private:
 		void idle();
 		void move();
