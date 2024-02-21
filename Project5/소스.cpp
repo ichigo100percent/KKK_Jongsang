@@ -1,35 +1,36 @@
 #include <iostream>
 #include <functional>
+#include <vector>
 
-struct Event
+enum class HEL
 {
-	void operator=(std::function<void()> _fun)
-	{
-		m_Event = std::move(_fun);
-	}
+	viper,
+	zeka,
+	doran,
+	delight,
 
-	void operator()()
-	{
-		if (m_Event)
-			m_Event();
-	}
-
-	std::function<void()> m_Event;
 };
 
-void test()
+struct T1
 {
-	std::cout << "gd" << std::endl;
-}
+	HEL GetHEL() { return h; }
+
+	HEL h;
+};
+
 
 int main()
 {
-	Event e;
-	Event e2;
+	std::vector<T1*> test;
 
-	e2.m_Event = std::move(test);
+	for (size_t i = 0; i < 10; i++)
+	{
+		T1* t = new T1();
+		test.push_back(t);
+	}
 
-	e = e2;
-
-	return 0;
+	for (std::vector<T1*>::iterator iter = test.begin(); iter != test.end(); iter++)
+	{
+		(*iter)->GetHEL();
+	}
 }
