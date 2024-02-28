@@ -41,9 +41,9 @@ namespace J
 
 		return true;
 	}
-	bool TitleScene::Release()
-	{
-		Scene::Release();
-		return true;
-	}
+	//bool TitleScene::Release()
+	//{
+	//	Scene::Release();
+	//	return true;
+	//}
 }

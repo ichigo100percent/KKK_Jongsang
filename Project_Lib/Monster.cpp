@@ -25,9 +25,4 @@ namespace J
 		GameObject::Render(_hdc);
 		return true;
 	}
-	bool Monster::Release()
-	{
-		GameObject::Release();
-		return true;
-	}
 }

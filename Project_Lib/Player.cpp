@@ -29,10 +29,4 @@ namespace J
 		GameObject::Render(_hdc);
 		return true;
 	}
-
-	bool Player::Release()
-	{
-		GameObject::Release();
-		return true;
-	}
 }

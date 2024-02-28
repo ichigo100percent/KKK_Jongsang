@@ -1,13 +1,40 @@
 #include "Texture.h"
 #include "Core.h"
+#include "Resources.h"
 
 //해당 전역변수가 존재함을 알리는 키워드 extern
 extern J::Core core;
 
 namespace J::graphics
 {
+	Texture* Texture::Create(const std::wstring _name, UINT _width, UINT _height)
+	{
+		Texture* image = Resources::Find<Texture>(_name);
+		if (image)
+			return image;
+
+		image = new Texture();
+		image->SetName(_name);
+		image->SetWidth(_width);
+		image->SetHeight(_height);
+
+		HDC hdc = core.GetHdc();
+		HWND hwnd = core.GetHwnd();
+
+		image->m_Bitmap = CreateCompatibleBitmap(hdc, _width, _height);
+		image->m_Hdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldbitmap = (HBITMAP)SelectObject(image->m_Hdc, image->m_Bitmap);
+		DeleteObject(oldbitmap);
+
+		Resources::Insert(_name + L"Image", image);
+
+		return image;
+	}
+
 	Texture::Texture()
-		:Resource(enums::eResourceType::Texture)
+		: Resource(enums::eResourceType::Texture)
+		, m_bAlpha(false)
 	{
 
 	}
@@ -35,6 +62,11 @@ namespace J::graphics
 
 			m_Width = info.bmWidth;
 			m_Height = info.bmHeight;
+
+			if (info.bmBitsPixel == 32)
+				m_bAlpha = true;
+			else if (info.bmBitsPixel == 24)
+				m_bAlpha = false;
 
 			HDC mainDC = core.GetHdc();
 			m_Hdc = CreateCompatibleDC(mainDC);

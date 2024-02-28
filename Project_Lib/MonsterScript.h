@@ -32,7 +32,6 @@ namespace J
 		bool Update() override;
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
-		bool Release() override;
 
 	private:
 		void sitDown();
@@ -47,5 +46,6 @@ namespace J
 		class Animator* m_Animator;
 		eDirection      m_Direction;
 		float           m_Time;
+		float			m_DeathTime;
 	};
 }

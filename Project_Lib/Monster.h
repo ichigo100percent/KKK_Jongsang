@@ -10,7 +10,6 @@ namespace J
 		bool Update() override;
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
-		bool Release() override;
 
 	private:
 

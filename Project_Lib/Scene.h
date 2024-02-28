@@ -15,8 +15,8 @@ namespace J
 		virtual bool Update();
 		virtual bool LateUpdate();
 		virtual bool Render(HDC _hdc);
-		virtual bool Release();
-
+		
+		virtual void Destroy();
 		virtual void OnEnter();
 		virtual void OnExit();
 

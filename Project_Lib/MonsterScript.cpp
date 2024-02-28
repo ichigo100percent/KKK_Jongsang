@@ -4,6 +4,7 @@
 #include "JSTime.h"
 #include "JSGameObject.h"
 #include "Animator.h"
+#include "Object.h"
 
 namespace J
 {
@@ -11,6 +12,7 @@ namespace J
 		: m_State(MonsterScript::eState::SitDown)
 		, m_Animator(nullptr)
 		, m_Time(0.0f)
+		, m_DeathTime(0.0f)
 	{
 	}
 	MonsterScript::~MonsterScript()
@@ -22,9 +24,14 @@ namespace J
 	}
 	bool MonsterScript::Update()
 	{
+		m_DeathTime += Time::DeltaTime();
+		if (m_DeathTime > 6.0f)
+		{
+			object::Destroy(GetOwner());
+		}
+
 		if (m_Animator == nullptr)
 			m_Animator = GetOwner()->GetComponent<Animator>();
-
 
 		switch (m_State)
 		{
@@ -56,16 +63,12 @@ namespace J
 	{
 		return true;
 	}
-	bool MonsterScript::Release()
-	{
-		return true;
-	}
 
 
 	void MonsterScript::sitDown()
 	{
 		m_Time += Time::DeltaTime();
-		if (m_Time > 6.0f)
+		if (m_Time > 3.0f)
 		{
 			m_State = MonsterScript::eState::Walk;
 			int direction = (rand() % 4);
@@ -78,7 +81,7 @@ namespace J
 	void MonsterScript::move()
 	{
 		m_Time += Time::DeltaTime();
-		if (m_Time > 3.0f)
+		if (m_Time > 1.0f)
 		{
 			int isLayDown = (rand() % 2);
 			if (isLayDown)

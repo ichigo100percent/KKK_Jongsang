@@ -34,6 +34,16 @@ namespace J
 			return resource;
 		}
 
+		static void Insert(const std::wstring& _key, Resource* _resource)
+		{
+			if (_key == L"")
+				return;
+			if (_resource == nullptr)
+				return;
+
+			m_Resources.insert(std::make_pair(_key, _resource));
+		}
+
 		static void Release()
 		{
 			for (auto& iter : m_Resources)

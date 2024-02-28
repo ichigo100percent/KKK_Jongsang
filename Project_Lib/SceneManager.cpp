@@ -55,4 +55,8 @@ namespace J
 		}
 		return true;
 	}
+	void SceneManager::Destroy()
+	{
+		m_ActiveScene->Destroy();
+	}
 }

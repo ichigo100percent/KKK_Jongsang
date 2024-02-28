@@ -123,11 +123,18 @@ namespace J
 		return true;
 	}
 
+	void Core::Destroy()
+	{
+		SceneManager::Destroy();
+	}
+
 	bool Core::Run()
 	{
 		Update();
 		LateUpdate();
 		Render();
+
+		Destroy();
 
 		return true;
 	}

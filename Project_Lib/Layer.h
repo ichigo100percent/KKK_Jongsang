@@ -5,6 +5,8 @@
 
 namespace J
 {
+	using GameObjectIter = std::vector<GameObject*>::iterator;
+
 	class Layer : public Entity
 	{
 	public:
@@ -15,9 +17,14 @@ namespace J
 		virtual bool Update();
 		virtual bool LateUpdate();
 		virtual bool Render(HDC _hdc);
-		virtual bool Release();
+		virtual void Destroy();
 
 		void AddGameObject(GameObject* _gameObject);
+
+	private:
+		void findDeadGameObjects(OUT std::vector<GameObject*>& _gameObjs);
+		void deleteGameObjects(std::vector<GameObject*> _gameObjs);
+		void eraseGameObject();
 
 	private:
 		std::vector<GameObject*> m_GameObjects;

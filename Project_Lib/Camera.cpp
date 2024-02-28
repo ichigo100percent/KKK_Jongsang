@@ -57,8 +57,4 @@ namespace J
 		return true;
 	}
 
-	bool Camera::Release()
-	{
-		return true;
-	}
 }

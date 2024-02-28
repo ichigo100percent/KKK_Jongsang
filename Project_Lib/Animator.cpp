@@ -1,4 +1,6 @@
 #include "Animator.h"
+#include "Resources.h"
+#include "Texture.h"
 
 namespace J
 {
@@ -62,10 +64,6 @@ namespace J
 		}
 		return true;
 	}
-	bool Animator::Release()
-	{
-		return true;
-	}
 
 	void Animator::CreateAnimation(const std::wstring& _name
 		, graphics::Texture* _spriteSheet
@@ -96,6 +94,46 @@ namespace J
 
 		m_Events.insert(std::make_pair(_name, events));
 		m_Animations.insert(std::make_pair(_name, animation));
+
+	}
+	void Animator::CreateAnimationByFolder(const std::wstring& _name, const std::wstring& _path, Vector2 _offset, float _duration)
+	{
+		Animation* animation = nullptr;
+		animation = FindAnimation(_name);
+		if (animation != nullptr)
+			return;
+
+		int fileCount = 0;
+		std::filesystem::path fs(_path);
+		std::vector<graphics::Texture*> images = {};
+
+		for (auto& p : std::filesystem::recursive_directory_iterator(fs))
+		{
+			std::wstring fileName = p.path().filename();
+			std::wstring fullName = p.path();
+
+			graphics::Texture* texture = Resources::Load < graphics::Texture>(fileName, fullName);
+			
+			images.push_back(texture);
+			fileCount++;
+		}
+
+		UINT sheetWidth = images[0]->GetWidth() * fileCount;
+		UINT sheetHeight = images[0]->GetHeight();
+		graphics::Texture* spriteSheet = graphics::Texture::Create(_name, sheetWidth, sheetHeight);
+
+		UINT imageWidth = images[0]->GetWidth();
+		UINT imageHeight = images[0]->GetHeight();
+		for (size_t i = 0; i < images.size(); i++)
+		{
+			BitBlt(spriteSheet->GetHdc(), i * imageWidth, 0
+				, imageWidth, imageHeight
+				, images[i]->GetHdc(), 0, 0, SRCCOPY);
+		}
+
+		CreateAnimation(_name, spriteSheet
+			, Vector2(0.0f, 0.0f), Vector2(imageWidth, imageHeight)
+			, _offset, fileCount, _duration);
 
 	}
 	Animation* Animator::FindAnimation(const std::wstring& _name)

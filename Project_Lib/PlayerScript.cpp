@@ -4,6 +4,10 @@
 #include "JSTime.h"
 #include "JSGameObject.h"
 #include "Animator.h"
+#include "Monster.h"
+#include "MonsterScript.h"
+#include "Object.h"
+#include "Resources.h"
 
 namespace J
 {
@@ -53,13 +57,25 @@ namespace J
 	{
 		return true;
 	}
-	bool PlayerScript::Release()
-	{
-		return true;
-	}
 	void PlayerScript::AttackEffect()
 	{
-		int a = 0;
+		Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
+		cat->AddComponent<MonsterScript>();
+
+		graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
+		Animator* catAnimator = cat->AddComponent<Animator>();
+		catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+		catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+		catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+
+		catAnimator->PlayAnimaiton(L"SitDown", false);
+		cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
+		cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+
 	}
 	void PlayerScript::idle()
 	{

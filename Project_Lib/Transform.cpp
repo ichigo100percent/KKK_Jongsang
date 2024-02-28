@@ -1,6 +1,4 @@
 #include "Transform.h"
-#include "JSTime.h"
-#include "Input.h"
 
 namespace J
 {
@@ -24,30 +22,6 @@ namespace J
 
 	bool Transform::Update()
 	{
-
-		//const int speed = 150.0f;
-
-		//if (Input::Getkey(eKeyCode::A))
-		//{
-		//	m_fX -= speed * Time::DeltaTime();
-		//}
-
-		//if (Input::Getkey(eKeyCode::D))
-		//{
-		//	m_fX += speed * Time::DeltaTime();
-		//}
-
-		//if (Input::Getkey(eKeyCode::W))
-		//{
-		//	m_fY -= speed * Time::DeltaTime();
-		//}
-
-		//if (Input::Getkey(eKeyCode::S))
-		//{
-		//	m_fY += speed * Time::DeltaTime();
-		//}
-
-
 		return true;
 	}
 
@@ -61,8 +35,4 @@ namespace J
 		return true;
 	}
 
-	bool Transform::Release()
-	{
-		return true;
-	}
 }

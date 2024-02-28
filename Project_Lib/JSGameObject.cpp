@@ -3,17 +3,26 @@
 #include "JSTime.h"
 #include "Transform.h"
 
+namespace J::object
+{
+	void Destroy(GameObject* _gameObject)
+	{
+		if (_gameObject != nullptr)
+			_gameObject->death();
+	}
+}
+
 namespace J
 {
 	GameObject::GameObject()
-		: m_Scripts{}
+		: m_State(eState::Active)
 	{
 		m_Components.resize((UINT)enums::EComponentType::End);
 		initializeTransform();
 	}
 	GameObject::~GameObject()
 	{
-		for (auto comp : m_Components)
+		for (Component* comp : m_Components)
 		{
 			if (comp == nullptr)
 				continue;
@@ -21,11 +30,20 @@ namespace J
 			delete comp;
 			comp = nullptr;
 		}
+
+		//for (auto scr : m_Scripts)
+		//{
+		//	if (scr == nullptr)
+		//		continue;
+
+		//	delete scr;
+		//	scr = nullptr;
+		//}
 	}
 
 	bool GameObject::Init()
 	{
-		for (auto comp : m_Components)
+		for (Component* comp : m_Components)
 		{
 			if (comp == nullptr)
 				continue;
@@ -33,20 +51,20 @@ namespace J
 			comp->Init();
 		}
 
-		for (auto scr : m_Scripts)
-		{
-			if (scr == nullptr)
-				continue;
+		//for (auto scr : m_Scripts)
+		//{
+		//	if (scr == nullptr)
+		//		continue;
 
-			scr->Init();
-		}
+		//	scr->Init();
+		//}
 		return true;
 	}
 
 	bool GameObject::Update()
 	{
 
-		for (auto comp : m_Components)
+		for (Component* comp : m_Components)
 		{
 			if (comp == nullptr)
 				continue;
@@ -54,19 +72,19 @@ namespace J
 			comp->Update();
 		}
 
-		for (auto scr : m_Scripts)
-		{
-			if (scr == nullptr)
-				continue;
+		//for (auto scr : m_Scripts)
+		//{
+		//	if (scr == nullptr)
+		//		continue;
 
-			scr->Update();
-		}
+		//	scr->Update();
+		//}
 		return true;
 	}
 
 	bool GameObject::LateUpdate()
 	{
-		for (auto comp : m_Components)
+		for (Component* comp : m_Components)
 		{
 			if (comp == nullptr)
 				continue;
@@ -74,13 +92,13 @@ namespace J
 			comp->LateUpdate();
 		}
 
-		for (auto scr : m_Scripts)
-		{
-			if (scr == nullptr)
-				continue;
+		//for (auto scr : m_Scripts)
+		//{
+		//	if (scr == nullptr)
+		//		continue;
 
-			scr->LateUpdate();
-		}
+		//	scr->LateUpdate();
+		//}
 
 		return true;
 	}
@@ -88,7 +106,7 @@ namespace J
 	bool GameObject::Render(HDC _hdc)
 	{
 
-		for (auto comp : m_Components)
+		for (Component* comp : m_Components)
 		{
 			if (comp == nullptr)
 				continue;
@@ -96,33 +114,13 @@ namespace J
 			comp->Render(_hdc);
 		}
 
-		for (auto scr : m_Scripts)
-		{
-			if (scr == nullptr)
-				continue;
+		//for (auto scr : m_Scripts)
+		//{
+		//	if (scr == nullptr)
+		//		continue;
 
-			scr->Render(_hdc);
-		}
-		return true;
-	}
-
-	bool GameObject::Release()
-	{
-		for (auto comp : m_Components)
-		{
-			if (comp == nullptr)
-				continue;
-
-			comp->Release();
-		}
-
-		for (auto scr : m_Scripts)
-		{
-			if (scr == nullptr)
-				continue;
-
-			scr->Release();
-		}
+		//	scr->Render(_hdc);
+		//}
 		return true;
 	}
 
@@ -131,3 +129,4 @@ namespace J
 		AddComponent<Transform>();
 	}
 }
+

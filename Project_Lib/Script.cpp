@@ -26,8 +26,4 @@ namespace J
 	{
 		return true;
 	}
-	bool Script::Release()
-	{
-		return true;
-	}
 }

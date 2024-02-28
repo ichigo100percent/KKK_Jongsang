@@ -17,7 +17,6 @@ namespace J
 		bool Update() override;
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
-		bool Release() override;
 
 		void SetTarget(GameObject* _target) { m_Target = _target; }
 

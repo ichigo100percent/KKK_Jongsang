@@ -17,7 +17,9 @@ namespace J
 		bool Render();
 		bool Release();
 
+		void Destroy();
 		bool Run();
+
 		HWND GetHwnd() { return m_Hwnd; }
 		HDC  GetHdc() { return m_Hdc; }
 		UINT GetWidth() { return m_Width; }

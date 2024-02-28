@@ -37,7 +37,6 @@ namespace J
 		bool Update() override;
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
-		bool Release() override;
 
 		void CreateAnimation(const std::wstring& _name
 			, graphics::Texture* _spriteSheet
@@ -45,6 +44,10 @@ namespace J
 			, Vector2 _size
 			, Vector2 _offset
 			, UINT _spriteLength
+			, float _duration);
+		void CreateAnimationByFolder(const std::wstring& _name
+			, const std::wstring& _path
+			, Vector2 _offset
 			, float _duration);
 		Animation* FindAnimation(const std::wstring& _name);
 		void PlayAnimaiton(const std::wstring& _name, bool _loop = true);

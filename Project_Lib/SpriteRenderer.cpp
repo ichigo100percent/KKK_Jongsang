@@ -41,11 +41,33 @@ namespace J
 
 		if (m_Texture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
 		{
-			//https://blog.naver.com/power2845/50147965306
-			TransparentBlt(_hdc, pos.x, pos.y
-				, m_Texture->GetWidth() * m_Size.x * scale.x, m_Texture->GetHeight() * m_Size.y * scale.y
-				, m_Texture->GetHdc(), 0, 0, m_Texture->GetWidth(), m_Texture->GetHeight()
-				, RGB(255, 0, 255));
+			if (m_Texture->IsAlpha())
+			{
+				BLENDFUNCTION func = {};
+				func.BlendOp = AC_SRC_OVER;
+				func.BlendFlags = 0;
+				func.AlphaFormat = AC_SRC_ALPHA;
+				func.SourceConstantAlpha = 255; // 0(transparent) ~ 255(Opaque)
+
+				AlphaBlend(_hdc
+					, pos.x
+					, pos.y
+					, m_Texture->GetWidth() * m_Size.x * scale.x
+					, m_Texture->GetHeight() * m_Size.y * scale.y
+					, m_Texture->GetHdc()
+					, 0, 0
+					, m_Texture->GetWidth()
+					, m_Texture->GetHeight()
+					, func);
+			}
+			else
+			{
+				//https://blog.naver.com/power2845/50147965306
+				TransparentBlt(_hdc, pos.x, pos.y
+					, m_Texture->GetWidth() * m_Size.x * scale.x, m_Texture->GetHeight() * m_Size.y * scale.y
+					, m_Texture->GetHdc(), 0, 0, m_Texture->GetWidth(), m_Texture->GetHeight()
+					, RGB(255, 0, 255));
+			}
 		}
 		else if (m_Texture->GetTextureType() == graphics::Texture::eTextureType::Png)
 		{
@@ -79,9 +101,4 @@ namespace J
 		
 		return true;
 	}
-	bool SpriteRenderer::Release()
-	{
-		return true;
-	}
-
 }

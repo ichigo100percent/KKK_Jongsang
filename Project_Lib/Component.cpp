@@ -3,8 +3,8 @@
 namespace J
 {
 	Component::Component(enums::EComponentType _type)
-		: m_Type(_type),
-		  m_Owner(nullptr)
+		: m_Type(_type)
+		  /*m_Owner(nullptr)*/
 	{
 	}
 	Component::~Component()
@@ -27,11 +27,6 @@ namespace J
 	}
 
 	bool Component::Render(HDC _hdc)
-	{
-		return true;
-	}
-
-	bool Component::Release()
 	{
 		return true;
 	}

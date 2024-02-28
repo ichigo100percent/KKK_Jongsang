@@ -69,10 +69,15 @@ namespace J
         return true;
     }
 
-    bool Scene::Release()
+    void Scene::Destroy()
     {
+        for (auto layer : m_Layers)
+        {
+            if (layer == nullptr)
+                continue;
 
-        return true;
+            layer->Destroy();
+        }
     }
 
     void Scene::OnEnter()

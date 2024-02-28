@@ -72,7 +72,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="JsScript.h" />
     <ClInclude Include="Monster.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -145,7 +144,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="JsScript.cpp" />
     <ClCompile Include="Monster.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>

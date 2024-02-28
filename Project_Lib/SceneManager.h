@@ -34,6 +34,8 @@ namespace J
 		static bool Render(HDC _hdc);
 		static bool Release();
 
+		static void Destroy();
+
 	private:
 		static SceneMap				m_Scene;
 		static Scene*				m_ActiveScene;

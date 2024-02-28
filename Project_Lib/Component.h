@@ -18,7 +18,6 @@ namespace J
 		virtual bool Update();
 		virtual bool LateUpdate();
 		virtual bool Render(HDC _hdc);
-		virtual bool Release();
 
 		void SetOwner(GameObject* _owner) { m_Owner = _owner; }
 		GameObject* GetOwner() { return m_Owner; }

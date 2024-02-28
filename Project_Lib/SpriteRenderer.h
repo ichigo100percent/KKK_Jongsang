@@ -15,7 +15,6 @@ namespace J
 		 bool Update() override;
 		 bool LateUpdate() override;
 		 bool Render(HDC _hdc) override;
-		 bool Release() override;
 
 		 void SetTexture(graphics::Texture* _texture) { m_Texture = _texture; }
 		 void SetSize(math::Vector2 _size) { m_Size = _size; }

@@ -12,7 +12,6 @@
 #include "PlayerScript.h"
 #include "Camera.h"
 #include "Renderer.h"
-#include "JsScript.h"
 #include "Animator.h"
 #include "Monster.h"
 #include "MonsterScript.h"
@@ -76,32 +75,38 @@ namespace J
 			playerAnimator->CreateAnimation(L"Idle", playerTex
 				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
 			playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
-				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
+				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.05f);
 			playerAnimator->PlayAnimaiton(L"Idle", false);
 
 			m_Player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
+			cameraComp->SetTarget(m_Player);
 		}
+		
+		{
+			Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
+			cat->AddComponent<MonsterScript>();
+			//cameraComp->SetTarget(cat);
+			//cat->SetActive(true);
 
-		//{
-		//	Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
-		//	cat->AddComponent<MonsterScript>();
+			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
+			Animator* catAnimator = cat->AddComponent<Animator>();
+			//catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			//catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			//catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
 
-		//	graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
-		//	Animator* catAnimator = cat->AddComponent<Animator>();
-		//	catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		//	catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		//	catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		//	catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		//	catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
-		//	catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
-		//	catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			//catAnimator->PlayAnimaiton(L"SitDown", false);
+			catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"../../data/Mushroom", Vector2::Zero, 0.1f);
+			catAnimator->PlayAnimaiton(L"MushroomIdle", true);
 
-		//	catAnimator->PlayAnimaiton(L"SitDown", false);
-		//	cat->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
-		//	cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
-		//	cameraComp->SetTarget(cat);
-		//}
+			cat->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
+			cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
+		}
+		
 
 		//게임 오브젝트 생성 후 레이어와 게임오브젝트들의 init()함수를 호출
 		Scene::Init();
@@ -132,11 +137,11 @@ namespace J
 		TextOut(_hdc, 0, 0, str.c_str(), str.length());
 		return true;
 	}
-	bool PlayScene::Release()
-	{
-		Scene::Release();
-		return true;
-	}
+	//bool PlayScene::Release()
+	//{
+	//	Scene::Release();
+	//	return true;
+	//}
 	void PlayScene::OnEnter()
 	{
 	}

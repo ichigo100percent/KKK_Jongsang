@@ -32,4 +32,12 @@ namespace J::object
 
 		return gameObject;
 	}
+
+	//static void Destroy(GameObject* _obj)
+	//{
+	//	if (_obj == nullptr)
+	//		return;
+
+	//	_obj->Death();
+	//}
 }
