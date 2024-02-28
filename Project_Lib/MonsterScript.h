@@ -33,6 +33,9 @@ namespace J
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
 
+		void SetPlayer(GameObject* _player) { m_Player = _player; }
+		Vector2 mDest;
+
 	private:
 		void sitDown();
 		void move();
@@ -47,5 +50,8 @@ namespace J
 		eDirection      m_Direction;
 		float           m_Time;
 		float			m_DeathTime;
+
+		GameObject*		m_Player;
+		float			m_Radian;
 	};
 }

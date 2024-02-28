@@ -9,9 +9,10 @@ namespace J
 	{
 		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
-
+		SceneManager::CreateScene<PlayScene>(L"JSPlayScene");
 
 		//SceneManager::LoadScene(L"TitleScene");
-		SceneManager::LoadScene(L"PlayScene");
+		//SceneManager::LoadScene(L"PlayScene");
+		SceneManager::LoadScene(L"JSPlayScene");
 	}
 }

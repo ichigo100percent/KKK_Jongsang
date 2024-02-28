@@ -29,7 +29,6 @@
     <ClInclude Include="Player.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="JSMath.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="JSEnums.h">
       <Filter>Etc</Filter>
@@ -84,6 +83,15 @@
     <ClInclude Include="Animator.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="JSPlayScene.h">
+      <Filter>Scene\Portfolio</Filter>
+    </ClInclude>
+    <ClInclude Include="JSMath.h">
+      <Filter>Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="JSPlayerScript.h">
+      <Filter>Scene\Portfolio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -111,7 +119,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="JSMath.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
@@ -156,6 +163,15 @@
     <ClCompile Include="Animator.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="JSPlayScene.cpp">
+      <Filter>Scene\Portfolio</Filter>
+    </ClCompile>
+    <ClCompile Include="JSMath.cpp">
+      <Filter>Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="JSPlayerScript.cpp">
+      <Filter>Scene\Portfolio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">
@@ -175,6 +191,9 @@
     </Filter>
     <Filter Include="Component\Scripts">
       <UniqueIdentifier>{e9425c7a-0194-441c-aaf3-b6e92dba770b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Portfolio">
+      <UniqueIdentifier>{ec5232d9-415b-4c2a-997f-0ca385b61157}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -24,34 +24,36 @@ namespace J
 	class Input
 	{
 	public:
-		struct key
+		struct Key
 		{
 			eKeyCode keyCode;
 			eKeyState state;
 			bool bPressed;
 		};
 
-		static bool Init();
-		static bool Update();
+		static void Init();
+		static void Update();
 
-		static bool GetkeyDown(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Down; }
-		static bool GetkeyUp(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Up; }
-		static bool Getkey(eKeyCode _code) { return keys[(UINT)_code].state == eKeyState::Pressed; }
-		static math::Vector2 GetMousePosition() { return m_MousePosition; }
+		__forceinline static bool GetKeyDown(eKeyCode code) { return Keys[(UINT)code].state == eKeyState::Down; }
+		__forceinline static bool GetKeyUp(eKeyCode code) { return Keys[(UINT)code].state == eKeyState::Up; }
+		__forceinline static bool GetKey(eKeyCode code) { return Keys[(UINT)code].state == eKeyState::Pressed; }
+		__forceinline static math::Vector2 GetMousePosition() { return mMousePosition; }
+		//__forceinline static math::Vector2 GetMouseToWorldPosition() { return mMousePosition; }
 
 	private:
 		static void createKeys();
 		static void updateKeys();
-		static void updateKey(Input::key& _key);
-		static bool isKeyDown(eKeyCode _code);
-		static void updateKeyDown(Input::key& _key);
-		static void updateKeyUp(Input::key& _key);
+		static void updateKey(Input::Key& key);
+		static bool isKeyDown(eKeyCode code);
+		static void updateKeyDown(Input::Key& key);
+		static void updateKeyUp(Input::Key& key);
 		static void getMousePositionByWindow();
 		static void clearKeys();
 
+
 	private:
-		static std::vector<key> keys;
-		static math::Vector2    m_MousePosition;
+		static std::vector<Key> Keys;
+		static math::Vector2 mMousePosition;
 	};
 }
 

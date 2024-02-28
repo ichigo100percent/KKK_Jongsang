@@ -166,6 +166,8 @@
     <ClInclude Include="JSEnums.h" />
     <ClInclude Include="JSGameObject.h" />
     <ClInclude Include="JSMath.h" />
+    <ClInclude Include="JSPlayerScript.h" />
+    <ClInclude Include="JSPlayScene.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LoadResources.h" />
     <ClInclude Include="LoadScene.h" />
@@ -198,6 +200,8 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JSGameObject.cpp" />
     <ClCompile Include="JSMath.cpp" />
+    <ClCompile Include="JSPlayerScript.cpp" />
+    <ClCompile Include="JSPlayScene.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MonsterScript.cpp" />

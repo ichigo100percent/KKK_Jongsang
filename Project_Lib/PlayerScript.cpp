@@ -60,7 +60,9 @@ namespace J
 	void PlayerScript::AttackEffect()
 	{
 		Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
-		cat->AddComponent<MonsterScript>();
+		MonsterScript* catScr = cat->AddComponent<MonsterScript>();
+
+		catScr->SetPlayer(GetOwner());
 
 		graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 		Animator* catAnimator = cat->AddComponent<Animator>();
@@ -73,39 +75,65 @@ namespace J
 		catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
 
 		catAnimator->PlayAnimaiton(L"SitDown", false);
-		cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+
+		cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
 		cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
+		Vector2 mousePos = Input::GetMousePosition();
+		catScr->mDest = mousePos;
 	}
 	void PlayerScript::idle()
 	{
-		if (Input::Getkey(eKeyCode::LButton))
+		if (Input::GetKey(eKeyCode::LButton))
 		{
-			m_State = PlayerScript::eState::GiveWater;
-			m_Animator->PlayAnimaiton(L"FrontGiveWater", false);
+			//m_State = PlayerScript::eState::GiveWater;
+			//m_Animator->PlayAnimaiton(L"FrontGiveWater", false);
+
+			Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
+			MonsterScript* catScr = cat->AddComponent<MonsterScript>();
+
+			catScr->SetPlayer(GetOwner());
+
+			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
+			Animator* catAnimator = cat->AddComponent<Animator>();
+			catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+
+			catAnimator->PlayAnimaiton(L"SitDown", false);
+			Transform* tr = GetOwner()->GetComponent<Transform>();
+
+			cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
+			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f,2.0f));
 
 			Vector2 mousePos = Input::GetMousePosition();
+			catScr->mDest = mousePos;
 		}
 
-		if (Input::Getkey(eKeyCode::Right))
+		if (Input::GetKey(eKeyCode::Right))
 		{
 			m_State = PlayerScript::eState::Walk;
 			m_Animator->PlayAnimaiton(L"RightWalk");
 		}
 
-		if (Input::Getkey(eKeyCode::Left))
+		if (Input::GetKey(eKeyCode::Left))
 		{
 			m_State = PlayerScript::eState::Walk;
 			m_Animator->PlayAnimaiton(L"LeftWalk");
 		}
 
-		if (Input::Getkey(eKeyCode::Up))
+		if (Input::GetKey(eKeyCode::Up))
 		{
 			m_State = PlayerScript::eState::Walk;
 			m_Animator->PlayAnimaiton(L"UpWalk");
 		}
 
-		if (Input::Getkey(eKeyCode::Down))
+		if (Input::GetKey(eKeyCode::Down))
 		{
 			m_State = PlayerScript::eState::Walk;
 			m_Animator->PlayAnimaiton(L"DownWalk");
@@ -116,30 +144,30 @@ namespace J
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
-		if (Input::Getkey(eKeyCode::Right))
+		if (Input::GetKey(eKeyCode::Right))
 		{
 			pos.x += 100 * Time::DeltaTime();
 		}
 
-		if (Input::Getkey(eKeyCode::Left))
+		if (Input::GetKey(eKeyCode::Left))
 		{
 			pos.x -= 100 * Time::DeltaTime();
 		}
 
-		if (Input::Getkey(eKeyCode::Up))
+		if (Input::GetKey(eKeyCode::Up))
 		{
 			pos.y -= 100 * Time::DeltaTime();
 		}
 
-		if (Input::Getkey(eKeyCode::Down))
+		if (Input::GetKey(eKeyCode::Down))
 		{
 			pos.y += 100 * Time::DeltaTime();
 		}
 
 		tr->SetPosition(pos);
 
-		if (Input::GetkeyUp(eKeyCode::Right) || Input::GetkeyUp(eKeyCode::Left) ||
-			Input::GetkeyUp(eKeyCode::Up) || Input::GetkeyUp(eKeyCode::Down))
+		if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left) ||
+			Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))
 		{
 			m_State = PlayerScript::eState::Idle;
 			m_Animator->PlayAnimaiton(L"SitDown", false);

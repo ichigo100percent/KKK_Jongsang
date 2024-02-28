@@ -1,67 +1,64 @@
-//#include "PlayScene.h"
-//#include "JSGameObject.h"
-//#include "Player.h"
-//#include "Transform.h"
-//#include "SpriteRenderer.h"
-//
-//namespace J
-//{
-//	PlayScene::PlayScene()
-//	{
-//	}
-//	PlayScene::~PlayScene()
-//	{
-//	}
-//	bool PlayScene::Init()
-//	{
-//		//GameObject* obj = new GameObject();
-//		//obj->SetPosition(50, 500);
-//		//AddGameObject(obj);
-//
-//		//{
-//		//	Player* pl = new Player();
-//		//	Transform* tr = pl->AddComponent<Transform>();
-//		//	tr->SetPos(800, 450);
-//		//	tr->SetName(L"TR");
-//
-//		//	SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
-//		//	sr->SetName(L"SR");
-//
-//		//	AddGameObject(pl);
-//		//}
-//
-//		{
-//			Player* bg = new Player();
-//			Transform* tr = bg->AddComponent<Transform>();
-//			tr->SetPos(Vector2(0, 0));
-//			tr->SetName(L"TR");
-//
-//			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-//			sr->SetName(L"SR");
-//			sr->ImageLoad(L"../../data/CloudOcean.png");
-//
-//			AddGameObject(bg);
-//		}
-//
-//		return true;
-//	}
-//	bool PlayScene::Update()
-//	{
-//		Scene::Update();
-//		return true;
-//	}
-//	bool PlayScene::LateUpdate()
-//	{
-//		Scene::LateUpdate();
-//		return true;
-//	}
-//	bool PlayScene::Render(HDC _hdc)
-//	{
-//		Scene::Render(_hdc);
-//		return true;
-//	}
-//	bool PlayScene::Release()
-//	{
-//		return true;
-//	}
-//}
+#include "JsPlayScene.h"
+#include "JSGameObject.h"
+#include "Player.h"
+#include "Transform.h"
+#include "SpriteRenderer.h"
+#include "Input.h"
+#include "SceneManager.h"
+#include "TitleScene.h"
+#include "Object.h"
+#include "Texture.h"
+#include "Resources.h"
+#include "Camera.h"
+#include "Renderer.h"
+#include "Animator.h"
+#include "Monster.h"
+#include "JSPlayerScript.h"
+
+namespace J
+{
+	JSPlayScene::JSPlayScene()
+	{
+	}
+	JSPlayScene::~JSPlayScene()
+	{
+	}
+	bool JSPlayScene::Init()
+	{
+		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f)); //Vector2(758.0f, 540.0f));
+		Camera* cameraComp = camera->AddComponent<Camera>();
+		renderer::mainCamera = cameraComp;
+
+		{
+			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
+			JSPlayerScript* plScr = m_Player->AddComponent<JSPlayerScript>();
+
+			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
+			Animator* playerAni = m_Player->AddComponent<Animator>();
+			playerAni->CreateAnimationByFolder(L"JsIdle", L"../../data/Portfolio/Player/Idle", Vector2::Zero, 0.1f);
+			playerAni->PlayAnimaiton(L"JsIdle", true);
+
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
+			m_Player->GetComponent<Transform>()->SetScale(Vector2(5.0f, 5.0f));
+		}
+		return true;
+	}
+	bool JSPlayScene::Update()
+	{
+		return true;
+	}
+	bool JSPlayScene::LateUpdate()
+	{
+		return true;
+	}
+	bool JSPlayScene::Render(HDC _hdc)
+	{
+		return true;
+	}
+	void JSPlayScene::OnEnter()
+	{
+	}
+	void JSPlayScene::OnExit()
+	{
+	}
+}

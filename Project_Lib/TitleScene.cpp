@@ -25,7 +25,7 @@ namespace J
 	{
 		Scene::LateUpdate();
 
-		if (Input::GetkeyDown(eKeyCode::N))
+		if (Input::GetKeyDown(eKeyCode::N))
 		{
 			SceneManager::LoadScene(L"PlayScene");
 		}
@@ -41,9 +41,4 @@ namespace J
 
 		return true;
 	}
-	//bool TitleScene::Release()
-	//{
-	//	Scene::Release();
-	//	return true;
-	//}
 }

@@ -5,8 +5,8 @@ extern J::Core core;
 
 namespace J
 {
-	std::vector<Input::key> Input::keys = {};
-	math::Vector2 Input::m_MousePosition = math::Vector2::One;
+	std::vector<Input::Key> Input::Keys = {};
+	math::Vector2 Input::mMousePosition = math::Vector2::One;
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -17,50 +17,45 @@ namespace J
 		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON,
 	};
 
-	bool Input::Init()
+	void Input::Init()
 	{
 		createKeys();
-		
-		return true;
 	}
 
-	bool Input::Update()
+	void Input::Update()
 	{
 		updateKeys();
-		
-		return true;
 	}
-
 	void Input::createKeys()
 	{
 		for (size_t i = 0; i < (UINT)eKeyCode::End; i++)
 		{
-			key key = {};
+			Key key = {};
 			key.bPressed = false;
 			key.state = eKeyState::None;
 			key.keyCode = (eKeyCode)i;
 
-			keys.push_back(key);
+			Keys.push_back(key);
 		}
 	}
 
 	void Input::updateKeys()
 	{
-		std::for_each(keys.begin(), keys.end(),
-			[](key& _key) -> void
+		std::for_each(Keys.begin(), Keys.end(),
+			[](Key& key) -> void
 			{
-				updateKey(_key);
+				updateKey(key);
 			});
 	}
 
-	void Input::updateKey(Input::key& _key)
+	void Input::updateKey(Input::Key& key)
 	{
 		if (GetFocus())
 		{
-			if (isKeyDown(_key.keyCode))
-				updateKeyDown(_key);
+			if (isKeyDown(key.keyCode))
+				updateKeyDown(key);
 			else
-				updateKeyUp(_key);
+				updateKeyUp(key);
 
 			getMousePositionByWindow();
 		}
@@ -70,31 +65,28 @@ namespace J
 		}
 	}
 
-	bool Input::isKeyDown(eKeyCode _code)
+	bool Input::isKeyDown(eKeyCode code)
 	{
-		return GetAsyncKeyState(ASCII[(UINT)_code]) & 0x8000;
+		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
 	}
 
-	void Input::updateKeyDown(Input::key& _key)
+	void Input::updateKeyDown(Input::Key& key)
 	{
-		if (_key.bPressed == true)
-			_key.state = eKeyState::Pressed;
+		if (key.bPressed == true)
+			key.state = eKeyState::Pressed;
 		else
-			_key.state = eKeyState::Down;
+			key.state = eKeyState::Down;
 
-		_key.bPressed = true;
+		key.bPressed = true;
 	}
-
-	void Input::updateKeyUp(Input::key& _key)
+	void Input::updateKeyUp(Input::Key& key)
 	{
-		if (_key.bPressed == true)
-		{
-			_key.state = eKeyState::Up;
-		}
+		if (key.bPressed == true)
+			key.state = eKeyState::Up;
 		else
-			_key.state = eKeyState::None;
+			key.state = eKeyState::None;
 
-		_key.bPressed = false;
+		key.bPressed = false;
 	}
 	void Input::getMousePositionByWindow()
 	{
@@ -102,12 +94,21 @@ namespace J
 		GetCursorPos(&mousePos);
 		ScreenToClient(core.GetHwnd(), &mousePos);
 
-		m_MousePosition.x = mousePos.x;
-		m_MousePosition.y = mousePos.y;
+		UINT width = core.GetWidth();
+		UINT height = core.GetHeight();
+
+		mMousePosition.x = -1.0f;
+		mMousePosition.y = -1.0f;
+
+		if (mousePos.x > 0 && mousePos.x < width)
+			mMousePosition.x = mousePos.x;
+
+		if (mousePos.y > 0 && mousePos.y < height)
+			mMousePosition.y = mousePos.y;
 	}
 	void Input::clearKeys()
 	{
-		for (key& key : keys)
+		for (Key& key : Keys)
 		{
 			if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
 				key.state = eKeyState::Up;

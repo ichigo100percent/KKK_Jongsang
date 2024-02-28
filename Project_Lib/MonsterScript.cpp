@@ -13,6 +13,8 @@ namespace J
 		, m_Animator(nullptr)
 		, m_Time(0.0f)
 		, m_DeathTime(0.0f)
+		, mDest(Vector2::Zero)
+		, m_Radian(0.0f)
 	{
 	}
 	MonsterScript::~MonsterScript()
@@ -67,7 +69,28 @@ namespace J
 
 	void MonsterScript::sitDown()
 	{
+
 		m_Time += Time::DeltaTime();
+		if (m_Time > 2.0f)
+		{
+			//object::Destroy(GetOwner());
+		}
+
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+
+
+		Vector2 mousePos = Input::GetMousePosition();
+
+
+		//¸¶¿ì½º À§Ä¡ ÀÌµ¿(º¤ÅÍ »¬¼À È°¿ë)
+		Transform* plTr = m_Player->GetComponent<Transform>();
+		Vector2    dest = mousePos - plTr->GetPosition();
+		pos += dest.normalize() * (100.0f * Time::DeltaTime());
+
+		
+		tr->SetPosition(pos);
+		/*
 		if (m_Time > 3.0f)
 		{
 			m_State = MonsterScript::eState::Walk;
@@ -76,7 +99,7 @@ namespace J
 			playWalkAnimationByDirection(m_Direction);
 			m_Time = 0.0f;
 		}
-
+		*/
 	}
 	void MonsterScript::move()
 	{

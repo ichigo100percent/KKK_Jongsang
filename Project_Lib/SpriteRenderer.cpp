@@ -63,9 +63,14 @@ namespace J
 			else
 			{
 				//https://blog.naver.com/power2845/50147965306
-				TransparentBlt(_hdc, pos.x, pos.y
-					, m_Texture->GetWidth() * m_Size.x * scale.x, m_Texture->GetHeight() * m_Size.y * scale.y
-					, m_Texture->GetHdc(), 0, 0, m_Texture->GetWidth(), m_Texture->GetHeight()
+				TransparentBlt(_hdc
+					, pos.x, pos.y
+					, m_Texture->GetWidth() * m_Size.x * scale.x
+					, m_Texture->GetHeight() * m_Size.y * scale.y
+					, m_Texture->GetHdc()
+					, 0, 0
+					, m_Texture->GetWidth()
+					, m_Texture->GetHeight()
 					, RGB(255, 0, 255));
 			}
 		}

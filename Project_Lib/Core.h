@@ -27,7 +27,7 @@ namespace J
 
 	private:
 		bool clearRenderTarget();
-		bool copyRenderTarget();
+		bool copyRenderTarget(HDC source, HDC dest);
 		bool adjustWindowRect(HWND _hwnd, UINT _width, UINT _height);
 		bool CreateBuffer(UINT _width, UINT _height);
 		bool InitEtc();
@@ -42,7 +42,5 @@ namespace J
 
 		UINT	m_Width;
 		UINT	m_Height;
-
-		GameObject obj;
 	};
 }

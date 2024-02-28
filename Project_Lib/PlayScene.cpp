@@ -15,7 +15,7 @@
 #include "Animator.h"
 #include "Monster.h"
 #include "MonsterScript.h"
-
+#include "JsPlayScene.h"
 namespace J
 {
 	PlayScene::PlayScene()
@@ -27,7 +27,7 @@ namespace J
 	bool PlayScene::Init()
 	{
 
-		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None/*, Vector2(758.0f, 540.0f) */);
+		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f)); //Vector2(758.0f, 540.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		renderer::mainCamera = cameraComp;
 
@@ -78,11 +78,12 @@ namespace J
 				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.05f);
 			playerAnimator->PlayAnimaiton(L"Idle", false);
 
-			m_Player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 200.0f));
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 			cameraComp->SetTarget(m_Player);
 		}
 		
+		/*
 		{
 			Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
 			cat->AddComponent<MonsterScript>();
@@ -106,7 +107,7 @@ namespace J
 			cat->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
 		}
-		
+		*/
 
 		//게임 오브젝트 생성 후 레이어와 게임오브젝트들의 init()함수를 호출
 		Scene::Init();
@@ -123,9 +124,10 @@ namespace J
 	{
 		Scene::LateUpdate();
 
-		if (Input::GetkeyDown(eKeyCode::N))
+		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"TitleScene");
+			//SceneManager::LoadScene(L"TitleScene");
+			SceneManager::LoadScene(L"JsPlayScene");
 		}
 
 		return true;
