@@ -3,15 +3,17 @@
 
 int main()
 {
-	Light* livingRoomLight = new Light();
-	Command* turnOnCmd = new TurnOnLightCommand(livingRoomLight);
-	Command* turnOffCmd = new TurnOffLightCommand(livingRoomLight);
+	Computer* computer = new Computer();
 
-	RemoteControl* remote = new RemoteControl();
-	remote->SetCommand(turnOnCmd);
-	remote->pressButton();
+	Command* turnOn = new TurnOn(computer);
+	Command* turnOff = new TurnOff(computer);
 
+	Controller* controller = new Controller();
+	controller->Set(turnOn);
+	controller->Press();
 
-	remote->SetCommand(turnOffCmd);
-	remote->pressButton();
- }
+	controller->Set(turnOff);
+	controller->Press();
+
+	return 0;
+}

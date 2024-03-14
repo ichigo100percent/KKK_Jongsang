@@ -1,5 +1,5 @@
 #include "Script.h"
-
+#include "Collider.h"
 
 namespace J
 {
@@ -25,5 +25,14 @@ namespace J
 	bool Script::Render(HDC _hdc)
 	{
 		return true;
+	}
+	void Script::OnCollisionEnter(Collider* _other)
+	{
+	}
+	void Script::OnCollisionStay(Collider* _other)
+	{
+	}
+	void Script::OnCollisionExit(Collider* _other)
+	{
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Std.h"
 #include "Component.h"
+#include "Collider.h"
 //#include "Script.h"
 
 namespace J::object

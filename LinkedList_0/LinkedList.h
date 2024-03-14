@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #include <iostream>
 
 template<class T>
@@ -22,7 +22,7 @@ public:
     TNode<T>* m_pHead = nullptr;
     TNode<T>* m_pTail = nullptr;
 public:
-    TLinkedList();
+    TLinkedList();  
     ~TLinkedList();
     TNode<T>* NewNode(T data);
     void    ForwardAdd(TNode<T>* pNewNode);

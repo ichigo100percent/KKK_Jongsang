@@ -20,6 +20,7 @@ namespace J
 		virtual void Destroy();
 
 		void AddGameObject(GameObject* _gameObject);
+		const std::vector<GameObject*> GetGameObjects() { return m_GameObjects; }
 
 	private:
 		void findDeadGameObjects(OUT std::vector<GameObject*>& _gameObjs);

@@ -15,6 +15,6 @@ namespace J
 		Resources::Load<graphics::Texture>(L"Player", L"../../data/Player.bmp");
 
 		//portfolio
-		Resources::Load<graphics::Texture>(L"JSIdle", L"../../data/Portfolio/Player/Idle");
+		//Resources::Load<graphics::Texture>(L"JsIdle", L"../../data/Portfolio/Player/Idle.png");
 	}
 }

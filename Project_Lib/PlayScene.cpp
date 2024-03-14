@@ -15,7 +15,12 @@
 #include "Animator.h"
 #include "Monster.h"
 #include "MonsterScript.h"
+#include "BoxCollider2D.h"
+#include "CollisionManager.h"
+
 #include "JsPlayScene.h"
+
+
 namespace J
 {
 	PlayScene::PlayScene()
@@ -27,10 +32,15 @@ namespace J
 	bool PlayScene::Init()
 	{
 
-		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f)); //Vector2(758.0f, 540.0f));
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Npc, true);
+
+		//main camera
+		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		renderer::mainCamera = cameraComp;
 
+		//배경생성
+		/*
 		{
 			GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::BackGround);
 			SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
@@ -38,14 +48,17 @@ namespace J
 			graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
 			bgSr->SetTexture(bgTexture);
 			bg->GetComponent<Transform>()->SetScale(Vector2(1.f, 1.f));
-			bg->GetComponent<Transform>()->SetPosition(Vector2(-758.0f, -540.0f));
+			bg->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));//(-758.0f, -540.0f));
 		}
-
+		*/
+		//기본적인 Object 애니메이션 구현
 		/*
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
-
 			m_Player->AddComponent<PlayerScript>();
+			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			collider->SetOffset(Vector2(0.0f, 0.0f));
+
 			//m_Player->AddScript<PlayerScript>();	
 			//m_Player->AddScript<JsScript>();
 
@@ -59,16 +72,20 @@ namespace J
 
 			animator->PlayAnimaiton(L"SitDown", false);
 
-			m_Player->GetComponent<Transform>()->SetPosition(Vector2(250.0f, 250.0f));
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 250.0f));
 			m_Player->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 			m_Player->GetComponent<Transform>()->SetRotation(60.0f);
-
+			cameraComp->SetTarget(m_Player);
 		}
 		*/
 
+		//애니메이션 종료 후 이어지는 이벤트 시스템구현
+		
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
+			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
 			Animator* playerAnimator = m_Player->AddComponent<Animator>();
@@ -78,36 +95,42 @@ namespace J
 				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.05f);
 			playerAnimator->PlayAnimaiton(L"Idle", false);
 
-			m_Player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 200.0f));
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
-			cameraComp->SetTarget(m_Player);
+			//cameraComp->SetTarget(m_Player);
 		}
 		
-		/*
+		
+
+		//몬스터 기본움직임 AI구현
+		
 		{
 			Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
-			cat->AddComponent<MonsterScript>();
-			//cameraComp->SetTarget(cat);
-			//cat->SetActive(true);
+			//cat->AddComponent<MonsterScript>();
+			cat->SetActive(true);
 
 			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
-			//catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
-			//catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
-			//catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			BoxCollider2D* boxCatCollider = cat->AddComponent<BoxCollider2D>();
 
-			//catAnimator->PlayAnimaiton(L"SitDown", false);
-			catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"../../data/Mushroom", Vector2::Zero, 0.1f);
+			boxCatCollider->SetOffset(Vector2(-50.0f, -50.0f));
+
+			catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+
+			catAnimator->PlayAnimaiton(L"SitDown", false);
+			catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"../../data/Mushroom", Vector2::Zero, 0.12f);
 			catAnimator->PlayAnimaiton(L"MushroomIdle", true);
 
-			cat->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
-			cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
+			cat->GetComponent<Transform>()->SetPosition(Vector2(500.0f, 300.0f));
+			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		}
-		*/
+		
 
 		//게임 오브젝트 생성 후 레이어와 게임오브젝트들의 init()함수를 호출
 		Scene::Init();
@@ -127,7 +150,7 @@ namespace J
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
 			//SceneManager::LoadScene(L"TitleScene");
-			SceneManager::LoadScene(L"JsPlayScene");
+			SceneManager::LoadScene(L"JSPlayScene");
 		}
 
 		return true;
@@ -139,11 +162,7 @@ namespace J
 		TextOut(_hdc, 0, 0, str.c_str(), str.length());
 		return true;
 	}
-	//bool PlayScene::Release()
-	//{
-	//	Scene::Release();
-	//	return true;
-	//}
+	
 	void PlayScene::OnEnter()
 	{
 	}

@@ -3,6 +3,7 @@
 #include "JSTime.h"
 #include "SceneManager.h"
 #include "Resources.h"
+#include "CollisionManager.h"
 
 namespace J
 {
@@ -28,6 +29,7 @@ namespace J
 		CreateBuffer(_width, _height);
 		InitEtc();
 
+		CollisionManager::Init();
 		SceneManager::Init();
 
 		return true;
@@ -37,7 +39,7 @@ namespace J
 	{
 		Input::Update();
 		Time::Update();
-
+		CollisionManager::Update();
 		SceneManager::Update();
 
 		return true;
@@ -45,7 +47,7 @@ namespace J
 
 	bool Core::LateUpdate()
 	{
-
+		CollisionManager::LateUpdate();
 		SceneManager::LateUpdate();
 		return true;
 	}
@@ -55,9 +57,8 @@ namespace J
 		clearRenderTarget();
 
 		Time::Render(m_BackHdc);
+		CollisionManager::Render(m_BackHdc);
 		SceneManager::Render(m_BackHdc);
-
-
 
 		copyRenderTarget(m_BackHdc, m_Hdc);
 		return true;

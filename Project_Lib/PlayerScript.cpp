@@ -83,36 +83,48 @@ namespace J
 		Vector2 mousePos = Input::GetMousePosition();
 		catScr->mDest = mousePos;
 	}
+	void PlayerScript::OnCollisionEnter(Collider* other)
+	{
+		int a = 0;
+	}
+	void PlayerScript::OnCollisionStay(Collider* other)
+	{
+		int a = 0;
+	}
+	void PlayerScript::OnCollisionExit(Collider* other)
+	{
+		int a = 0;
+	}
 	void PlayerScript::idle()
 	{
 		if (Input::GetKey(eKeyCode::LButton))
 		{
-			//m_State = PlayerScript::eState::GiveWater;
-			//m_Animator->PlayAnimaiton(L"FrontGiveWater", false);
+			m_State = PlayerScript::eState::GiveWater;
+			m_Animator->PlayAnimaiton(L"FrontGiveWater", false);
 
-			Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
-			MonsterScript* catScr = cat->AddComponent<MonsterScript>();
+			//Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
+			//MonsterScript* catScr = cat->AddComponent<MonsterScript>();
 
-			catScr->SetPlayer(GetOwner());
+			//catScr->SetPlayer(GetOwner());
 
-			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
-			Animator* catAnimator = cat->AddComponent<Animator>();
-			catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
-			catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
-			catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			//graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
+			//Animator* catAnimator = cat->AddComponent<Animator>();
+			//catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"UpWalk", CatTex, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"LeftWalk", CatTex, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"SitDown", CatTex, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			//catAnimator->CreateAnimation(L"Grooming", CatTex, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
+			//catAnimator->CreateAnimation(L"LayDown", CatTex, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.07f);
 
-			catAnimator->PlayAnimaiton(L"SitDown", false);
-			Transform* tr = GetOwner()->GetComponent<Transform>();
+			//catAnimator->PlayAnimaiton(L"SitDown", false);
+			//Transform* tr = GetOwner()->GetComponent<Transform>();
 
-			cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
-			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f,2.0f));
+			//cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
+			//cat->GetComponent<Transform>()->SetScale(Vector2(2.0f,2.0f));
 
-			Vector2 mousePos = Input::GetMousePosition();
-			catScr->mDest = mousePos;
+			//Vector2 mousePos = Input::GetMousePosition();
+			//catScr->mDest = mousePos;
 		}
 
 		if (Input::GetKey(eKeyCode::Right))

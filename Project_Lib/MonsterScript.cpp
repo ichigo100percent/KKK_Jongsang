@@ -29,7 +29,7 @@ namespace J
 		m_DeathTime += Time::DeltaTime();
 		if (m_DeathTime > 6.0f)
 		{
-			object::Destroy(GetOwner());
+			//object::Destroy(GetOwner());
 		}
 
 		if (m_Animator == nullptr)
@@ -43,7 +43,6 @@ namespace J
 		case J::MonsterScript::eState::Walk:
 			move();
 			break;
-
 		case J::MonsterScript::eState::Sleep:
 			break;
 		case J::MonsterScript::eState::LayDown:
@@ -69,7 +68,7 @@ namespace J
 
 	void MonsterScript::sitDown()
 	{
-
+		/*
 		m_Time += Time::DeltaTime();
 		if (m_Time > 2.0f)
 		{
@@ -90,8 +89,11 @@ namespace J
 
 		
 		tr->SetPosition(pos);
-		/*
-		if (m_Time > 3.0f)
+		*/
+
+		//·£´ýÀÌµ¿
+		m_Time += Time::DeltaTime();
+		if (m_Time > 6.0f)
 		{
 			m_State = MonsterScript::eState::Walk;
 			int direction = (rand() % 4);
@@ -99,12 +101,12 @@ namespace J
 			playWalkAnimationByDirection(m_Direction);
 			m_Time = 0.0f;
 		}
-		*/
+		
 	}
 	void MonsterScript::move()
 	{
 		m_Time += Time::DeltaTime();
-		if (m_Time > 1.0f)
+		if (m_Time > 3.0f)
 		{
 			int isLayDown = (rand() % 2);
 			if (isLayDown)

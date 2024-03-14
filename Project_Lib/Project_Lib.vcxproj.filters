@@ -92,6 +92,16 @@
     <ClInclude Include="JSPlayerScript.h">
       <Filter>Scene\Portfolio</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -172,6 +182,16 @@
     <ClCompile Include="JSPlayerScript.cpp">
       <Filter>Scene\Portfolio</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">
@@ -194,6 +214,9 @@
     </Filter>
     <Filter Include="Scene\Portfolio">
       <UniqueIdentifier>{ec5232d9-415b-4c2a-997f-0ca385b61157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{5ba46ffa-e58a-48bc-9591-91381ec19437}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

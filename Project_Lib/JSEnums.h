@@ -6,9 +6,10 @@ namespace J::enums
 	enum class EComponentType
 	{
 		Transform,
+		Collider,
+		Script,
 		SpriteRenderer,
 		Animator,
-		Script,
 		Camera,
 		End,
 	};

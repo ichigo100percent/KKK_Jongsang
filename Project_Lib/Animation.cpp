@@ -15,7 +15,7 @@ namespace J
 		, m_AnimationSheet{}
 		, m_Index(-1)
 		, m_Time(0.0f)
-		,m_bComplete(false)
+		, m_bComplete(false)
 	{
 
 	}

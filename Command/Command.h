@@ -4,71 +4,70 @@
 
 using namespace std;
 
-//commnad interface
+
+//커맨드
 class Command
 {
 public:
-	virtual void excute() = 0;
+	virtual void Excute() = 0;
 };
 
-//Receiver
-class Light
+//리시버
+class Computer
 {
 public:
-	void turnOn()
+	void TurnOn()
 	{
-		cout << "Light is On" << endl;
+		cout << "컴퓨터 켜짐" << endl;
 	}
-	void turnOff()
+
+	void TurnOff()
 	{
-		cout << "Light is Off" << endl;
+		cout << "컴퓨터 꺼짐" << endl;
 	}
 };
 
-//COncrete Command
-class TurnOnLightCommand : public Command
+//커맨드 생성
+class TurnOn : public Command
 {
+public:
+	TurnOn(Computer* _computer) : pComputer(_computer) {}
+
+	void Excute() override
+	{
+		pComputer->TurnOn();
+	}
+
 private:
-	Light* light;
-
-public:
-	TurnOnLightCommand(Light* l) : light(l) {}
-
-	void excute() override
-	{
-		light->turnOn();
-	}
+	Computer* pComputer;
 };
 
-class TurnOffLightCommand : public Command
+
+class TurnOff : public Command
 {
-private:
-	Light* light;
 public:
-	TurnOffLightCommand(Light* l) : light(l) {}
+	TurnOff(Computer* _computer) : pComputer(_computer) {}
 
-	void excute() override
+	void Excute() override
 	{
-		light->turnOff();
+		pComputer->TurnOff();
 	}
+
+private:
+	Computer* pComputer;
 };
 
-//Invoke
-class RemoteControl
+//인보커(호출자)
+class Controller
 {
-private:
-	Command* command;
-
 public:
-	void SetCommand(Command* cmd)
+	void Set(Command* _command)
 	{
-		command = cmd;
+		pCommand = _command;
 	}
 
-	void pressButton()
-	{
-		command->excute();
-	}
+	void Press() { pCommand->Excute(); }
+
+private:
+	Command* pCommand;
 };
-
-
