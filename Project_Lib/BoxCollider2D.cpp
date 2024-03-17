@@ -1,11 +1,13 @@
 #include "BoxCollider2D.h"
 #include "Transform.h"
 #include "JSGameObject.h"
+#include "Renderer.h"
+#include "Camera.h"
 
 namespace J
 {
 	BoxCollider2D::BoxCollider2D()
-		: Collider()
+		: Collider(eColliderType::Rect2D)
 	{
 	}
 	BoxCollider2D::~BoxCollider2D()
@@ -27,6 +29,9 @@ namespace J
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+
+		if (renderer::mainCamera)
+			pos = renderer::mainCamera->CalculatePosition(pos);
 
 		Vector2 offset = GetOffset();
 

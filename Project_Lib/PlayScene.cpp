@@ -16,6 +16,7 @@
 #include "Monster.h"
 #include "MonsterScript.h"
 #include "BoxCollider2D.h"
+#include "CircleCollider2D.h"
 #include "CollisionManager.h"
 
 #include "JsPlayScene.h"
@@ -84,7 +85,8 @@ namespace J
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
-			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			//BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
@@ -97,7 +99,8 @@ namespace J
 
 			m_Player->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
-			//cameraComp->SetTarget(m_Player);
+			m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 1.f));
+			cameraComp->SetTarget(m_Player);
 		}
 		
 		
@@ -106,14 +109,15 @@ namespace J
 		
 		{
 			Monster* cat = object::Instantiate<Monster>(enums::eLayerType::Npc);
-			//cat->AddComponent<MonsterScript>();
+			cat->AddComponent<MonsterScript>();
 			cat->SetActive(true);
 
 			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
-			BoxCollider2D* boxCatCollider = cat->AddComponent<BoxCollider2D>();
-
-			boxCatCollider->SetOffset(Vector2(-50.0f, -50.0f));
+			//BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
+			CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
+			collider->SetOffset(Vector2(-50.0f, -50.0f));
+			
 
 			catAnimator->CreateAnimation(L"DownWalk", CatTex, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 			catAnimator->CreateAnimation(L"RightWalk", CatTex, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);

@@ -6,8 +6,9 @@
 
 namespace J
 {
-	class GameObject;
+	using namespace enums;
 
+	class GameObject;
 	class Component : public Entity
 	{
 	public:

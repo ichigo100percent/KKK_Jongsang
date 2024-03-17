@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <time.h>
-
+#include <string_view>
 
 #pragma warning(disable: 4996)
 
@@ -33,16 +33,7 @@ namespace Js
 
 int main()
 {
-	int vec[3][3] =
-	{
-		1,2,3,
-		4,5,6,
-		7,8,9
-	};
-	int vect[3][3] =
-	{
-			3, 4, 1,
-			5, 5, 7,
-			8, 3, 2,
-	};
+	vector<int> a = {};
+
+	
 }

@@ -6,8 +6,9 @@ namespace J
 {
 	UINT Collider::CollisionID = 1;
 
-	Collider::Collider()
+	Collider::Collider(eColliderType _type)
 		: Component(enums::EComponentType::Collider)
+		, m_Type(_type)
 		, m_ID(CollisionID++)
 		, m_Size(Vector2::One)
 	{

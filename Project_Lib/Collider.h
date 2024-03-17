@@ -6,7 +6,7 @@ namespace J
 	class Collider : public Component
 	{
 	public:
-		Collider();
+		Collider(eColliderType _type);
 		~Collider();
 
 		virtual bool Init();
@@ -23,6 +23,7 @@ namespace J
 		UINT32 GetID() { return m_ID; }
 		Vector2 GetSize() { return m_Size; }
 		void SetSize(Vector2 _size) { m_Size = _size; }
+		eColliderType GetColliderType() { return m_Type; }
 
 	private:
 		static UINT CollisionID;
@@ -30,5 +31,6 @@ namespace J
 		UINT32 m_ID;
 		Vector2 m_Offset;
 		Vector2 m_Size;
+		eColliderType m_Type;
 	};
 }
