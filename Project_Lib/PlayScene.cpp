@@ -84,6 +84,7 @@ namespace J
 		
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
+			object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
 			//BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
 			CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
@@ -153,8 +154,8 @@ namespace J
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			//SceneManager::LoadScene(L"TitleScene");
-			SceneManager::LoadScene(L"JSPlayScene");
+			SceneManager::LoadScene(L"TitleScene");
+			//SceneManager::LoadScene(L"JSPlayScene");
 		}
 
 		return true;

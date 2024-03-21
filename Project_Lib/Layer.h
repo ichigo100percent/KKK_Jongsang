@@ -20,12 +20,13 @@ namespace J
 		virtual void Destroy();
 
 		void AddGameObject(GameObject* _gameObject);
+		void EraseGameObject(GameObject* _gameObject);
 		const std::vector<GameObject*> GetGameObjects() { return m_GameObjects; }
 
 	private:
 		void findDeadGameObjects(OUT std::vector<GameObject*>& _gameObjs);
 		void deleteGameObjects(std::vector<GameObject*> _gameObjs);
-		void eraseGameObject();
+		void eraseDeadGameObject();
 
 	private:
 		std::vector<GameObject*> m_GameObjects;

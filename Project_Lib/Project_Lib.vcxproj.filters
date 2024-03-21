@@ -102,6 +102,7 @@
       <Filter>Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="DontDestroyOnLoad.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -192,6 +193,7 @@
       <Filter>Component\Collider</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="DontDestroyOnLoad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">

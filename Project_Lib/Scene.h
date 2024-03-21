@@ -21,6 +21,7 @@ namespace J
 		virtual void OnExit();
 
 		void AddGameObject(GameObject* _gameObject, const enums::eLayerType _type);
+		void EraseGameObejct(GameObject* _gameObject);
 		Layer* GetLayer(const enums::eLayerType _type) { return m_Layers[(UINT)_type]; }
 
 	private:

@@ -82,6 +82,8 @@ namespace J
 		}
 		bool IsActive() { return m_State == eState::Active; }
 		bool IsDead() { return m_State == eState::Dead; }
+		void SetLayerType(eLayerType _layerType) { m_LayerType = _layerType; }
+		eLayerType GetLayerType() { return m_LayerType; }
 	
 	private:
 		void initializeTransform();
@@ -90,6 +92,7 @@ namespace J
 	private:
 		eState					m_State;
 		std::vector<Component*> m_Components;
+		eLayerType				m_LayerType;
 		//std::vector<Script*>    m_Scripts;
 	};
 }

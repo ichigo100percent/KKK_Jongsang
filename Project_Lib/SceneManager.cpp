@@ -1,10 +1,11 @@
 #include "SceneManager.h"
-
+#include "DontDestroyOnLoad.h"
 
 namespace J
 {
 	SceneMap SceneManager::m_Scene = {};
 	Scene* SceneManager::m_ActiveScene = nullptr;
+	Scene* SceneManager::m_DontDestroyOnLoad = nullptr;
 
 	Scene* SceneManager::LoadScene(const std::wstring& _name)
 	{
@@ -24,25 +25,28 @@ namespace J
 
 	bool SceneManager::Init()
 	{
-
+		m_DontDestroyOnLoad = CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");
 		return true;
 	}
 
 	bool SceneManager::Update()
 	{
 		m_ActiveScene->Update();
+		m_DontDestroyOnLoad->Update();
 		return true;
 	}
 
 	bool SceneManager::LateUpdate()
 	{
 		m_ActiveScene->LateUpdate();
+		m_DontDestroyOnLoad->LateUpdate();
 		return true;
 	}
 
 	bool SceneManager::Render(HDC _hdc)
 	{
 		m_ActiveScene->Render(_hdc);
+		m_DontDestroyOnLoad->Render(_hdc);
 		return true;
 	}
 
@@ -58,5 +62,6 @@ namespace J
 	void SceneManager::Destroy()
 	{
 		m_ActiveScene->Destroy();
+		m_DontDestroyOnLoad->Destroy();
 	}
 }

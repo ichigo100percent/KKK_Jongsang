@@ -26,7 +26,7 @@ namespace J
 
 		static Scene* LoadScene(const std::wstring& _name);
 		static Scene* GetActiveScene() { return m_ActiveScene; }
-
+		static Scene* GetDontDestroyOnLoad() { return m_DontDestroyOnLoad; }
 
 		static bool Init();
 		static bool Update();
@@ -39,5 +39,6 @@ namespace J
 	private:
 		static SceneMap				m_Scene;
 		static Scene*				m_ActiveScene;
+		static Scene*				m_DontDestroyOnLoad;
 	};
 }
