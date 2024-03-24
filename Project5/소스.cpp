@@ -8,26 +8,44 @@
 #include <time.h>
 #include <string_view>
 #include <algorithm>
-
-#pragma warning(disable: 4996)
+#include <map>
+#include <queue>
 
 using namespace std;
+#pragma warning(disable: 4996)
 
-vector<int> vec = { 1,2,3,4,5,6,7,8,9 };
+void BFS(vector<vector<int>>& graph, int start) {
+    vector<bool> visited(graph.size(), false);
+    queue<int> q;
+    q.push(start);
+    visited[start] = true;
 
-int main()
-{
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+        cout << current << " ";
 
-    erase_if(vec,
-        [=](int num)
-        {
-            return num % 2 == 1;
-        });
-
-    for (auto num : vec)
-    {
-        cout << num << ' ';
+        for (int i = 0; i < graph.size(); ++i) {
+            if (graph[current][i] && !visited[i]) {
+                q.push(i);
+                visited[i] = true;
+            }
+        }
     }
-    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 ㅇ무궁화 삼천리 화려강산 대한사람 대한으로ㅓ 길이 보전하세 남산위에 저 소나무 철갑
+}
+
+int main() {
+    vector<vector<int>> graph = {
+        {0, 1, 1, 0, 1},
+        {1, 0, 0, 1, 0},
+        {1, 0, 0, 0, 1},
+        {0, 1, 0, 0, 1},
+        {1, 0, 1, 1, 0}
+    };
+
+    cout << "BFS traversal starting from node 0: ";
+    BFS(graph, 0);
+    cout << endl;
+
     return 0;
 }

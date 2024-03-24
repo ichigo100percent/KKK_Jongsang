@@ -103,6 +103,15 @@
     </ClInclude>
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="DontDestroyOnLoad.h" />
+    <ClInclude Include="TilemapRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -194,6 +203,15 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DontDestroyOnLoad.cpp" />
+    <ClCompile Include="TilemapRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">

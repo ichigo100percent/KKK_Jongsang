@@ -1,4 +1,4 @@
-#include "SpriteRenderer.h"
+#include "TilemapRenderer.h"
 #include "JSGameObject.h"
 #include "Transform.h"
 #include "Texture.h"
@@ -6,28 +6,30 @@
 
 namespace J
 {
-	SpriteRenderer::SpriteRenderer()
+	TilemapRenderer::TilemapRenderer()
 		: Component(enums::EComponentType::SpriteRenderer)
 		, m_Texture(nullptr)
-		, m_Size(Vector2::One)
+		, m_Size(3.0f, 3.0f)
+		, m_Index(8, 7)
+		, m_TileSize(16.0f,16.0f)
 	{
 	}
-	SpriteRenderer::~SpriteRenderer()
+	TilemapRenderer::~TilemapRenderer()
 	{
 	}
-	bool SpriteRenderer::Init()
-	{
-		return true;
-	}
-	bool SpriteRenderer::Update()
+	bool TilemapRenderer::Init()
 	{
 		return true;
 	}
-	bool SpriteRenderer::LateUpdate()
+	bool TilemapRenderer::Update()
 	{
 		return true;
 	}
-	bool SpriteRenderer::Render(HDC _hdc)
+	bool TilemapRenderer::LateUpdate()
+	{
+		return true;
+	}
+	bool TilemapRenderer::Render(HDC _hdc)
 	{
 		if (m_Texture == nullptr)
 			assert(false);
@@ -74,36 +76,7 @@ namespace J
 					, RGB(255, 0, 255));
 			}
 		}
-		else if (m_Texture->GetTextureType() == graphics::Texture::eTextureType::Png)
-		{
 
-			//내가 원하는 픽셀을 투명화 시킬 경우
-			Gdiplus::ImageAttributes imgAtt = {};
-
-			//투명화 시킬 픽셀의 색 범위
-			imgAtt.SetColorKey(Gdiplus::Color(255, 0, 255), Gdiplus::Color(255, 0, 255));
-
-			Gdiplus::Graphics graphics(_hdc);
-
-			graphics.TranslateTransform(pos.x, pos.y);
-			graphics.RotateTransform(rot);
-			graphics.TranslateTransform(-pos.x, -pos.y);
-
-			graphics.DrawImage(m_Texture->GetImage()
-				, Gdiplus::Rect
-				(
-					pos.x, pos.y
-					, m_Texture->GetWidth() * m_Size.x * scale.x
-					, m_Texture->GetHeight() * m_Size.y * scale.y
-				)
-				, 0, 0
-				, m_Texture->GetWidth(), m_Texture->GetHeight()
-				, Gdiplus::UnitPixel
-				, &imgAtt//nullptr
-			);
-		}
-	
-		
 		return true;
 	}
 }

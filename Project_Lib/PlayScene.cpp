@@ -86,8 +86,8 @@ namespace J
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
 			object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
-			//BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
-			CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
+			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			//CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
@@ -115,8 +115,8 @@ namespace J
 
 			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
-			//BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
-			CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
+			BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
+			//CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 			
 

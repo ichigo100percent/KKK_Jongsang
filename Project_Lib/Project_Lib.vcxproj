@@ -192,7 +192,10 @@
     <ClInclude Include="Std.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="JSTime.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TilemapRenderer.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="ToolScene.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +230,10 @@
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="JSTime.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TilemapRenderer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="ToolScene.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

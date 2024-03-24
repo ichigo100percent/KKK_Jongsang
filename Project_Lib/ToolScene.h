@@ -3,11 +3,11 @@
 
 namespace J
 {
-	class PlayScene : public Scene
+	class ToolScene : public Scene
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		ToolScene();
+		~ToolScene();
 
 		bool Init() override;
 		bool Update() override;
@@ -16,8 +16,5 @@ namespace J
 
 		void OnEnter() override;
 		void OnExit() override;
-
-	private:
-		class Player* m_Player;
 	};
 }

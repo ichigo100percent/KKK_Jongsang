@@ -18,6 +18,7 @@ namespace J::enums
 	{
 		None,
 		BackGround,
+		Tile,
 		Npc,
 		Player,
 		Particle,

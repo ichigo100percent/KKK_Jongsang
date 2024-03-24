@@ -86,6 +86,7 @@ namespace J
 	void PlayerScript::OnCollisionEnter(Collider* other)
 	{
 		int a = 0;
+		object::Destroy(other->GetOwner());
 	}
 	void PlayerScript::OnCollisionStay(Collider* other)
 	{
