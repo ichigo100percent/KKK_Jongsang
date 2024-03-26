@@ -13,6 +13,7 @@ namespace J
 		Resources::Load<graphics::Texture>(L"Cat", L"../../data/ChickenAlpha.bmp");
 		
 		Resources::Load<graphics::Texture>(L"Player", L"../../data/Player.bmp");
+		Resources::Load<graphics::Texture>(L"SpringFloor", L"../../data/SpringFloor.bmp");
 
 		//portfolio
 		//Resources::Load<graphics::Texture>(L"JsIdle", L"../../data/Portfolio/Player/Idle.png");

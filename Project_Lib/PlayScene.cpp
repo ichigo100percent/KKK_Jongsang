@@ -84,7 +84,8 @@ namespace J
 		
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
-			object::DontDestroyOnLoad(m_Player);
+			//충돌버그 있습
+			//object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
 			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
 			//CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();

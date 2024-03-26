@@ -2,7 +2,8 @@
 #include "SceneManager.h"
 #include "PlayScene.h"
 #include "TitleScene.h"
-#include "JsPlayScene.h"
+#include "ToolScene.h"
+//#include "JsPlayScene.h"
 
 namespace J
 {
@@ -10,10 +11,11 @@ namespace J
 	{
 		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
-		SceneManager::CreateScene<JSPlayScene>(L"JSPlayScene");
+		SceneManager::CreateScene<ToolScene>(L"ToolScene");
 
 		//SceneManager::LoadScene(L"TitleScene");
-		SceneManager::LoadScene(L"PlayScene");
-		//SceneManager::LoadScene(L"JSPlayScene");
+		//SceneManager::LoadScene(L"PlayScene");
+		SceneManager::LoadScene(L"ToolScene");
+
 	}
 }

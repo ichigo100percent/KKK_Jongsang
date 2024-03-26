@@ -11,7 +11,7 @@ namespace J
 		, m_Texture(nullptr)
 		, m_Size(3.0f, 3.0f)
 		, m_Index(8, 7)
-		, m_TileSize(16.0f,16.0f)
+		, m_TileSize(16.0f, 16.0f)
 	{
 	}
 	TilemapRenderer::~TilemapRenderer()
