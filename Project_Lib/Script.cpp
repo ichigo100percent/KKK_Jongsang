@@ -4,7 +4,7 @@
 namespace J
 {
 	Script::Script()
-		: Component(enums::EComponentType::Script)
+		: Component(enums::eComponentType::Script)
 	{
 	}
 	Script::~Script()

@@ -7,7 +7,7 @@
 namespace J
 {
 	TilemapRenderer::TilemapRenderer()
-		: Component(enums::EComponentType::SpriteRenderer)
+		: Component(enums::eComponentType::SpriteRenderer)
 		, m_Texture(nullptr)
 		, m_Size(3.0f, 3.0f)
 		, m_Index(8, 7)
@@ -41,7 +41,8 @@ namespace J
 
 		pos = renderer::mainCamera->CalculatePosition(pos);
 
-		if (m_Texture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
+		if (m_Texture->GetTextureType()
+			== graphics::Texture::eTextureType::Bmp)
 		{
 			if (m_Texture->IsAlpha())
 			{
@@ -52,14 +53,13 @@ namespace J
 				func.SourceConstantAlpha = 255; // 0(transparent) ~ 255(Opaque)
 
 				AlphaBlend(_hdc
-					, pos.x
-					, pos.y
-					, m_Texture->GetWidth() * m_Size.x * scale.x
-					, m_Texture->GetHeight() * m_Size.y * scale.y
+					, pos.x, pos.y
+					, m_TileSize.x * m_Size.x * scale.x
+					, m_TileSize.y * m_Size.y * scale.y
 					, m_Texture->GetHdc()
-					, 0, 0
-					, m_Texture->GetWidth()
-					, m_Texture->GetHeight()
+					, m_Index.x * m_TileSize.x, m_Index.y * m_TileSize.y
+					, m_TileSize.x
+					, m_TileSize.y
 					, func);
 			}
 			else
@@ -67,12 +67,12 @@ namespace J
 				//https://blog.naver.com/power2845/50147965306
 				TransparentBlt(_hdc
 					, pos.x, pos.y
-					, m_Texture->GetWidth() * m_Size.x * scale.x
-					, m_Texture->GetHeight() * m_Size.y * scale.y
+					, m_TileSize.x * m_Size.x * scale.x
+					, m_TileSize.y * m_Size.y * scale.y
 					, m_Texture->GetHdc()
-					, 0, 0
-					, m_Texture->GetWidth()
-					, m_Texture->GetHeight()
+					, m_Index.x * m_TileSize.x, m_Index.y * m_TileSize.y
+					, m_TileSize.x
+					, m_TileSize.y
 					, RGB(255, 0, 255));
 			}
 		}

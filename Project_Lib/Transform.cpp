@@ -3,7 +3,7 @@
 namespace J
 {
 	Transform::Transform()
-		: Component(enums::EComponentType::Transform)
+		: Component(enums::eComponentType::Transform)
 		, m_Scale(Vector2::One)
 		, m_Rotation(0.0f)
 	{

@@ -56,7 +56,7 @@ namespace J
 	{
 		clearRenderTarget();
 
-		Time::Render(m_BackHdc);
+		//Time::Render(m_BackHdc);
 		CollisionManager::Render(m_BackHdc);
 		SceneManager::Render(m_BackHdc);
 

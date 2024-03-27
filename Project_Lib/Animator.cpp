@@ -5,7 +5,7 @@
 namespace J
 {
 	Animator::Animator()
-		: Component(enums::EComponentType::Animator)
+		: Component(enums::eComponentType::Animator)
 		, m_Animations {}
 		, m_ActiveAnimation(nullptr)
 		, m_bLoop(false)

@@ -7,7 +7,7 @@
 namespace J
 {
 	SpriteRenderer::SpriteRenderer()
-		: Component(enums::EComponentType::SpriteRenderer)
+		: Component(enums::eComponentType::SpriteRenderer)
 		, m_Texture(nullptr)
 		, m_Size(Vector2::One)
 	{

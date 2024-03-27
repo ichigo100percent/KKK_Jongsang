@@ -12,7 +12,7 @@ namespace J
 	class Component : public Entity
 	{
 	public:
-		Component(enums::EComponentType _type);
+		Component(enums::eComponentType _type);
 		~Component();
 
 		virtual bool Init();
@@ -22,10 +22,10 @@ namespace J
 
 		void SetOwner(GameObject* _owner) { m_Owner = _owner; }
 		GameObject* GetOwner() { return m_Owner; }
-		enums::EComponentType GetType() { return m_Type; }
+		enums::eComponentType GetType() { return m_Type; }
 
 	private:
 		GameObject* m_Owner;
-		enums::EComponentType m_Type;
+		enums::eComponentType m_Type;
 	};
 }

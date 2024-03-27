@@ -43,17 +43,17 @@ namespace J
 	bool ToolScene::Render(HDC _hdc)
 	{
 
-		//for (size_t i = 0; i < 50; i++)
-		//{
-		//	MoveToEx(_hdc, (16 * 3) * i, 0, NULL);
-		//	LineTo(_hdc, (16 * 3) * i, 1000);
-		//}
+		for (size_t i = 0; i < 50; i++)
+		{
+			MoveToEx(_hdc, (16 * 3) * i, 0, NULL);
+			LineTo(_hdc, (16 * 3) * i, 1000);
+		}
 
-		//for (size_t i = 0; i < 50; i++)
-		//{
-		//	MoveToEx(_hdc, 0, (16 * 3) * i, NULL);
-		//	LineTo(_hdc, 1000, (16 * 3) * i);
-		//}
+		for (size_t i = 0; i < 50; i++)
+		{
+			MoveToEx(_hdc, 0, (16 * 3) * i, NULL);
+			LineTo(_hdc, 1000, (16 * 3) * i);
+		}
 
 		Scene::Render(_hdc);
 		return true;

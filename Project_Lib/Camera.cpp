@@ -8,7 +8,7 @@ extern J::Core core;
 namespace J
 {
 	Camera::Camera()
-		: Component(enums::EComponentType::Camera)
+		: Component(enums::eComponentType::Camera)
 		, m_Distance(Vector2::Zero)
 		, m_Resolution(Vector2::Zero)
 		, m_LookPosition(Vector2::Zero)

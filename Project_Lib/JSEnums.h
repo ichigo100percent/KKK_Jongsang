@@ -3,7 +3,7 @@
 
 namespace J::enums
 {
-	enum class EComponentType
+	enum class eComponentType
 	{
 		Transform,
 		Collider,

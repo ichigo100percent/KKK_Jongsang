@@ -18,7 +18,7 @@ namespace J
 		: m_State(eState::Active)
 		, m_LayerType(eLayerType::None)
 	{
-		m_Components.resize((UINT)enums::EComponentType::End);
+		m_Components.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
 	}
 	GameObject::~GameObject()

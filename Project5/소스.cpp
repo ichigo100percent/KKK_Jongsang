@@ -14,38 +14,54 @@
 using namespace std;
 #pragma warning(disable: 4996)
 
-void BFS(vector<vector<int>>& graph, int start) {
-    vector<bool> visited(graph.size(), false);
-    queue<int> q;
-    q.push(start);
-    visited[start] = true;
+int partition(vector<int>& arr, int low, int high)
+{
+	int pivot = arr[high];
+	int i = low - 1;
 
-    while (!q.empty()) {
-        int current = q.front();
-        q.pop();
-        cout << current << " ";
+	for (size_t j = low; j < high; j++)
+	{
+		if (arr[j] > pivot)
+		{
+			i++;
+			swap(arr[i], arr[j]);
+		}
+	}
 
-        for (int i = 0; i < graph.size(); ++i) {
-            if (graph[current][i] && !visited[i]) {
-                q.push(i);
-                visited[i] = true;
-            }
-        }
-    }
+	swap(arr[i + 1], arr[high]);
+
+	return i + 1;
 }
 
-int main() {
-    vector<vector<int>> graph = {
-        {0, 1, 1, 0, 1},
-        {1, 0, 0, 1, 0},
-        {1, 0, 0, 0, 1},
-        {0, 1, 0, 0, 1},
-        {1, 0, 1, 1, 0}
-    };
+void quicksort(vector<int>& arr, int low, int high)
+{
+	if (low < high)
+	{
+		int pivot = partition(arr, low, high);
 
-    cout << "BFS traversal starting from node 0: ";
-    BFS(graph, 0);
-    cout << endl;
+		quicksort(arr, low, pivot - 1);
+		quicksort(arr, pivot + 1, high);
+	}
+}
 
-    return 0;
+void sort(vector<int>& arr)
+{
+	quicksort(arr, 0, arr.size() - 1);
+}
+
+void print(vector<int>& arr)
+{
+	for (auto num : arr)
+	{
+		cout << num << ' ';
+	}
+}
+
+int main()
+{
+	vector<int> vec = { 1,4,3,2,5 };
+
+	sort(vec);
+
+	print(vec);
 }
