@@ -10,58 +10,42 @@
 #include <algorithm>
 #include <map>
 #include <queue>
-
+#include <string>
+#include <sstream>
 using namespace std;
-#pragma warning(disable: 4996)
 
-int partition(vector<int>& arr, int low, int high)
+
+int getCountWord(const string& str)
 {
-	int pivot = arr[high];
-	int i = low - 1;
+	int count = 0;
+	istringstream iss(str);
+	string word = " ";
 
-	for (size_t j = low; j < high; j++)
+	while (iss >> word)
 	{
-		if (arr[j] > pivot)
-		{
-			i++;
-			swap(arr[i], arr[j]);
-		}
+		count++;
 	}
 
-	swap(arr[i + 1], arr[high]);
-
-	return i + 1;
+	return count;
 }
 
-void quicksort(vector<int>& arr, int low, int high)
-{
-	if (low < high)
-	{
-		int pivot = partition(arr, low, high);
+int main() {
+    std::string data = "42 3.14 Hello";
 
-		quicksort(arr, low, pivot - 1);
-		quicksort(arr, pivot + 1, high);
-	}
-}
+    // 문자열을 스트림으로 변환
+    std::istringstream iss(data);
 
-void sort(vector<int>& arr)
-{
-	quicksort(arr, 0, arr.size() - 1);
-}
+    int num;
+    double pi;
+    std::string text;
 
-void print(vector<int>& arr)
-{
-	for (auto num : arr)
-	{
-		cout << num << ' ';
-	}
-}
+    // 스트림에서 데이터를 읽음
+    iss >> pi >> num >> text;
 
-int main()
-{
-	vector<int> vec = { 1,4,3,2,5 };
+    // 읽어온 데이터 출력
+    std::cout << "Integer: " << num << std::endl;
+    std::cout << "Double: " << pi << std::endl;
+    std::cout << "String: " << text << std::endl;
 
-	sort(vec);
-
-	print(vec);
+    return 0;
 }

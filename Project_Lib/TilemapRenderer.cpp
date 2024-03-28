@@ -6,6 +6,8 @@
 
 namespace J
 {
+	Vector2 TilemapRenderer::TileSize = Vector2::One;
+
 	TilemapRenderer::TilemapRenderer()
 		: Component(enums::eComponentType::SpriteRenderer)
 		, m_Texture(nullptr)
@@ -13,6 +15,7 @@ namespace J
 		, m_Index(8, 7)
 		, m_TileSize(16.0f, 16.0f)
 	{
+		TileSize = m_TileSize * m_Size;
 	}
 	TilemapRenderer::~TilemapRenderer()
 	{
@@ -57,7 +60,8 @@ namespace J
 					, m_TileSize.x * m_Size.x * scale.x
 					, m_TileSize.y * m_Size.y * scale.y
 					, m_Texture->GetHdc()
-					, m_Index.x * m_TileSize.x, m_Index.y * m_TileSize.y
+					, m_Index.x * m_TileSize.x
+					, m_Index.y * m_TileSize.y
 					, m_TileSize.x
 					, m_TileSize.y
 					, func);
@@ -70,7 +74,8 @@ namespace J
 					, m_TileSize.x * m_Size.x * scale.x
 					, m_TileSize.y * m_Size.y * scale.y
 					, m_Texture->GetHdc()
-					, m_Index.x * m_TileSize.x, m_Index.y * m_TileSize.y
+					, m_Index.x * m_TileSize.x
+					, m_Index.y * m_TileSize.y
 					, m_TileSize.x
 					, m_TileSize.y
 					, RGB(255, 0, 255));

@@ -19,6 +19,9 @@ namespace J
 		void SetTexture(graphics::Texture* _texture) { m_Texture = _texture; }
 		void SetSize(math::Vector2 _size) { m_Size = _size; }
 
+	public:
+		static Vector2		TileSize;
+
 	private:
 		Vector2				m_TileSize;
 		graphics::Texture*	m_Texture;

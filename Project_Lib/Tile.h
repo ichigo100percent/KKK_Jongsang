@@ -10,7 +10,9 @@ namespace J
 		bool Update() override;
 		bool LateUpdate() override;
 		bool Render(HDC _hdc) override;
-
+		
+		void SetPosition(int _x, int _y);
+	
 	private:
 
 	};

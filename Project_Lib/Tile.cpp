@@ -2,7 +2,7 @@
 #include "Input.h"
 #include "Transform.h"
 #include "JSTime.h"
-
+#include "TilemapRenderer.h"
 
 namespace J
 {
@@ -28,5 +28,13 @@ namespace J
 	{
 		GameObject::Render(_hdc);
 		return true;
+	}
+	void Tile::SetPosition(int _x, int _y)
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos;
+		pos.x = _x * TilemapRenderer::TileSize.x;
+		pos.y = _y * TilemapRenderer::TileSize.y;
+		tr->SetPosition(pos);
 	}
 }

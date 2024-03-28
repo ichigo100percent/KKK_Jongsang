@@ -64,7 +64,8 @@ namespace J
 			{
 				//https://blog.naver.com/power2845/50147965306
 				TransparentBlt(_hdc
-					, pos.x, pos.y
+					, pos.x
+					, pos.y
 					, m_Texture->GetWidth() * m_Size.x * scale.x
 					, m_Texture->GetHeight() * m_Size.y * scale.y
 					, m_Texture->GetHdc()
