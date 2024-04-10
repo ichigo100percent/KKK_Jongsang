@@ -112,6 +112,9 @@
     <ClInclude Include="ToolScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="CameraScript.h">
+      <Filter>Component\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="ToolScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraScript.cpp">
+      <Filter>Component\Scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

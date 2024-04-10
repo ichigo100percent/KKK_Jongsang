@@ -24,6 +24,7 @@
     <ProjectGuid>{cf5f7ba7-be0d-42d6-a32e-17d2c6e745d4}</ProjectGuid>
     <RootNamespace>JsList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Linked List</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

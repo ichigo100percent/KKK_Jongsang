@@ -1,51 +1,61 @@
 #include <iostream>
 #include <functional>
-#include <vector>
-#include <bitset>
-#include <memory>
-#include <vector>
-#include <algorithm>
-#include <time.h>
-#include <string_view>
-#include <algorithm>
-#include <map>
-#include <queue>
 #include <string>
-#include <sstream>
+#include <conio.h>
+#include <algorithm>
+#include <vector>
+#include <memory>
+
 using namespace std;
 
-
-int getCountWord(const string& str)
+int partition(vector<int>& arr, int low, int high)
 {
-	int count = 0;
-	istringstream iss(str);
-	string word = " ";
+	int pivot = arr[high];
+	int i = low - 1;
 
-	while (iss >> word)
+	for (size_t j = low; j < high; j++)
 	{
-		count++;
+		if (arr[j] < pivot)
+		{
+			i++;
+			swap(arr[i], arr[j]);
+		}
 	}
 
-	return count;
+	swap(arr[i + 1], arr[high]);
+
+	return i + 1;
 }
 
-int main() {
-    std::string data = "42 3.14 Hello";
+void quicksort(vector<int>& arr, int low, int high)
+{
+	if (low < high)
+	{
+		int pivot = partition(arr, low, high);
 
-    // 문자열을 스트림으로 변환
-    std::istringstream iss(data);
+		quicksort(arr, pivot + 1, high);
+		quicksort(arr, low, pivot - 1);
+	}
+}
 
-    int num;
-    double pi;
-    std::string text;
+void sort(vector<int>& arr)
+{
+	quicksort(arr, 0, arr.size() - 1);
+}
 
-    // 스트림에서 데이터를 읽음
-    iss >> pi >> num >> text;
+void print(vector<int>& arr)
+{
+	for (auto& n : arr)
+	{
+		cout << n << " ";
+	}
+}
 
-    // 읽어온 데이터 출력
-    std::cout << "Integer: " << num << std::endl;
-    std::cout << "Double: " << pi << std::endl;
-    std::cout << "String: " << text << std::endl;
+int main()
+{
+	vector<int> vec = { 10,9,1,2,3,4,5,6,7,8 };
 
-    return 0;
+	sort(vec);
+
+	print(vec);
 }

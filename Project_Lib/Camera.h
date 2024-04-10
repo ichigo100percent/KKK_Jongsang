@@ -9,6 +9,7 @@ namespace J
 	{
 	public:
 		Vector2 CalculatePosition(Vector2 _pos) { return _pos - m_Distance; }
+		Vector2 CalculateTilePosition(Vector2 _pos) { return _pos + m_Distance; }
 
 		Camera();
 		~Camera();

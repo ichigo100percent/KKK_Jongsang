@@ -1,57 +1,120 @@
 #include "std.h"
 
-struct Node
+class Student
 {
-	int value;
-	unique_ptr<Node> next = nullptr;
+public:
+    Student(string _name, int _kor, int _eng, int _math)
+        : m_sName(_name)
+        , m_iKor(_kor)
+        , m_iEng(_eng)
+        , m_iMath(_math)
+    {
+
+    }
+    friend ostream& operator<<(ostream& os, const Student& _student)
+    {
+        os << _student.m_sName << ' ' 
+            << _student.m_iKor << ' ' 
+            << _student.m_iEng << ' ' 
+            << _student.m_iMath << endl;
+        return os;
+    }
+
+public:
+    string m_sName;
+    int m_iKor;
+    int m_iEng;
+    int m_iMath;
 };
 
-unique_ptr<Node> head = nullptr;
-
-std::unique_ptr<Node> CreateNode(int _value)
+/*
+int main()
 {
-	unique_ptr<Node> newNode = make_unique<Node>();
+   
+    List<Student> list;
 
-	newNode->value = _value;
+    Student* s1 = new Student("ÀÌ", 100, 100, 100);
+    Student* s2 = new Student("±è", 100, 100, 100);
+    Student* s3 = new Student("¹Ú", 100, 100, 100);
 
-	return newNode;
+    list.push_back(s1);
+    list.push_back(s2);
+    list.push_back(s3);
+
+    list.print();
+
+    return 0;
 }
 
-void push_back(int _value)
+
+
+template <typename T>
+struct Node
 {
-	unique_ptr<Node> newNode = CreateNode(_value);
-
-	if (head == nullptr)
+	Node(T _data)
+		: data(_data)
+		, next(nullptr)
+		, prev(nullptr)
 	{
-		head = move(newNode);
-		return;
+
 	}
 
-	Node* currentNode = head.get();
+	T data;
+	Node* next;
+	Node* prev;
+};
 
-	while (currentNode->next != nullptr)
-	{
-		currentNode = currentNode->next.get();
-	}
-	currentNode->next = move(newNode);
-}
-
-void Print()
+template <typename T>
+class List
 {
-	for (auto i = head.get();
-		i != nullptr;
-		i = i->next.get())
+public:
+	List()
+		: head(nullptr)
+		, tail(nullptr)
 	{
-		cout << i->value << " ";
+
 	}
-}
+
+	void push_back(T _data)
+	{
+		if (head == nullptr)
+		{
+			head = new Node<T>(_data);
+			tail = head;
+		}
+		else
+		{
+			tail->next = new Node<T>(_data);
+			tail->next->prev = tail;
+			tail = tail->next;
+		}
+	}
+
+	void print()
+	{
+		Node<T>* buff = head;
+		while (buff != nullptr)
+		{
+			cout << buff->data << " ";
+			buff = buff->next;
+		}
+	}
+
+private:
+	Node<T>* head;
+	Node<T>* tail;
+};
 
 int main()
 {
-	push_back(1);
-	push_back(2);
+	List<int> l;
 
-	push_back(3);
+	l.push_back(1);
+	l.push_back(2);
+	l.push_back(3);
 
-	Print();
+	l.print();
+
+	return 0;
 }
+*/

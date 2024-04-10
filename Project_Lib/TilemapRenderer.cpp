@@ -7,15 +7,18 @@
 namespace J
 {
 	Vector2 TilemapRenderer::TileSize = Vector2::One;
+	Vector2	TilemapRenderer::OriginTileSize = Vector2::One;
+	Vector2 TilemapRenderer::SelectedIndex = Vector2::One;
 
 	TilemapRenderer::TilemapRenderer()
 		: Component(enums::eComponentType::SpriteRenderer)
 		, m_Texture(nullptr)
 		, m_Size(3.0f, 3.0f)
-		, m_Index(8, 7)
+		, m_Index(0, 0)
 		, m_TileSize(16.0f, 16.0f)
 	{
 		TileSize = m_TileSize * m_Size;
+		OriginTileSize = m_TileSize;
 	}
 	TilemapRenderer::~TilemapRenderer()
 	{

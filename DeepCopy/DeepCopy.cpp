@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <cstring>
+#include <string>
 
 class ShallowCopy {
 public:

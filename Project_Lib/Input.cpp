@@ -94,6 +94,9 @@ namespace J
 		GetCursorPos(&mousePos);
 		ScreenToClient(core.GetHwnd(), &mousePos);
 
+		//mMousePosition.x = mousePos.x;
+		//mMousePosition.y = mousePos.y;
+
 		UINT width = core.GetWidth();
 		UINT height = core.GetHeight();
 

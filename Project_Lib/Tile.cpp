@@ -29,7 +29,7 @@ namespace J
 		GameObject::Render(_hdc);
 		return true;
 	}
-	void Tile::SetPosition(int _x, int _y)
+	void Tile::SetIndexPosition(int _x, int _y)
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos;
