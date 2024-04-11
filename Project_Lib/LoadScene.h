@@ -9,9 +9,9 @@ namespace J
 {
 	void LoadScenes()
 	{
-		//SceneManager::CreateScene<TitleScene>(L"TitleScene");
+		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
-		//SceneManager::CreateScene<ToolScene>(L"ToolScene");
+		SceneManager::CreateScene<ToolScene>(L"ToolScene");
 
 		//SceneManager::LoadScene(L"TitleScene");
 		SceneManager::LoadScene(L"PlayScene");

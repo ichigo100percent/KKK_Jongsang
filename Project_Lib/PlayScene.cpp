@@ -34,7 +34,8 @@ namespace J
 	}
 	bool PlayScene::Init()
 	{
-		
+		//파일입출력으로 맵 불러오기
+		/*
 		FILE* pFile = nullptr;
 		_wfopen_s(&pFile, L"../../data/test", L"rb");
 
@@ -67,6 +68,7 @@ namespace J
 		fclose(pFile);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Npc, true);
+		*/
 
 		//main camera
 		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f));
@@ -117,11 +119,10 @@ namespace J
 		
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
-			//충돌버그 있습
-			//object::DontDestroyOnLoad(m_Player);
+			object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
-			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
-			//CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
+			//BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
@@ -149,8 +150,8 @@ namespace J
 
 			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
-			BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
-			//CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
+			//BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
+			CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 			
 
@@ -204,9 +205,12 @@ namespace J
 	
 	void PlayScene::OnEnter()
 	{
+		Scene::OnEnter();
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Npc, true);
 	}
 	void PlayScene::OnExit()
 	{
+		Scene::OnExit();
 		//auto tr = bg->GetComponent<Transform>();
 		//tr->SetPosition(Vector2(0, 0));
 	}

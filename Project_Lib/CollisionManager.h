@@ -25,6 +25,7 @@ namespace J
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC _hdc);
+		static void Clear();
 
 		static void CollisionLayerCheck(eLayerType _left, eLayerType _right, bool enable);
 		static void LayerCollision(class Scene* _scene, eLayerType _left, eLayerType _right);

@@ -27,6 +27,7 @@ namespace J
 		static Scene* LoadScene(const std::wstring& _name);
 		static Scene* GetActiveScene() { return m_ActiveScene; }
 		static Scene* GetDontDestroyOnLoad() { return m_DontDestroyOnLoad; }
+		static std::vector<GameObject*> GetGameObjects(eLayerType _layer);
 
 		static bool Init();
 		static bool Update();
