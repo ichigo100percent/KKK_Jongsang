@@ -20,6 +20,7 @@
 #include "CollisionManager.h"
 #include "Tile.h"
 #include "TilemapRenderer.h"
+#include "Rigidbody.h"
 
 #include "JsPlayScene.h"
 
@@ -66,8 +67,6 @@ namespace J
 		}
 
 		fclose(pFile);
-
-		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Npc, true);
 		*/
 
 		//main camera
@@ -119,7 +118,7 @@ namespace J
 		
 		{
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
-			object::DontDestroyOnLoad(m_Player);
+			//object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
 			//BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
 			CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
@@ -132,10 +131,11 @@ namespace J
 			playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
 				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.05f);
 			playerAnimator->PlayAnimaiton(L"Idle", false);
+			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
 			m_Player->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
-			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
-			m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 1.f));
+			//m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 1.f));
+			m_Player->AddComponent<Rigidbody>();
 			cameraComp->SetTarget(m_Player);
 		}
 		

@@ -8,6 +8,7 @@
 #include "MonsterScript.h"
 #include "Object.h"
 #include "Resources.h"
+#include "Rigidbody.h"
 
 namespace J
 {
@@ -156,28 +157,33 @@ namespace J
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 
 		if (Input::GetKey(eKeyCode::Right))
 		{
-			pos.x += 100 * Time::DeltaTime();
+			//pos.x += 100 * Time::DeltaTime();
+			rb->AddForce(Vector2(100.0f, 0.0f));
 		}
 
 		if (Input::GetKey(eKeyCode::Left))
 		{
 			pos.x -= 100 * Time::DeltaTime();
+			rb->AddForce(Vector2(-100.0f, 0.0f));
 		}
 
 		if (Input::GetKey(eKeyCode::Up))
 		{
 			pos.y -= 100 * Time::DeltaTime();
+			rb->AddForce(Vector2(0.0f, -100.0f));
 		}
 
 		if (Input::GetKey(eKeyCode::Down))
 		{
 			pos.y += 100 * Time::DeltaTime();
+			rb->AddForce(Vector2(0.0f, 100.0f));
 		}
 
-		tr->SetPosition(pos);
+		//tr->SetPosition(pos);
 
 		if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left) ||
 			Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))

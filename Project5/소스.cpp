@@ -8,25 +8,17 @@
 
 using namespace std;
 
-bool badValue(int x)
+struct c
 {
-    if (x == 0)
-    {
-        std::cout << "same 0" << std::endl;
-        return true;
-    }
-    return false;
-}
+    int a;
+    char c1;
+    char c2;
+    int b;
+    char c3;
+};
 
 int main()
 {
-    struct S
-    {
-        int a;
-        int b;
-    };
-
-    cout << sizeof(S);
-
+    cout << sizeof(c) << endl;
     return 0;
 }

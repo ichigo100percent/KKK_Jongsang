@@ -22,6 +22,10 @@ namespace J
 		void Load();
 
 	private:
+		void renderGreed(HDC _hdc);
+		void createTileObject();
+
+	private:
 		std::vector<Tile*> m_Tiles;
 	};
 }

@@ -115,6 +115,9 @@
     <ClInclude Include="CameraScript.h">
       <Filter>Component\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="CameraScript.cpp">
       <Filter>Component\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
