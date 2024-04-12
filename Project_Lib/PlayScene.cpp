@@ -21,6 +21,8 @@
 #include "Tile.h"
 #include "TilemapRenderer.h"
 #include "Rigidbody.h"
+#include "Floor.h"
+#include "FloorScript.h"
 
 #include "JsPlayScene.h"
 
@@ -120,8 +122,8 @@ namespace J
 			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
 			//object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
-			//BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
-			CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
+			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
+			//CircleCollider2D* collider = m_Player->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
@@ -139,7 +141,13 @@ namespace J
 			cameraComp->SetTarget(m_Player);
 		}
 		
-		
+		{
+			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+			floor->SetName(L"Floor");
+			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			floorCol->SetSize(Vector2(100.0f, 1.0f));
+			floor->AddComponent<FloorScript>();
+		}
 
 		//몬스터 기본움직임 AI구현
 		
@@ -150,8 +158,8 @@ namespace J
 
 			graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
-			//BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
-			CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
+			BoxCollider2D* collider = cat->AddComponent<BoxCollider2D>();
+			//CircleCollider2D* collider = cat->AddComponent<CircleCollider2D>();
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 			
 
@@ -207,6 +215,7 @@ namespace J
 	{
 		Scene::OnEnter();
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Npc, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
 	}
 	void PlayScene::OnExit()
 	{

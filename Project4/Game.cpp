@@ -148,7 +148,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 BOOL InitToolScene(HINSTANCE hInstance)
 {
     J::Scene* activeScene = J::SceneManager::GetActiveScene();
-    std::wstring name = activeScene->GetNmae();
+    std::wstring name = activeScene->GetName();
 
     if (name == L"ToolScene")
     {

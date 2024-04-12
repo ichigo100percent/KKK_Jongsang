@@ -14,8 +14,9 @@ namespace J
 		SceneManager::CreateScene<ToolScene>(L"ToolScene");
 
 		//SceneManager::LoadScene(L"TitleScene");
-		//SceneManager::LoadScene(L"PlayScene");
-		SceneManager::LoadScene(L"ToolScene");
+		SceneManager::LoadScene(L"PlayScene");
+		//SceneManager::LoadScene(L"ToolScene");
 
 	}
 }
+

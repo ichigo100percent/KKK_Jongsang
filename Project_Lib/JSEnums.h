@@ -22,6 +22,7 @@ namespace J::enums
 		Tile,
 		Npc,
 		Player,
+		Floor,
 		Particle,
 		//
 		Max = 16,
@@ -43,5 +44,10 @@ namespace J::enums
 		Circle2D,
 		Rect2D,
 		End,
+	};
+
+	enum class eUIType
+	{
+		End =16,
 	};
 }

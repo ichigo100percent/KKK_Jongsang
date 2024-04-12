@@ -23,7 +23,7 @@ namespace J
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		camera->AddComponent<CameraScript>();
 
-		renderer::mainCamera = cameraComp;
+		//renderer::mainCamera = cameraComp;
 
 		Scene::Init();
 		return true;

@@ -1,36 +1,32 @@
-#include "Monster.h"
+#include "Floor.h"
 #include "Input.h"
 #include "Transform.h"
 #include "JSTime.h"
 
 namespace J
 {
-	Monster::Monster()
+	Floor::Floor()
 	{
-
 	}
-
-	Monster::~Monster()
+	Floor::~Floor()
 	{
-
 	}
-
-	bool Monster::Init()
+	bool Floor::Init()
 	{
 		GameObject::Init();
 		return true;
 	}
-	bool Monster::Update()
+	bool Floor::Update()
 	{
 		GameObject::Update();
 		return true;
 	}
-	bool Monster::LateUpdate()
+	bool Floor::LateUpdate()
 	{
 		GameObject::LateUpdate();
 		return true;
 	}
-	bool Monster::Render(HDC _hdc)
+	bool Floor::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
 		return true;

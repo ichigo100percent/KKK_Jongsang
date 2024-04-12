@@ -7,11 +7,13 @@ namespace J
 {
     Rigidbody::Rigidbody()
         : Component(enums::eComponentType::Rigidbody)
+        , m_bGround(false)
         , m_Mass(1.0f)
         , m_Friction(10.0f)
         , m_Force(Vector2::Zero)
         , m_Velocity(Vector2::Zero)
-        , m_Gravity(Vector2::Zero)
+        , m_LimitedVelocity(Vector2(200.0f, 1000.0f))
+        , m_Gravity(Vector2(0.0f, 800.0f))
         , m_Accelation(Vector2::Zero)
     {
     }
@@ -30,6 +32,41 @@ namespace J
 
         //속도에 가속를 더한다
         m_Velocity += m_Accelation * Time::DeltaTime();
+
+        if (m_bGround)
+        {
+            //땅 위에 있을때
+            Vector2 gravity = m_Gravity;
+            gravity.normalize();
+
+            float dot = Vector2::Dot(m_Velocity, gravity);
+            m_Velocity -= gravity * dot;
+        }
+        else
+        {
+            //공중에 있을때
+            m_Velocity += m_Gravity * Time::DeltaTime();
+        }
+
+        //최대 속도 제한
+        Vector2 gravity = m_Gravity;
+        gravity.normalize();
+        float dot = Vector2::Dot(m_Velocity, gravity);
+        gravity = gravity * dot;
+
+        Vector2 sideVelocity = m_Velocity - gravity;
+        if (m_LimitedVelocity.y < gravity.length())
+        {
+            gravity.normalize();
+            gravity *= Time::DeltaTime();
+        }
+        if (m_LimitedVelocity.x < sideVelocity.length())
+        {
+            sideVelocity.normalize();
+            sideVelocity *= m_LimitedVelocity.x;
+        }
+        m_Velocity = gravity + sideVelocity;
+
 
         if (!(m_Velocity == Vector2::Zero))
         {

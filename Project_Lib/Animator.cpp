@@ -38,7 +38,7 @@ namespace J
 		{
 			m_ActiveAnimation->Update();
 
-			Events* events = FindEvents(m_ActiveAnimation->GetNmae());
+			Events* events = FindEvents(m_ActiveAnimation->GetName());
 
 			if (m_ActiveAnimation->IsComplete() == true)
 			{
@@ -152,13 +152,13 @@ namespace J
 
 		if (m_ActiveAnimation)
 		{
-			Events* currentEvents = FindEvents(m_ActiveAnimation->GetNmae());
+			Events* currentEvents = FindEvents(m_ActiveAnimation->GetName());
 
 			if (currentEvents)
 				currentEvents->endEvent();
 		}
 
-		Events* nextEvents = FindEvents(animation->GetNmae());
+		Events* nextEvents = FindEvents(animation->GetName());
 
 		if (nextEvents)
 			nextEvents->startEvent();

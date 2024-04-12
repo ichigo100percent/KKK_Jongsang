@@ -6,6 +6,16 @@
 
 namespace J
 {
+	Player::Player()
+	{
+
+	}
+
+	Player::~Player()
+	{
+
+	}
+
 	bool Player::Init()
 	{
 		GameObject::Init();
