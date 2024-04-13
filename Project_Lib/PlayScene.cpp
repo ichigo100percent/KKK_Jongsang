@@ -119,7 +119,7 @@ namespace J
 		//애니메이션 종료 후 이어지는 이벤트 시스템구현
 		
 		{
-			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
+			m_Player = object::Instantiate<Player>(enums::eLayerType::Player,Vector2(100.0f,0.0f));
 			//object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
 			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
@@ -135,7 +135,7 @@ namespace J
 			playerAnimator->PlayAnimaiton(L"Idle", false);
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
-			m_Player->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 200.0f));
 			//m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 1.f));
 			m_Player->AddComponent<Rigidbody>();
 			cameraComp->SetTarget(m_Player);
@@ -145,10 +145,12 @@ namespace J
 			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
 			floor->SetName(L"Floor");
 			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
-			floorCol->SetSize(Vector2(100.0f, 1.0f));
+			floorCol->SetSize(Vector2(2.0f, 1.0f));
+			floorCol->SetOffset(Vector2(-100.0f, -50.0f));
 			floor->AddComponent<FloorScript>();
 		}
 
+		/*
 		//몬스터 기본움직임 AI구현
 		
 		{
@@ -178,7 +180,7 @@ namespace J
 			cat->GetComponent<Transform>()->SetPosition(Vector2(500.0f, 300.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		}
-		
+		*/
 
 		//게임 오브젝트 생성 후 레이어와 게임오브젝트들의 init()함수를 호출
 		Scene::Init();

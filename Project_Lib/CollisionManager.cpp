@@ -133,12 +133,13 @@ namespace J
 		Transform* leftTr = _left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = _right->GetOwner()->GetComponent<Transform>();
 
-		Vector2 leftPos = leftTr->GetPosition() + _left->GetOffset();
-		Vector2 rightPos = rightTr->GetPosition() + _right->GetOffset();
-
 		//size가 1,1 일때 기본크기가 100픽셀
 		Vector2 leftSize = _left->GetSize() * 100.0f;
 		Vector2 rightSize = _right->GetSize() * 100.0f;
+
+		Vector2 leftPos = leftTr->GetPosition() + _left->GetOffset() +(leftSize / 2.0f);
+		Vector2 rightPos = rightTr->GetPosition() + _right->GetOffset() +(rightSize / 2.0f);
+
 
 		//AABB 충돌
 		enums::eColliderType leftType = _left->GetColliderType();

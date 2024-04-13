@@ -182,7 +182,6 @@ namespace J
 			rb->SetVelocity(velocity);
 			rb->SetGround(false);
 		}
-
 		//if (Input::GetKey(eKeyCode::Down))
 		//{
 		//	pos.y += 100 * Time::DeltaTime();

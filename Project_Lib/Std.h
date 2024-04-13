@@ -10,6 +10,8 @@
 #include <bitset>
 #include <functional>
 #include <filesystem>
+#include <stack>
+#include <queue>
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>

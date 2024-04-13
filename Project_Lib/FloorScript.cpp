@@ -59,5 +59,8 @@ namespace J
 	}
 	void FloorScript::OnCollisionExit(Collider* other)
 	{
+		Rigidbody* playerRb = other->GetOwner()->GetComponent<Rigidbody>();
+		playerRb->SetGround(false);
+		int a = 0;
 	}
 }
