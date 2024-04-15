@@ -83,14 +83,8 @@
     <ClInclude Include="Animator.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="JSPlayScene.h">
-      <Filter>Scene\Portfolio</Filter>
-    </ClInclude>
     <ClInclude Include="JSMath.h">
       <Filter>Etc</Filter>
-    </ClInclude>
-    <ClInclude Include="JSPlayerScript.h">
-      <Filter>Scene\Portfolio</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Component</Filter>
@@ -118,14 +112,44 @@
     <ClInclude Include="Rigidbody.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Floor.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="FloorScript.h">
       <Filter>Component\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="UIBase.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="Floor.h">
+      <Filter>GameObject\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>GameObject\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioPlayScene.h">
+      <Filter>Scene\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>GameObject\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioScript.h">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockScript.h">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="MushroomScript.h">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>GameObject\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>GameObject\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="GoombaScript.h">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="DeadLineScript.h">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
@@ -197,14 +221,8 @@
     <ClCompile Include="Animator.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="JSPlayScene.cpp">
-      <Filter>Scene\Portfolio</Filter>
-    </ClCompile>
     <ClCompile Include="JSMath.cpp">
       <Filter>Etc</Filter>
-    </ClCompile>
-    <ClCompile Include="JSPlayerScript.cpp">
-      <Filter>Scene\Portfolio</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Component</Filter>
@@ -232,14 +250,44 @@
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Floor.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="FloorScript.cpp">
       <Filter>Component\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="UIBase.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="Block.cpp">
+      <Filter>GameObject\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>GameObject\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="MarioPlayScene.cpp">
+      <Filter>Scene\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp">
+      <Filter>GameObject\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="MarioScript.cpp">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockScript.cpp">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="MushroomScript.cpp">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Goomba.cpp">
+      <Filter>GameObject\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>GameObject\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="GoombaScript.cpp">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadLineScript.cpp">
+      <Filter>Component\Scripts\Mario</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Component">
@@ -260,11 +308,17 @@
     <Filter Include="Component\Scripts">
       <UniqueIdentifier>{e9425c7a-0194-441c-aaf3-b6e92dba770b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Portfolio">
-      <UniqueIdentifier>{ec5232d9-415b-4c2a-997f-0ca385b61157}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Component\Collider">
       <UniqueIdentifier>{5ba46ffa-e58a-48bc-9591-91381ec19437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Mario">
+      <UniqueIdentifier>{6a2708d6-4aae-44a4-ba8d-63a491b4e28f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Mario">
+      <UniqueIdentifier>{0081e11b-d575-4d0a-a5d0-6173430e6fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Scripts\Mario">
+      <UniqueIdentifier>{c4aa4446-c4df-45b5-a55e-3207fbe58817}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

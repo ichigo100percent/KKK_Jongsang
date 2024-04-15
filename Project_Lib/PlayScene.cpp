@@ -24,7 +24,7 @@
 #include "Floor.h"
 #include "FloorScript.h"
 
-#include "JsPlayScene.h"
+
 
 
 namespace J
@@ -72,7 +72,7 @@ namespace J
 		*/
 
 		//main camera
-		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f));
+		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None);// , Vector2(344.0f, 442.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		renderer::mainCamera = cameraComp;
 
@@ -119,7 +119,7 @@ namespace J
 		//애니메이션 종료 후 이어지는 이벤트 시스템구현
 		
 		{
-			m_Player = object::Instantiate<Player>(enums::eLayerType::Player,Vector2(100.0f,0.0f));
+			m_Player = object::Instantiate<Player>(enums::eLayerType::Player);
 			//object::DontDestroyOnLoad(m_Player);
 			PlayerScript* plScript =  m_Player->AddComponent<PlayerScript>();
 			BoxCollider2D* collider = m_Player->AddComponent<BoxCollider2D>();
@@ -135,8 +135,9 @@ namespace J
 			playerAnimator->PlayAnimaiton(L"Idle", false);
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
-			m_Player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 200.0f));
-			//m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 1.f));
+			m_Player->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 200.0f));
+			m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 2.f));
+			collider->SetSize(Vector2(1.0f, 2.0f));
 			m_Player->AddComponent<Rigidbody>();
 			cameraComp->SetTarget(m_Player);
 		}
@@ -145,7 +146,23 @@ namespace J
 			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
 			floor->SetName(L"Floor");
 			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			floorCol->SetSize(Vector2(6.0f, 1.0f));
+			floorCol->SetOffset(Vector2(-100.0f, -50.0f));
+			floor->AddComponent<FloorScript>();
+		}
+		{
+			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(300.0f, 200.0f));
+			floor->SetName(L"Floor");
+			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
 			floorCol->SetSize(Vector2(2.0f, 1.0f));
+			floorCol->SetOffset(Vector2(-100.0f, -50.0f));
+			floor->AddComponent<FloorScript>();
+		}
+		{
+			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(800.0f, 600.0f));
+			floor->SetName(L"Floor");
+			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			floorCol->SetSize(Vector2(5.0f, 1.0f));
 			floorCol->SetOffset(Vector2(-100.0f, -50.0f));
 			floor->AddComponent<FloorScript>();
 		}

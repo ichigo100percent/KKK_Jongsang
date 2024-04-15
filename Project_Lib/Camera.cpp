@@ -35,6 +35,9 @@ namespace J
 		{
 			Transform* tr = m_Target->GetComponent<Transform>();
 			m_LookPosition = tr->GetPosition();
+
+			m_LookPosition.x = std::clamp(m_LookPosition.x, 200.f, 3024.f - 400.f);
+			m_LookPosition.y = std::clamp(m_LookPosition.y, 000.f, 3024.f - 300.f);
 		}
 		else
 		{

@@ -19,6 +19,7 @@ namespace J
 		void SetGround(bool _ground) { m_bGround = _ground; }
 		bool GetGround() { return m_bGround; }
 		void SetVelocity(Vector2 _velocity) { m_Velocity = _velocity; }
+		void SetGravity(Vector2 _gravity) { m_Gravity = _gravity; }
 		Vector2 GetVelocity() { return m_Velocity; }
 
 		

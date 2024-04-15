@@ -5,15 +5,15 @@
 #include <algorithm>
 #include <random>
 #include <functional>
-
+#include <cstdio>
+#include <math.h>
 
 using namespace std;
 
+
 int main()
 {
-	float PI = -3.141592f;
+	int a = 10;
 
-	auto a = fabs(PI);
-
-	cout << a;
+	return 0;
 }

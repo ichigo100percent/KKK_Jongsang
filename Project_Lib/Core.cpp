@@ -39,6 +39,7 @@ namespace J
 	{
 		Input::Update();
 		Time::Update();
+		//GET_SINGLE(Time)->Update();
 		CollisionManager::Update();
 		SceneManager::Update();
 
@@ -132,7 +133,7 @@ namespace J
 	{
 		Input::Init();
 		Time::Init();
-
+		//GET_SINGLE(Time)->Init();
 		return true;
 	}
 

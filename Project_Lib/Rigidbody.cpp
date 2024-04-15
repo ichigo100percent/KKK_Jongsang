@@ -13,7 +13,7 @@ namespace J
         , m_Force(Vector2::Zero)
         , m_Velocity(Vector2::Zero)
         , m_LimitedVelocity(Vector2(200.0f, 1000.0f))
-        , m_Gravity(Vector2(0.0f, 800.0f))
+        , m_Gravity(Vector2(0.0f, 980.0f))
         , m_Accelation(Vector2::Zero)
     {
     }

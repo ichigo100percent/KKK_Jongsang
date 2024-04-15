@@ -22,8 +22,11 @@ namespace J::enums
 		Tile,
 		Npc,
 		Player,
+		Monster,
+		Item,
 		Floor,
 		Particle,
+		DeadLine,
 		//
 		Max = 16,
 	};

@@ -85,7 +85,7 @@ namespace J
 		void SetLayerType(eLayerType _layerType) { m_LayerType = _layerType; }
 		eLayerType GetLayerType() { return m_LayerType; }
 	
-	private:
+	protected:
 		void initializeTransform();
 		void death() { m_State = eState::Dead; }
 

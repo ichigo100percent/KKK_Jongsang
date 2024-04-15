@@ -18,5 +18,6 @@ namespace J
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
 	private:
+		class Rigidbody* playerRb;
 	};
 }

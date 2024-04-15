@@ -30,26 +30,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -160,6 +160,8 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="BlockScript.h" />
     <ClInclude Include="BoxCollider2D.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraScript.h" />
@@ -168,21 +170,27 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="DeadLineScript.h" />
     <ClInclude Include="DontDestroyOnLoad.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="FloorScript.h" />
+    <ClInclude Include="Goomba.h" />
+    <ClInclude Include="GoombaScript.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="JSEnums.h" />
     <ClInclude Include="JSGameObject.h" />
     <ClInclude Include="JSMath.h" />
-    <ClInclude Include="JSPlayerScript.h" />
-    <ClInclude Include="JSPlayScene.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LoadResources.h" />
     <ClInclude Include="LoadScene.h" />
+    <ClInclude Include="Mario.h" />
+    <ClInclude Include="MarioPlayScene.h" />
+    <ClInclude Include="MarioScript.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterScript.h" />
+    <ClInclude Include="Mushroom.h" />
+    <ClInclude Include="MushroomScript.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerScript.h" />
@@ -209,6 +217,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockScript.cpp" />
     <ClCompile Include="BoxCollider2D.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraScript.cpp" />
@@ -217,18 +227,24 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="DeadLineScript.cpp" />
     <ClCompile Include="DontDestroyOnLoad.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="FloorScript.cpp" />
+    <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="GoombaScript.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JSGameObject.cpp" />
     <ClCompile Include="JSMath.cpp" />
-    <ClCompile Include="JSPlayerScript.cpp" />
-    <ClCompile Include="JSPlayScene.cpp" />
     <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="MarioPlayScene.cpp" />
+    <ClCompile Include="MarioScript.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MonsterScript.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="MushroomScript.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerScript.cpp" />
     <ClCompile Include="PlayScene.cpp" />
