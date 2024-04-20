@@ -3,6 +3,10 @@
 
 namespace J
 {
+//#define max(a,b)            (((a) > (b)) ? (a) : (b))
+//#define min(a,b)            (((a) < (b)) ? (a) : (b))
+
+
 	class BlockScript : public Script
 	{
 	public:
@@ -17,7 +21,10 @@ namespace J
 		void OnCollisionEnter(Collider* other) override;
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
+
+		bool IsGrounded(class Transform* playerTr, class Collider* playerCol, class Transform* blockTr);
+		void PushPlayer(class Transform* playerTr, class Collider* playerCol, class Transform* blockTr, bool isGrounded);
 	private:
-		class MarioScript* m_Mario;
+		
 	};
 }

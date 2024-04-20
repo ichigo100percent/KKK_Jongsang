@@ -81,6 +81,18 @@ namespace J
 	void MarioScript::OnCollisionExit(Collider* other)
 	{
 	}
+	void MarioScript::Setinit()
+	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		tr->SetPosition(Vector2(0.0f, 0.0f));
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		Vector2 velocity = rb->GetVelocity();
+		rb->SetVelocity(Vector2(0.0f, velocity.y));
+		m_eState = eMarioState::Idle;
+		m_eType = eMarioType::Normal;
+		m_isDie = false;
+
+	}
 	void MarioScript::idle()
 	{
 	}

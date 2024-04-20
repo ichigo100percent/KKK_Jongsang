@@ -124,6 +124,11 @@ namespace J::math
 			return sqrtf(x * x + y * y);
 		}
 
+		//float magnitude(Vector2 vec)
+		//{
+		//	return sqrt(vec.x * vec.x + vec.y * vec.y);
+		//}
+
 		Vector2 normalize()
 		{
 			float len = length();

@@ -37,6 +37,9 @@ namespace J
 		void OnCollisionExit(Collider* other) override;
 
 		bool GetisDie() { return m_isDie; }
+		void SetDie(bool _die) { m_isDie = _die; }
+
+		void Setinit();
 
 	private:
 		void idle();

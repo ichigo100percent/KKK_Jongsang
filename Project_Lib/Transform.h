@@ -31,6 +31,18 @@ namespace J
 			m_Rotation = _rotation;
 		}
 
+		// 이전 위치 설정 함수
+		void SetPreviousPosition(Vector2 _prevPos)
+		{
+			m_PreviousPosition = _prevPos;
+		}
+
+		// 이전 위치 반환 함수
+		Vector2 GetPreviousPosition() const
+		{
+			return m_PreviousPosition;
+		}
+
 		Vector2 GetPosition() { return m_Position; }
 		Vector2 GetScale() { return m_Scale; }
 		float   GetRotation() { return m_Rotation; }
@@ -40,5 +52,8 @@ namespace J
 		Vector2		m_Position;
 		Vector2     m_Scale;
 		float       m_Rotation;
+
+		// 이전 위치 저장 변수
+		Vector2     m_PreviousPosition;
 	};
 }

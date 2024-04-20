@@ -57,13 +57,13 @@ namespace J
 		float len = fabs(playerTr->GetPosition().y - floorTr->GetPosition().y);
 		float scale = fabs(playerCol->GetSize().y * 100 / 2.0f - floorCol->GetSize().y * 100 / 2.0f);
 
-		//if (len < scale)
-		//{
-		//	Vector2 playerPos = playerTr->GetPosition();
-		//	playerPos.y -= (scale - len) - 1.0f;
+		if (len < scale)
+		{
+			Vector2 playerPos = playerTr->GetPosition();
+			playerPos.y -= (scale - len) - 1.0f;
 
-		//	playerTr->SetPosition(playerPos);
-		//}
+			playerTr->SetPosition(playerPos);
+		}
 
 		MarioScript* mario = other->GetOwner()->GetComponent<MarioScript>();
 

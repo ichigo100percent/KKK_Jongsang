@@ -16,5 +16,6 @@ namespace J
 		void OnEnter() override;
 		void OnExit() override;
 	private:
+		class Mario* mario;
 	};
 }

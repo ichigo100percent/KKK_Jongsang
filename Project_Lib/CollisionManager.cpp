@@ -137,8 +137,8 @@ namespace J
 		Vector2 leftSize = _left->GetSize() * 100.0f;
 		Vector2 rightSize = _right->GetSize() * 100.0f;
 
-		Vector2 leftPos = leftTr->GetPosition() + _left->GetOffset() +(leftSize / 2.0f);
-		Vector2 rightPos = rightTr->GetPosition() + _right->GetOffset() +(rightSize / 2.0f);
+		Vector2 leftPos = leftTr->GetPosition() + _left->GetOffset() + (leftSize / 2.0f);
+		Vector2 rightPos = rightTr->GetPosition() + _right->GetOffset() + (rightSize / 2.0f);
 
 
 		//AABB Ãæµ¹
@@ -155,7 +155,9 @@ namespace J
 				return true;
 			}
 		}
+		return false;
 
+		/*
 		if (leftType == enums::eColliderType::Circle2D
 			&& rightType == enums::eColliderType::Circle2D)
 		{
@@ -175,6 +177,6 @@ namespace J
 			// circle - rect
 
 		}
-		return false;
+		*/
 	}
 }
