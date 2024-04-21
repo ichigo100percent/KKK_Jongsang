@@ -138,10 +138,11 @@ namespace J
 			m_Player->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 200.0f));
 			m_Player->GetComponent<Transform>()->SetScale(Vector2(1.f, 2.f));
 			collider->SetSize(Vector2(1.0f, 2.0f));
-			m_Player->AddComponent<Rigidbody>();
+			//m_Player->AddComponent<Rigidbody>();
 			cameraComp->SetTarget(m_Player);
 		}
 		
+		/*
 		{
 			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
 			floor->SetName(L"Floor");
@@ -166,8 +167,8 @@ namespace J
 			floorCol->SetOffset(Vector2(-100.0f, -50.0f));
 			floor->AddComponent<FloorScript>();
 		}
-
-		/*
+		*/
+		
 		//몬스터 기본움직임 AI구현
 		
 		{
@@ -197,7 +198,7 @@ namespace J
 			cat->GetComponent<Transform>()->SetPosition(Vector2(500.0f, 300.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		}
-		*/
+		
 
 		//게임 오브젝트 생성 후 레이어와 게임오브젝트들의 init()함수를 호출
 		Scene::Init();
@@ -214,11 +215,11 @@ namespace J
 	{
 		Scene::LateUpdate();
 
-		if (Input::GetKeyDown(eKeyCode::N))
-		{
-			SceneManager::LoadScene(L"TitleScene");
-			//SceneManager::LoadScene(L"JSPlayScene");
-		}
+		//if (Input::GetKeyDown(eKeyCode::N))
+		//{
+		//	SceneManager::LoadScene(L"TitleScene");
+		//	//SceneManager::LoadScene(L"JSPlayScene");
+		//}
 
 		return true;
 	}

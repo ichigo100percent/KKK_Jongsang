@@ -160,42 +160,43 @@ namespace J
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
-		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
-		bool isGrounded = rb->GetGround();
+		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		//bool isGrounded = rb->GetGround();
 
 		if (Input::GetKey(eKeyCode::Right))
 		{
-			//pos.x += 100 * Time::DeltaTime();
-			rb->AddForce(Vector2(100.0f, 0.0f));
+			pos.x += 100 * Time::DeltaTime();
+			//rb->AddForce(Vector2(100.0f, 0.0f));
 		}
 
 		if (Input::GetKey(eKeyCode::Left))
 		{
-			//pos.x -= 100 * Time::DeltaTime();
-			rb->AddForce(Vector2(-100.0f, 0.0f));
+			pos.x -= 100 * Time::DeltaTime();
+			//rb->AddForce(Vector2(-100.0f, 0.0f));
 		}
 
-		if (Input::GetKey(eKeyCode::Up) && isGrounded)
+		if (Input::GetKey(eKeyCode::Up))
 		{
-			Vector2 velocity = rb->GetVelocity();
-			velocity.y = -600.0f;
-			rb->SetVelocity(velocity);
-			rb->SetGround(false);
+			pos.y -= 100 * Time::DeltaTime();
+			//Vector2 velocity = rb->GetVelocity();
+			//velocity.y = -600.0f;
+			//rb->SetVelocity(velocity);
+			//rb->SetGround(false);
 		}
-		//if (Input::GetKey(eKeyCode::Down))
-		//{
-		//	pos.y += 100 * Time::DeltaTime();
-		//	//rb->AddForce(Vector2(0.0f, 100.0f));
-		//}
+		if (Input::GetKey(eKeyCode::Down))
+		{
+			pos.y += 100 * Time::DeltaTime();
+			//rb->AddForce(Vector2(0.0f, 100.0f));
+		}
 
-		//tr->SetPosition(pos);
+		tr->SetPosition(pos);
 
-		//if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left) ||
-		//	Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))
-		//{
-		//	m_State = PlayerScript::eState::Idle;
-		//	m_Animator->PlayAnimaiton(L"SitDown", false);
-		//}
+		if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left) ||
+			Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))
+		{
+			m_State = PlayerScript::eState::Idle;
+			m_Animator->PlayAnimaiton(L"SitDown", false);
+		}
 	}
 	void PlayerScript::giveWater()
 	{

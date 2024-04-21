@@ -42,10 +42,16 @@ namespace J
 		HPEN oldPen = (HPEN)SelectObject(_hdc, greenPen);
 
 		Rectangle(_hdc
-			, pos.x + offset.x
-			, pos.y + offset.y
-			, pos.x + offset.x + 100 * GetSize().x
-			, pos.y + offset.y + 100 * GetSize().y);
+			, pos.x
+			, pos.y
+			, pos.x + 100.0f * GetSize().x
+			, pos.y + 100.0f * GetSize().y);
+
+		//Rectangle(_hdc
+		//	, pos.x + offset.x
+		//	, pos.y + offset.y
+		//	, pos.x + offset.x + 100.0f * GetSize().x
+		//	, pos.y + offset.y + 100.0f * GetSize().y);
 
 		SelectObject(_hdc, oldBrush);
 		SelectObject(_hdc, oldPen);

@@ -55,7 +55,6 @@ namespace J
 		}
 		m_CollisionLayerMatrix[row][col] = enable;
 	}
-
 	void CollisionManager::LayerCollision(Scene* _scene, eLayerType _left, eLayerType _right)
 	{
 		const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects(_left); //_scene->GetLayer(_left)->GetGameObjects();
@@ -130,6 +129,9 @@ namespace J
 	}
 	bool CollisionManager::Intersect(Collider* _left, Collider* _right)
 	{
+		//-------------------
+		//AABB 수정본
+		//-------------------
 		Transform* leftTr = _left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = _right->GetOwner()->GetComponent<Transform>();
 
@@ -137,9 +139,42 @@ namespace J
 		Vector2 leftSize = _left->GetSize() * 100.0f;
 		Vector2 rightSize = _right->GetSize() * 100.0f;
 
-		Vector2 leftPos = leftTr->GetPosition() + _left->GetOffset() + (leftSize / 2.0f);
-		Vector2 rightPos = rightTr->GetPosition() + _right->GetOffset() + (rightSize / 2.0f);
+		Vector2 leftMin = leftTr->GetPosition();
+		Vector2 leftMax = leftTr->GetPosition() + leftSize;
+		Vector2 rightMin = rightTr->GetPosition();
+		Vector2 rightMax = rightTr->GetPosition() + rightSize;
 
+		//AABB 충돌
+		enums::eColliderType leftType = _left->GetColliderType();
+		enums::eColliderType rightType = _right->GetColliderType();
+
+		if (leftType == enums::eColliderType::Rect2D
+			&& rightType == enums::eColliderType::Rect2D)
+		{
+			// AABB collision detection
+			if (leftMin.x < rightMax.x && leftMax.x > rightMin.x &&
+				leftMin.y < rightMax.y && leftMax.y > rightMin.y)
+			{
+				return true;
+			}
+		}
+		return false;
+
+		
+		//AABB 수정전
+		/*
+		Transform* leftTr = _left->GetOwner()->GetComponent<Transform>();
+		Transform* rightTr = _right->GetOwner()->GetComponent<Transform>();
+
+		//size가 1,1 일때 기본크기가 100픽셀
+		Vector2 leftSize = _left->GetSize() * 100.0f;
+		Vector2 rightSize = _right->GetSize() * 100.0f;
+
+		//Vector2 leftPos = leftTr->GetPosition() + _left->GetOffset() + (leftSize / 2.0f);
+		//Vector2 rightPos = rightTr->GetPosition() + _right->GetOffset() + (rightSize / 2.0f);
+
+		Vector2 leftPos = leftTr->GetPosition() + (leftSize / 2.0f);
+		Vector2 rightPos = rightTr->GetPosition() + (rightSize / 2.0f);
 
 		//AABB 충돌
 		enums::eColliderType leftType = _left->GetColliderType();
@@ -156,7 +191,9 @@ namespace J
 			}
 		}
 		return false;
+		*/
 
+		//원-원
 		/*
 		if (leftType == enums::eColliderType::Circle2D
 			&& rightType == enums::eColliderType::Circle2D)

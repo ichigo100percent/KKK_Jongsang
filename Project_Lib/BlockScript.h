@@ -22,8 +22,6 @@ namespace J
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
 
-		bool IsGrounded(class Transform* playerTr, class Collider* playerCol, class Transform* blockTr);
-		void PushPlayer(class Transform* playerTr, class Collider* playerCol, class Transform* blockTr, bool isGrounded);
 	private:
 		
 	};

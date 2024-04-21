@@ -55,7 +55,8 @@ namespace J
 		Collider* floorCol = this->GetOwner()->GetComponent<Collider>();
 
 		float len = fabs(playerTr->GetPosition().y - floorTr->GetPosition().y);
-		float scale = fabs(playerCol->GetSize().y * 100 / 2.0f - floorCol->GetSize().y * 100 / 2.0f);
+		float scale = fabs(playerCol->GetSize().y * 100 
+			/ 2.0f - floorCol->GetSize().y * 100 / 2.0f);
 
 		if (len < scale)
 		{

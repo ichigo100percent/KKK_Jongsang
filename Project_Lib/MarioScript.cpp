@@ -84,7 +84,7 @@ namespace J
 	void MarioScript::Setinit()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		tr->SetPosition(Vector2(0.0f, 0.0f));
+		tr->SetPosition(Vector2(0.0f, 100.0f));
 		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 		Vector2 velocity = rb->GetVelocity();
 		rb->SetVelocity(Vector2(0.0f, velocity.y));
@@ -125,6 +125,14 @@ namespace J
 		{
 			rb->AddForce(Vector2(-100.0f, 0.0f));
 		}
+
+		//위치 값을 출력하는 부분 추가
+		auto currentPosition = tr->GetPosition();
+		std::string output = "Current Position: ";
+		output += "X= " + std::to_string((int)currentPosition.x);
+		output += ", Y= " + std::to_string((int)currentPosition.y) + "\n";
+
+		OutputDebugStringA(output.c_str());
 	}
 	void MarioScript::jump()
 	{

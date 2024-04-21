@@ -59,57 +59,55 @@ namespace J
 	bool MarioPlayScene::Init()
 	{
 		// main camera
-		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 442.0f));
+		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None);// , Vector2(344.0f, 442.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		renderer::mainCamera = cameraComp;
 
-		//// mario
-		//{
-		//	mario = object::Instantiate<Mario>(enums::eLayerType::Player);
-		//	MarioScript* script = mario->AddComponent<MarioScript>();
-		//	BoxCollider2D* collider = mario->AddComponent<BoxCollider2D>();
-
-		//	mario->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
-		//	mario->AddComponent<Rigidbody>();
-		//	cameraComp->SetTarget(mario);
-		//}
-
-		// goomba
+		// mario
 		{
-			Goomba* goomba = object::Instantiate<Goomba>(eLayerType::Monster, Vector2(300.0f, 100.0f));
-			goomba->SetName(L"Goomba");
-			BoxCollider2D* floorCol = goomba->AddComponent<BoxCollider2D>();
-			floorCol->SetSize(Vector2(0.5f, 0.5f));
-			floorCol->SetOffset(Vector2(-25.0f, -25.0f));
-			goomba->AddComponent<GoombaScript>();
-			cameraComp->SetTarget(goomba);
+			mario = object::Instantiate<Mario>(enums::eLayerType::Player);
+			MarioScript* script = mario->AddComponent<MarioScript>();
+			BoxCollider2D* collider = mario->AddComponent<BoxCollider2D>();
+
+			mario->GetComponent<Transform>()->SetPosition(Vector2(000.0f, 100.0f));
+			mario->AddComponent<Rigidbody>();
+			cameraComp->SetTarget(mario);
 		}
 
-		//// floor
+		/*
+		//// goomba
 		//{
-		//	Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 200.0f));
-		//	floor->SetName(L"Floor");
-		//	BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
-		//	floorCol->SetSize(Vector2(10.0f, 1.0f));
-		//	floorCol->SetOffset(Vector2(-100.0f, -50.0f));
-		//	floor->AddComponent<FloorScript>();
+		//	Goomba* goomba = object::Instantiate<Goomba>(eLayerType::Monster, Vector2(300.0f, 100.0f));
+		//	goomba->SetName(L"Goomba");
+		//	BoxCollider2D* floorCol = goomba->AddComponent<BoxCollider2D>();
+		//	floorCol->SetSize(Vector2(0.5f, 0.5f));
+		//	floorCol->SetOffset(Vector2(-25.0f, -25.0f));
+		//	goomba->AddComponent<GoombaScript>();
+		//	cameraComp->SetTarget(goomba);
 		//}
+		*/
+		// floor
+		{
+			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(00.0f, 200.0f));
+			floor->SetName(L"Floor");
+			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			floorCol->SetSize(Vector2(10.0f, 1.0f));
+			floor->AddComponent<FloorScript>();
+		}
 
 		// block
 		{
-			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(300.0f, -200.0f));
+			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(200.0f, -200.0f));
 			BoxCollider2D* blockCol = block->AddComponent<BoxCollider2D>();
-			blockCol->SetSize(Vector2(5.0f, 2.0f));
-			blockCol->SetOffset(Vector2(-250.0f, -100.0f));
+			blockCol->SetSize(Vector2(3.0f, 2.0f));
 			block->AddComponent<BlockScript>();
 		}
 
 		// block
 		{
-			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(000.0f, 100.0f));
+			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(-100.0f, 100.0f));
 			BoxCollider2D* blockCol = block->AddComponent<BoxCollider2D>();
 			blockCol->SetSize(Vector2(1.0f, 1.0f));
-			blockCol->SetOffset(Vector2(-50.0f, -50.0f));
 			block->AddComponent<BlockScript>();
 		}
 
@@ -161,8 +159,8 @@ namespace J
 	void MarioPlayScene::OnExit()
 	{
 		Scene::OnExit();
-		//auto scr = mario->GetComponent<MarioScript>();
-		//scr->Setinit();
+		auto scr = mario->GetComponent<MarioScript>();
+		scr->Setinit();
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Npc, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
