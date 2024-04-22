@@ -1,10 +1,12 @@
+#define NOMINMAX
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <Windows.h>
 
-using namespace std;
 
+//IntersectRect
+/*
 class Collider
 {
 public:
@@ -57,4 +59,57 @@ void AdjustCollisionPos(Collider* b1, Collider* b2)
 			}
 		}
 	}
+}
+*/
+
+
+// RECT 구조체 정의
+struct RECT {
+	int left;
+	int top;
+	int right;
+	int bottom;
+};
+
+// 겹치는 영역을 계산하는 함수
+bool IntersectRect(RECT* result, const RECT* r1, const RECT* r2) {
+	// x축과 y축에 대해 겹치는 영역을 찾습니다.
+	int maxLeft = std::max(r1->left, r2->left);
+	int minRight = std::min(r1->right, r2->right);
+	int maxTop = std::max(r1->top, r2->top);
+	int minBottom = std::min(r1->bottom, r2->bottom);
+
+	// 겹치는 영역이 없는 경우
+	if (maxLeft >= minRight || maxTop >= minBottom) {
+		result->left = result->top = result->right = result->bottom = 0;
+		return false;
+	}
+
+	// 겹치는 영역이 있는 경우
+	result->left = maxLeft;
+	result->top = maxTop;
+	result->right = minRight;
+	result->bottom = minBottom;
+	return true;
+}
+
+int main() 
+{
+	// 예제 RECT 구조체 생성
+	RECT r1 = { 0, 0, 100, 100 };
+	RECT r2 = { 90, 100, 150, 150 };
+	RECT intersect = {};
+
+	// 겹치는 영역 계산
+	bool isIntersected = IntersectRect(&intersect, &r1, &r2);
+
+	// 결과 출력
+	if (isIntersected) {
+		std::cout << "겹치는 영역: (" << intersect.left << ", " << intersect.top << ") - (" << intersect.right << ", " << intersect.bottom << ")" << std::endl;
+	}
+	else {
+		std::cout << "겹치는 영역이 없습니다." << std::endl;
+	}
+
+	return 0;
 }

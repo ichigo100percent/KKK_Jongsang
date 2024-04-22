@@ -126,7 +126,7 @@ namespace J
 			rb->AddForce(Vector2(-100.0f, 0.0f));
 		}
 
-		//위치 값을 출력하는 부분 추가
+		//위치 값을 출력
 		auto currentPosition = tr->GetPosition();
 		std::string output = "Current Position: ";
 		output += "X= " + std::to_string((int)currentPosition.x);

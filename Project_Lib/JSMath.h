@@ -6,6 +6,9 @@ namespace J::math
 {
 
 #define PI 3.141592f
+#define max(a,b)            (((a) > (b)) ? (a) : (b))
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
+
 
 	static float ConvertDegree(float radian) { return (radian * (180 / PI)); }
 
@@ -137,5 +140,37 @@ namespace J::math
 
 			return *this;
 		}
+	};
+
+	struct JRect
+	{
+		JRect();
+		JRect(float _x, float _y, float _w, float _h);
+
+		void	Set(Vector2 _p);
+		void	Set(float _w, float _h);
+		void	Set(Vector2 _p, float _w, float _h);
+		void	Set(float _x, float _y, float _w, float _h);
+		bool	Intersect(JRect& _result, JRect& _r1, JRect& _r2);
+
+		bool	ToRect(JRect& _rt);
+		bool	ToPoint(Vector2& _p);
+
+		JRect	operator+(JRect& _rt);
+		JRect	operator-(JRect& _rt);
+		JRect	operator-(Vector2& _p);
+		JRect	operator*(float _value);
+		JRect	operator/(float _value);
+
+		bool	m_bEnable = true;
+		float	m_Width = 0.0f;
+		float	m_Height = 0.0f;
+		Vector2 m_Point[4];
+		Vector2	m_Center;
+		Vector2 m_Half;
+		Vector2	m_Min;
+		Vector2 m_Max;
+		Vector2	v;
+		Vector2	s;
 	};
 }

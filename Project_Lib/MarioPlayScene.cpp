@@ -66,6 +66,7 @@ namespace J
 		// mario
 		{
 			mario = object::Instantiate<Mario>(enums::eLayerType::Player);
+			mario->SetName(L"¸¶¸®¿À");
 			MarioScript* script = mario->AddComponent<MarioScript>();
 			BoxCollider2D* collider = mario->AddComponent<BoxCollider2D>();
 
@@ -92,12 +93,13 @@ namespace J
 			floor->SetName(L"Floor");
 			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
 			floorCol->SetSize(Vector2(10.0f, 1.0f));
-			floor->AddComponent<FloorScript>();
+			floor->AddComponent<BlockScript>();
 		}
 
 		// block
 		{
 			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(200.0f, -200.0f));
+			block->SetName(L"Block");
 			BoxCollider2D* blockCol = block->AddComponent<BoxCollider2D>();
 			blockCol->SetSize(Vector2(3.0f, 2.0f));
 			block->AddComponent<BlockScript>();
@@ -105,7 +107,7 @@ namespace J
 
 		// block
 		{
-			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(-100.0f, 100.0f));
+			Floor* block = object::Instantiate<Floor>(eLayerType::Floor, Vector2(-101.0f, 101.0f));
 			BoxCollider2D* blockCol = block->AddComponent<BoxCollider2D>();
 			blockCol->SetSize(Vector2(1.0f, 1.0f));
 			block->AddComponent<BlockScript>();

@@ -6,6 +6,8 @@
 #include "Item.h"
 #include "Inventory.h"
 
+#define max(a,b)            (((a) > (b)) ? (a) : (b))
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
 using namespace std;
 
 enum class PlayerType
@@ -15,7 +17,6 @@ enum class PlayerType
 	Archer,
 	Magician,
 };
-
 enum class MonsterType
 {
 	None = 0,
@@ -23,7 +24,6 @@ enum class MonsterType
 	Troll,
 	Demon,
 };
-
 class Player
 {
 public:
@@ -67,7 +67,6 @@ public:
 	int damage;
 	int defense;
 };
-
 class Monster
 {
 public:
@@ -121,7 +120,6 @@ private:
 	int damage;
 	int defense;
 };
-
 void EnterLobby();
 void CreatePlayer();
 void EnterField();
@@ -129,11 +127,8 @@ void CrateRandomMonster();
 void MeetMonster();
 void BattleMonster();
 void BattleEnd();
-
 Player* pl = new Player();
 Monster* monster = new Monster();
-
-
 std::unique_ptr<Item> DropItem()
 {
 	if (rand() % 2 == 1)
@@ -163,9 +158,15 @@ int main()
 	//		cout << "Failed item to Inven" << endl;
 	//	}
 	//}
-	srand(time(0));
+	//srand(time(0));
 
-	EnterLobby();
+	//EnterLobby();
+
+	float x = 100.0f;
+	float y = 10.0f;
+
+	int min = min(x, y);
+
 	return 0;
 }
 
@@ -206,7 +207,6 @@ void EnterLobby()
 		}
 	}
 }
-
 void CreatePlayer()
 {
 	while (1)
@@ -248,7 +248,6 @@ void CreatePlayer()
 		}
 	}
 }
-
 void EnterField()
 {
 	while (1)
@@ -282,7 +281,6 @@ void EnterField()
 		}
 	}
 }
-
 void CrateRandomMonster()
 {
 	system("cls");
@@ -318,7 +316,6 @@ void CrateRandomMonster()
 		break;
 	}
 }
-
 void MeetMonster()
 {
 	cout << "1. ½Î¿î´Ù.    2. µµ¸Á°£´Ù." << endl;
@@ -339,7 +336,6 @@ void MeetMonster()
 		break;
 	}
 }
-
 void BattleMonster()
 {
 	while (1)
@@ -381,7 +377,6 @@ void BattleMonster()
 		}
 	}
 }
-
 void BattleEnd()
 {
 	system("pause");

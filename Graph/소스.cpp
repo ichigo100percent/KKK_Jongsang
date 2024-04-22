@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// **********************************
+// https://sarah950716.tistory.com/12
+// **********************************
+
+
 //int main()
 //{
 //	vector<vector<int>> vec(4, vector<int>(4, 0));
