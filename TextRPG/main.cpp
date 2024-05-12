@@ -6,8 +6,6 @@
 #include "Item.h"
 #include "Inventory.h"
 
-#define max(a,b)            (((a) > (b)) ? (a) : (b))
-#define min(a,b)            (((a) < (b)) ? (a) : (b))
 using namespace std;
 
 enum class PlayerType
@@ -143,29 +141,25 @@ std::unique_ptr<Item> DropItem()
 
 int main()
 {
-	//srand(time(0));
-	//for (int i = 0; i < 10; ++i)
-	//{
-	//	std::unique_ptr<Item> item = DropItem();
-	//	item->Print();;
+	srand(time(0));
+	for (int i = 0; i < 10; ++i)
+	{
+		std::unique_ptr<Item> item = DropItem();
+		item->Print();;
 
-	//	if (Inventory::Getinstance()->AddItem(std::move(item)))
-	//	{
-	//		cout<<"Added item to Inven"<<endl;
-	//	}
-	//	else
-	//	{
-	//		cout << "Failed item to Inven" << endl;
-	//	}
-	//}
-	//srand(time(0));
+		if (Inventory::Getinstance()->AddItem(std::move(item)))
+		{
+			cout<<"Added item to Inven"<<endl;
+		}
+		else
+		{
+			cout << "Failed item to Inven" << endl;
+		}
+	}
+	srand(time(0));
 
-	//EnterLobby();
+	EnterLobby();
 
-	float x = 100.0f;
-	float y = 10.0f;
-
-	int min = min(x, y);
 
 	return 0;
 }

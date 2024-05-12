@@ -3,6 +3,7 @@
 #include "JSGameObject.h"
 #include "Renderer.h"
 #include "Camera.h"
+#include "CollisionManager.h"
 
 namespace J
 {
@@ -33,29 +34,30 @@ namespace J
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		Vector2 offset = GetOffset();
+			Vector2 offset = GetOffset();
 
-		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, transparentBrush);
+			HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+			HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, transparentBrush);
 
-		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
-		HPEN oldPen = (HPEN)SelectObject(_hdc, greenPen);
+			HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
+			HPEN oldPen = (HPEN)SelectObject(_hdc, greenPen);
 
-		Rectangle(_hdc
-			, pos.x
-			, pos.y
-			, pos.x + 100.0f * GetSize().x
-			, pos.y + 100.0f * GetSize().y);
+			Rectangle(_hdc
+				, pos.x
+				, pos.y
+				, pos.x + 100.0f * GetSize().x
+				, pos.y + 100.0f * GetSize().y);
 
-		//Rectangle(_hdc
-		//	, pos.x + offset.x
-		//	, pos.y + offset.y
-		//	, pos.x + offset.x + 100.0f * GetSize().x
-		//	, pos.y + offset.y + 100.0f * GetSize().y);
+			//Rectangle(_hdc
+			//	, pos.x + offset.x
+			//	, pos.y + offset.y
+			//	, pos.x + offset.x + 100.0f * GetSize().x
+			//	, pos.y + offset.y + 100.0f * GetSize().y);
 
-		SelectObject(_hdc, oldBrush);
-		SelectObject(_hdc, oldPen);
-		DeleteObject(greenPen);
+			SelectObject(_hdc, oldBrush);
+			SelectObject(_hdc, oldPen);
+			DeleteObject(greenPen);
+	
 
 		return true;
 	}

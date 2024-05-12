@@ -24,6 +24,7 @@ namespace J
 	}
 	bool BlockScript::Update()
 	{
+	
 		return true;
 	}
 	bool BlockScript::LateUpdate()
@@ -39,7 +40,7 @@ namespace J
 		Transform* playerTr = other->GetOwner()->GetComponent<Transform>();
 		Rigidbody* playerRb = other->GetOwner()->GetComponent<Rigidbody>();
 		Collider* playerCol = other->GetOwner()->GetComponent<Collider>();
-
+		MarioScript* mario = other->GetOwner()->GetComponent<MarioScript>();
 		Transform* blockTr = this->GetOwner()->GetComponent<Transform>();
 		Collider* blockCol = this->GetOwner()->GetComponent<Collider>();
 
@@ -55,10 +56,12 @@ namespace J
 		//{
 		//	playerRb->SetVelocity(Vector2(playerRb->GetVelocity().x, 0.0f));
 		//}
+
 		if (playerTr->GetPosition().y <
 			blockTr->GetPosition().y + blockSize.y / 2.0f)
 		{
 			playerRb->SetVelocity(Vector2(playerRb->GetVelocity().x, 0.0f));
+			mario->SetJump(false);
 			playerRb->SetGround(true);
 		}
 
@@ -69,29 +72,25 @@ namespace J
 		float overlapX = abs((playerSize.x / 2.0f + blockSize.x / 2.0f) - abs(distance.x));
 		float overlapY = abs((playerSize.y / 2.0f + blockSize.y / 2.0f) - abs(distance.y));
 
-		auto mario = other->GetOwner()->GetComponent<MarioScript>();
-
 		
 		//>.1f
 		// 밀어내는 방향과 거리 계산
-		if (overlapX > overlapY) {
+		if (overlapX > overlapY)
+		{
 			// 좌우로 밀어내기
 			float pushX = (distance.x > 0 ? 1 : -1);
 			playerTr->SetPosition(playerPos + Vector2(pushX, 0));
 			playerRb->SetVelocity(Vector2::Zero);
 		}
-		else {
-			// 상하로 밀어내기 
-			//float pushY = (distance.y > 0 ? 1 : -1);
-			//playerTr->SetPosition(playerPos + Vector2(0, pushY));
-			//playerRb->SetVelocity(Vector2::Zero);
-			
-			//if (!mario->GetisDie())
-			//{
-			//	playerRb->SetGround(true);
-			//}
+		else
+		{
+
 		}
 
+		if (mario->GetisJump())
+		{
+			playerRb->SetGround(false);
+		}
 	}
 	void BlockScript::OnCollisionStay(Collider* other)
 	{
@@ -102,13 +101,10 @@ namespace J
 		Rigidbody* playerRb = other->GetOwner()->GetComponent<Rigidbody>();
 		Transform* playerTr = other->GetOwner()->GetComponent<Transform>();
 		Collider* playerCol = other->GetOwner()->GetComponent<Collider>();
-		
+
 		auto mario = other->GetOwner()->GetComponent<MarioScript>();
 
-		if (!mario->GetisDie())
-		{
-			playerRb->SetGround(false);
-		}
+		mario->SetJump(false);
 	}
 
 }

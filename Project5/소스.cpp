@@ -2,8 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <Windows.h>
-
+#include <numeric>
 
 //IntersectRect
 /*
@@ -92,24 +91,88 @@ bool IntersectRect(RECT* result, const RECT* r1, const RECT* r2) {
 	result->bottom = minBottom;
 	return true;
 }
+//int main() 
+//{
+//	// 예제 RECT 구조체 생성
+//	RECT r1 = { 0, 0, 100, 100 };
+//	RECT r2 = { 90, 100, 150, 150 };
+//	RECT intersect = {};
+//
+//	// 겹치는 영역 계산
+//	bool isIntersected = IntersectRect(&intersect, &r1, &r2);
+//
+//	// 결과 출력
+//	if (isIntersected) {
+//		std::cout << "겹치는 영역: (" << intersect.left << ", " << intersect.top << ") - (" << intersect.right << ", " << intersect.bottom << ")" << std::endl;
+//	}
+//	else {
+//		std::cout << "겹치는 영역이 없습니다." << std::endl;
+//	}
+//
+//	return 0;
+//}
 
-int main() 
+using namespace std;
+
+//행렬
+int g[4][4] =
 {
-	// 예제 RECT 구조체 생성
-	RECT r1 = { 0, 0, 100, 100 };
-	RECT r2 = { 90, 100, 150, 150 };
-	RECT intersect = {};
+	{0,4,2,0},
+	{4,0,1,8},
+	{2,1,0,5},
+	{0,8,5,0},
+};
 
-	// 겹치는 영역 계산
-	bool isIntersected = IntersectRect(&intersect, &r1, &r2);
+int dist[4];
 
-	// 결과 출력
-	if (isIntersected) {
-		std::cout << "겹치는 영역: (" << intersect.left << ", " << intersect.top << ") - (" << intersect.right << ", " << intersect.bottom << ")" << std::endl;
+bool v[4];
+
+int INF = numeric_limits<int>::max();
+
+void dijkstra(int _start)
+{
+	fill_n(dist, 4, INF);
+	fill_n(v, 4, false);
+
+	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+	
+	//거리, 노드
+	pq.push(make_pair(0, _start));
+	dist[_start] = 0;
+
+	while (!pq.empty())
+	{
+		int cur_dist = pq.top().first;
+		int cur_node = pq.top().second;
+		pq.pop();
+
+		if (v[cur_node])
+			continue;
+
+		v[cur_node] = true;
+
+		for (int next_node = 0; next_node < 4; ++next_node)
+		{
+			int next_dist = g[cur_node][next_node];
+
+			if (dist[next_node] > cur_dist + next_dist && g[cur_node][next_node] != 0)
+			{
+				dist[next_node] = cur_dist + next_dist;
+				pq.push(make_pair(dist[next_node], next_node));
+;			}
+		}
 	}
-	else {
-		std::cout << "겹치는 영역이 없습니다." << std::endl;
+}
+
+int main()
+{
+	dijkstra(0);
+
+	for (auto& e : dist)
+	{
+		cout << e << " ";
 	}
 
 	return 0;
+
 }

@@ -130,7 +130,7 @@ namespace J
 	bool CollisionManager::Intersect(Collider* _left, Collider* _right)
 	{
 		//-------------------
-		//AABB 수정본
+		//	AABB 수정본
 		//-------------------
 		Transform* leftTr = _left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = _right->GetOwner()->GetComponent<Transform>();
@@ -158,6 +158,7 @@ namespace J
 				return true;
 			}
 		}
+
 		return false;
 
 		

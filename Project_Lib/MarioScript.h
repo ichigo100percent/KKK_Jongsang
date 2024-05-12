@@ -37,8 +37,9 @@ namespace J
 		void OnCollisionExit(Collider* other) override;
 
 		bool GetisDie() { return m_isDie; }
+		bool GetisJump() { return m_isJumping; }
 		void SetDie(bool _die) { m_isDie = _die; }
-
+		void SetJump(bool _jump) { m_isJumping = _jump; }
 		void Setinit();
 
 	private:
@@ -51,7 +52,7 @@ namespace J
 	private:
 		eMarioType	m_eType;
 		eMarioState m_eState;
-		bool		isJumping;
+		bool		m_isJumping;
 		bool		m_isDie;
 		float		m_Time;
 	};

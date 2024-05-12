@@ -16,7 +16,7 @@ namespace J
 	MarioScript::MarioScript()
 		: m_eState(eMarioState::Idle)
 		, m_eType(eMarioType::Normal)
-		, isJumping(false)
+		, m_isJumping(false)
 		, m_isDie(false)
 	{
 	}
@@ -91,7 +91,7 @@ namespace J
 		m_eState = eMarioState::Idle;
 		m_eType = eMarioType::Normal;
 		m_isDie = false;
-
+		m_isJumping = false;
 	}
 	void MarioScript::idle()
 	{
@@ -109,11 +109,11 @@ namespace J
 			velocity.y = -600.0f;
 			rb->SetVelocity(velocity);
 			rb->SetGround(false);
-			isJumping = true;
+			m_isJumping = true;
 		}
-		if (Input::GetKeyUp(eKeyCode::Up) && isJumping)
+		if (Input::GetKeyUp(eKeyCode::Up) && m_isJumping)
 		{
-			isJumping = false;
+			m_isJumping = false;
 		}
 
 		if (Input::GetKey(eKeyCode::Right))
@@ -128,10 +128,12 @@ namespace J
 
 		//위치 값을 출력
 		auto currentPosition = tr->GetPosition();
+		auto isGround = rb->GetGround();
 		std::string output = "Current Position: ";
 		output += "X= " + std::to_string((int)currentPosition.x);
 		output += ", Y= " + std::to_string((int)currentPosition.y) + "\n";
-
+		output += isGround ? "Ground status: true\n" : "Ground status: false\n";
+		output += m_isJumping ? "Mairo is Jumping\n" : "Mario is Drop\n";
 		OutputDebugStringA(output.c_str());
 	}
 	void MarioScript::jump()

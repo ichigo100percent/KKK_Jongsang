@@ -1,136 +1,69 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
-
+#include <queue>
+#include <limits>
+#include <string>
+#include <set>
 using namespace std;
 
 
-class Graph
+//무한값 
+int INF = 100000; //numeric_limits<int>::max();
+
+//인접행렬 초기화
+vector<vector<int>> g
 {
-public:
-	Graph(int _vertices)
-		: m_Vertices(_vertices)
-	{
-		m_adjMatrix.resize(_vertices, vector<int>(m_Vertices, 0));
-	}
-
-	void AddEdge(int _src, int _dest)
-	{
-		if (_src != _dest)
-		{
-			m_adjMatrix[_src][_dest] = 1;
-			m_adjMatrix[_dest][_src] = 1;
-		}
-	}
-
-	void Show()
-	{
-		for (auto& i : m_adjMatrix)
-		{
-			for (auto& j : i)
-			{
-				cout << j << " ";
-			}
-			cout << "\n";
-		}
-	}
-
-	vector<vector<int>> GetMatrix() { return m_adjMatrix; }
-
-private:
-	int m_Vertices;
-	vector<vector<int>> m_adjMatrix;
+	{INF,4,2,INF},
+	{4,INF,1,8},
+	{2,1,INF,5},
+	{INF,8,5,INF},
 };
 
-void dfs(vector<vector<int>> _matrix, vector<bool>& _visited, int _start)
+
+void dijkstra(int _s)
 {
-	int size = _matrix[_start].size();
-	_visited[_start] = true;
+	int size = g.size();
+	vector<int> dist(4, INF);
+	dist[_s] = 0;
+	vector<bool> v(size, false);
 
-	cout << _start << " ";
+	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+	pq.push(make_pair(0, _s));
 
-	for (size_t i = 0; i < size; i++)
+	while (!pq.empty())
 	{
-		if (_matrix[_start][i] == 1 && !_visited[i])
+		int curDist = pq.top().first;
+		int curNode = pq.top().second;
+		pq.pop();
+
+		if (v[curNode])
+			continue;
+		v[curNode] = true;
+
+		for (int nextNode = 0; nextNode < size; nextNode++)
 		{
-			dfs(_matrix, _visited, i);
+			int nextDist = g[curNode][nextNode];
+
+			if (dist[nextNode] > curDist + nextDist)
+			{
+				dist[nextNode] = curDist + nextDist;
+				pq.push(make_pair(dist[nextNode], nextNode));
+			}
 		}
 	}
-}
+	
+	cout << _s << "번 노드의 각 노드 사이의 최단거리는 ";
 
-void Dfstraversal(vector<vector<int>>& _matrix)
-{
-	int size = _matrix.size();
-	vector<bool> visited(size, false);
-
-	for (size_t i = 0; i < size; i++)
+	for (auto& e : dist)
 	{
-		if (!visited[i])
-			dfs(_matrix, visited, i);
+		cout << e << " ";
 	}
+	cout << "입니다" << endl;
 }
 
-//int main()
-//{
-//	Graph g(6);
-//
-//	g.AddEdge(0, 1);
-//	g.AddEdge(0, 2);
-//	g.AddEdge(0, 5);
-//	g.AddEdge(2, 4);
-//	g.AddEdge(3, 0);
-//	g.AddEdge(4, 1);
-//	g.AddEdge(5, 5);
-//
-//	g.Show();
-//
-//	auto matrix = g.GetMatrix();
-//
-//	Dfstraversal(matrix);
-//
-//	return 0;
-//}
-
-
-
-
-
-void dfs(const vector<vector<int>>& graph, int start, unordered_set<int>& visited) {
-	if (visited.find(start) == visited.end()) {
-		cout << start << " ";
-		visited.insert(start);
-		for (int neighbor : graph[start]) {
-			dfs(graph, neighbor, visited);
-		}
-	}
-}
-
-int main() {
-	// 그래프 정의 (인접 리스트 활용)
-	vector<vector<int>> graph = {
-		{1},
-		{0, 4, 2, 5},
-		{1, 3},
-		{2, 5},
-		{1},
-		{1, 3}
-	};
-
-
-
-	g.AddEdge(0, 1);
-	g.AddEdge(0, 2);
-	g.AddEdge(0, 5);
-	g.AddEdge(2, 4);
-	g.AddEdge(3, 0);
-	g.AddEdge(4, 1);
-	g.AddEdge(5, 5);
-
-	// 방문한 정점을 저장하는 set
-	unordered_set<int> visited;
-
-	// DFS 탐색 시작
-	dfs(graph, 0, visited);
+int main()
+{
+	dijkstra(1);
 
 	return 0;
 }

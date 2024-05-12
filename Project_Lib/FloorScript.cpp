@@ -15,6 +15,7 @@ namespace J
 	}
 	FloorScript::~FloorScript()
 	{
+		
 	}
 	bool FloorScript::Init()
 	{
@@ -28,10 +29,10 @@ namespace J
 			bool groundStatus = playerRb->GetGround();
 
 			// 반환 값을 문자열로 변환합니다.
-			const char* message = groundStatus ? "Ground status: true\n" : "Ground status: false\n";
-
+			std::string message = groundStatus ? "Ground status: true\n" : "Ground status: false\n";
+	
 			// OutputDebugString 함수를 사용하여 메시지를 출력합니다.
-			OutputDebugStringA(message);
+			OutputDebugStringA(message.c_str());
 		}
 
 		return true;

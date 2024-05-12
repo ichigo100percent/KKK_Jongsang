@@ -35,5 +35,6 @@ namespace J
 	private:
 		static std::bitset<(UINT)eLayerType::Max> m_CollisionLayerMatrix[(UINT)eLayerType::Max];
 		static std::unordered_map<UINT64, bool> m_CollisionMap;
+
 	};
 }

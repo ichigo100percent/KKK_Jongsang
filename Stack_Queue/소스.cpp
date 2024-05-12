@@ -175,3 +175,88 @@ int main()
 
 	return 0;
 }
+
+//template.ver
+/*
+template <typename T>
+struct Node
+{
+	Node(T _val)
+		: data(_val)
+		, next(nullptr)
+		, prev(nullptr)
+	{
+	}
+
+	T data;
+	Node<T>* next;
+	Node<T>* prev;
+};
+
+template <typename T>
+class stack
+{
+public:
+	stack()
+		: head(nullptr) {}
+
+	void push(T _val)
+	{
+		Node<T>* newNode = new Node<T>(_val);
+		newNode->next = head;
+		head = newNode;
+	}
+
+	void pop()
+	{
+		Node<T>* deleteNode = head;
+		head = head->next;
+		delete deleteNode;
+		deleteNode = nullptr;
+
+	}
+
+	T top()
+	{
+		return head->data;
+	}
+
+	void show()
+	{
+		if (head == nullptr)
+			return;
+
+		Node<T>* cur = head;
+
+		while (cur != nullptr)
+		{
+			cout << cur->data << " ";
+			cur = cur->next;
+		}
+	}
+
+private:
+	Node<T>* head;
+};
+*/
+//int main()
+//{
+//
+//	stack<int> s;
+//
+//	s.push(1);
+//	s.push(2);
+//	s.push(3);
+//	s.push(4);
+//
+//	s.show();
+//
+//	s.pop();
+//	s.pop();
+//
+//	cout << "\n";
+//
+//	s.show();
+//
+//	return 0;
+//}
