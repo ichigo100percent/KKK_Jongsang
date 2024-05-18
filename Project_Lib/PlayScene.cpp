@@ -133,6 +133,8 @@ namespace J
 			playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
 				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.05f);
 			playerAnimator->PlayAnimaiton(L"Idle", false);
+
+			//frontGiveWater 애니메이션 끝나고 playerscript에서 attackEffect 함수 호출
 			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
 			m_Player->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 200.0f));

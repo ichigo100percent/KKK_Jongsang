@@ -1,69 +1,45 @@
-#include <iostream>
-#include <vector>
+癤�#include <vector>
 #include <queue>
-#include <limits>
-#include <string>
-#include <set>
+#include <iostream>
+#include <tuple>
 using namespace std;
 
 
-//무한값 
-int INF = 100000; //numeric_limits<int>::max();
+int solution(vector<vector<int>> map) {
+    int n = map.size();
+    int m = map[0].size();
+    vector<vector<bool>> visited(n, vector<bool>(m, false));
+    queue<tuple<int, int, int>> q;
+    int dX[4] = { -1, 1, 0, 0 };
+    int dY[4] = { 0, 0, -1, 1 };
 
-//인접행렬 초기화
-vector<vector<int>> g
-{
-	{INF,4,2,INF},
-	{4,INF,1,8},
-	{2,1,INF,5},
-	{INF,8,5,INF},
-};
+    auto check = [&](int x, int y) {
+        return x >= 0 && x < n && y >= 0 && y < m && map[x][y] == 1;
+        };
 
+    visited[0][0] = true;
+    q.push(make_tuple(0, 0, 1));
 
-void dijkstra(int _s)
-{
-	int size = g.size();
-	vector<int> dist(4, INF);
-	dist[_s] = 0;
-	vector<bool> v(size, false);
+    while (!q.empty()) {
+        auto cur = q.front();
+        q.pop();
+        int x = get<0>(cur);
+        int y = get<1>(cur);
+        int dist = get<2>(cur);
 
-	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-	pq.push(make_pair(0, _s));
+        if (x == n - 1 && y == m - 1) {
+            return dist;
+        }
 
-	while (!pq.empty())
-	{
-		int curDist = pq.top().first;
-		int curNode = pq.top().second;
-		pq.pop();
+        for (int i = 0; i < 4; ++i) {
+            int nX = x + dX[i];
+            int nY = y + dY[i];
 
-		if (v[curNode])
-			continue;
-		v[curNode] = true;
-
-		for (int nextNode = 0; nextNode < size; nextNode++)
-		{
-			int nextDist = g[curNode][nextNode];
-
-			if (dist[nextNode] > curDist + nextDist)
-			{
-				dist[nextNode] = curDist + nextDist;
-				pq.push(make_pair(dist[nextNode], nextNode));
-			}
-		}
-	}
-	
-	cout << _s << "번 노드의 각 노드 사이의 최단거리는 ";
-
-	for (auto& e : dist)
-	{
-		cout << e << " ";
-	}
-	cout << "입니다" << endl;
-}
-
-int main()
-{
-	dijkstra(1);
-
-	return 0;
+            if (check(nX, nY) && !visited[nX][nY]) {
+                q.push(make_tuple(nX, nY, dist + 1));
+                visited[nX][nY] = true;
+            }
+        }
+    }
+    return -1;
 }

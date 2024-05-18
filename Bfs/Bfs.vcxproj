@@ -24,6 +24,7 @@
     <ProjectGuid>{41692b92-3437-414d-bc7a-619f807160ed}</ProjectGuid>
     <RootNamespace>Bfs</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>BFS_00</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

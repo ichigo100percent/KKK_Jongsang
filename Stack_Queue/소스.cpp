@@ -260,3 +260,57 @@ private:
 //
 //	return 0;
 //}
+
+
+// 2024. 05. 16
+class Stack
+{
+public:
+	void push(int _n)
+	{
+		if (head == nullptr)
+		{
+			head = new Node(_n);
+			return;
+		}
+		Node* newNode = new Node(_n);
+		newNode->prev = head;
+		head = newNode;
+		return;
+	}
+
+	int top()
+	{
+		return head->data;
+	}
+
+	void pop()
+	{
+		Node* deleteNode = head;
+		head = head->prev;
+		delete deleteNode;
+		deleteNode = nullptr;
+		return;
+	}
+
+
+private:
+	Node* head = nullptr;
+};
+
+int main()
+{
+	Stack s;
+	s.push(1);
+	s.push(2);
+	s.push(3);
+	s.push(4);
+	s.push(5);
+	s.push(6);
+
+	s.pop();
+	s.pop();
+	s.pop();
+
+	return 0;
+}
