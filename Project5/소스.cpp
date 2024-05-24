@@ -114,65 +114,42 @@ bool IntersectRect(RECT* result, const RECT* r1, const RECT* r2) {
 
 using namespace std;
 
-//행렬
-int g[4][4] =
+class Parent
 {
-	{0,4,2,0},
-	{4,0,1,8},
-	{2,1,0,5},
-	{0,8,5,0},
+public:
+	Parent() {}
+
+	virtual void Test1()
+	{
+		cout << "부모 함수1 호출" << endl;
+	}
 };
 
-int dist[4];
-
-bool v[4];
-
-int INF = numeric_limits<int>::max();
-
-void dijkstra(int _start)
+class Child1 : public Parent
 {
-	fill_n(dist, 4, INF);
-	fill_n(v, 4, false);
+public:
+	Child1() {}
 
-	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-	
-	//거리, 노드
-	pq.push(make_pair(0, _start));
-	dist[_start] = 0;
-
-	while (!pq.empty())
+	virtual void Test1() override
 	{
-		int cur_dist = pq.top().first;
-		int cur_node = pq.top().second;
-		pq.pop();
-
-		if (v[cur_node])
-			continue;
-
-		v[cur_node] = true;
-
-		for (int next_node = 0; next_node < 4; ++next_node)
-		{
-			int next_dist = g[cur_node][next_node];
-
-			if (dist[next_node] > cur_dist + next_dist && g[cur_node][next_node] != 0)
-			{
-				dist[next_node] = cur_dist + next_dist;
-				pq.push(make_pair(dist[next_node], next_node));
-;			}
-		}
+		cout << "자식 함수1 호출" << endl;
 	}
-}
+
+	virtual void Test2()
+	{
+		cout << "자식 독립함수2 호출" << endl;
+	}
+};
 
 int main()
 {
-	dijkstra(0);
+	shared_ptr<Parent> p = make_shared<Child1>();
 
-	for (auto& e : dist)
-	{
-		cout << e << " ";
-	}
+	// 호출 불가
+	// p->Test2();
 
-	return 0;
+	auto p2 = dynamic_pointer_cast<Child1>(p);
+
+	p2->Test2();
 
 }

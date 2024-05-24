@@ -244,3 +244,177 @@ int solution(vector<vector<int>> map) {
 	return -1;
 }
 #pragma endregion
+
+
+#pragma region 백준 토마토
+
+int m, n, h;
+vector<vector<vector<int>>> map;
+
+int dx[6] = { 0, 0, 0, 0, -1, 1 };
+int dy[6] = { 0, 0, -1, 1, 0, 0 };
+int dz[6] = { -1, 1, 0, 0, 0, 0 };
+
+struct Pos
+{
+	int x, y, z;
+	Pos(int _x, int _y, int _z) : x(_x), y(_y), z(_z) {}
+};
+
+int bfs()
+{
+	int days = 0;
+	queue<Pos> q;
+
+	// 익은 토마토의 좌표를 큐에 추가
+	for (int k = 0; k < h; ++k) {
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < m; ++j) {
+				if (map[k][i][j] == 1) {
+					q.push(Pos(j, i, k));
+				}
+			}
+		}
+	}
+
+	while (!q.empty())
+	{
+		int size = q.size();
+
+		for (int i = 0; i < size; ++i)
+		{
+			Pos cur = q.front();
+			q.pop();
+
+			int x = cur.x;
+			int y = cur.y;
+			int z = cur.z;
+
+			for (int j = 0; j < 6; ++j)
+			{
+				int nx = x + dx[j];
+				int ny = y + dy[j];
+				int nz = z + dz[j];
+
+				if (nx >= 0 && nx < m && ny >= 0 && ny < n && nz >= 0 && nz < h && map[nz][ny][nx] == 0)
+				{
+					map[nz][ny][nx] = 1; // 익은 토마토로 변경
+					q.push(Pos(nx, ny, nz));
+				}
+			}
+		}
+
+		if (!q.empty()) {
+			days++;
+		}
+	}
+
+	// 모든 토마토가 익지 않은 경우 확인
+	for (int k = 0; k < h; ++k) {
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < m; ++j) {
+				if (map[k][i][j] == 0) {
+					return -1; // 모든 토마토가 익지 않은 경우
+				}
+			}
+		}
+	}
+
+	return days;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+
+	cin >> m >> n >> h;
+
+	map.resize(h, vector<vector<int>>(n, vector<int>(m)));
+
+	for (int k = 0; k < h; ++k) {
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < m; ++j) {
+				cin >> map[k][i][j];
+			}
+		}
+	}
+
+	cout << bfs() << endl;
+
+	return 0;
+}
+#pragma endregion
+
+
+#pragma region 백준 맥주걷기
+
+struct pos
+{
+	int x, y;
+};
+
+vector<pos> store(100);
+vector<bool> v(100);
+pos home;
+pos festival;
+
+bool bfs(int _n)
+{
+	queue<pos> q;
+	q.push(home);
+
+	while (!q.empty())
+	{
+		auto cur = q.front();
+		q.pop();
+		int x = cur.x;
+		int y = cur.y;
+
+		if (abs(festival.x - x) + abs(festival.y - y) <= 1000) return true;
+
+		for (int i = 0; i < _n; ++i)
+		{
+			if (abs(store[i].x - x) + abs(store[i].y - y) <= 1000 && !v[i])
+			{
+				v[i] = true;
+				q.push(store[i]);
+			}
+		}
+	}
+
+	return false;
+}
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(NULL), cout.tie(NULL);
+
+	int t;
+
+	cin >> t;
+
+	while (t--)
+	{
+		int n;
+		cin >> n;
+
+		cin >> home.x >> home.y;
+		for (int i = 0; i < n; i++)
+		{
+			cin >> store[i].x >> store[i].y;
+		}
+		cin >> festival.x >> festival.y;
+
+		if (bfs(n))
+			cout << "happy" << '\n';
+		else
+			cout << "sad" << "\n";
+
+		fill(v.begin(), v.end(), false);
+	}
+
+	return 0;
+}
+#pragma endregion

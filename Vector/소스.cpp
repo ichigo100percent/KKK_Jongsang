@@ -3,30 +3,84 @@
 
 using namespace std;
 
+class Person
+{
+public:
+    Person(const string& _name) : m_Name(_name) {}
+
+    string GetName() { return m_Name; }
+
+private:
+    string m_Name;
+};
+
+class Mgr
+{
+    using iter = vector<shared_ptr<Person>>::iterator;
+
+public:
+    Mgr() : vec() {}
+
+    void Add(const string& _name)
+    {
+        vec.push_back(make_shared<Person>(_name));
+    }
+
+    iter Find(const string& _name)
+    {
+        auto iter = find_if(vec.begin(), vec.end(),
+            [&](shared_ptr<Person> p) -> bool
+            {
+                return p->GetName() == _name;
+            });
+
+        return iter;
+    }
+
+    void Delete(const string& _name)
+    {
+        auto iter = Find(_name);
+
+        if (iter != vec.end())
+        {
+            vec.erase(iter);
+            return;
+        }
+    }
+
+    void Print()
+    {
+        if (!vec.empty())
+        {
+            for (const auto& e : vec)
+            {
+                cout << e->GetName() << " ";
+            }
+            cout << '\n';
+        }
+    }
+
+private:
+    vector<shared_ptr<Person>> vec;
+};
+
 int main()
 {
-	vector<int> vec = { 1,10,100,1000 };
+    Mgr mgr;
 
-	for (auto element : vec)
-	{
-		cout << element << " ";
-	}
+    mgr.Add("이");
+    mgr.Add("가");
+    mgr.Add("다");
+    mgr.Add("라");
+    mgr.Add("마");
+    mgr.Add("사");
 
-	auto it = std::find(vec.begin(), vec.end(), 100);
+    mgr.Delete("바");
 
-	if (it != vec.end())
-	{
-		vec.erase(it);
-	}
-	else
-	{
-		cout << "fail" << endl;
-	}
+    mgr.Print();
 
-	for (auto element : vec)
-	{
-		cout << element << " ";
-	}
+
+    return 0;
 }
 
 #include <iostream>
