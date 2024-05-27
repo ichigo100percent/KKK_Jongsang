@@ -1,12 +1,11 @@
-﻿#include <iostream>
-#include <vector>
-#include <queue>
-#include <assert.h>
+﻿#include "Dev.h"
 
-using namespace std;
+
 
 int main()
 {
-	assert(1)
-		
+	
+	std::cout << global_variable;
+
+	return 0;
 }

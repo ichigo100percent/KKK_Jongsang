@@ -8,9 +8,9 @@ namespace Js
 	public:
 		void CreateRegisterClass(HINSTANCE _hInstance);
 		BOOL InitInstance(const int& _width, const int& _height);
-		void Run();
 
-		virtual void GameRun() {}
+		HWND GetHWND() { return m_Hwnd; }
+		HINSTANCE GetHINSTANCE() { return m_HInstance; }
 
 	protected:
 		HWND m_Hwnd;

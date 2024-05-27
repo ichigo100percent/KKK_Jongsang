@@ -1,19 +1,21 @@
-#include "Js_Device.h"
+#include "Js_Core.h"
+
+Js::Core core;
 
 int WINAPI wWinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
 	PWSTR pCmdLine,
 	int nCmdShow)
 {
-	Js::Device device;
+	Js::Core core;
 
-	device.CreateRegisterClass(hInstance);
+	core.CreateRegisterClass(hInstance);
 
-	if (device.InitInstance(g_Width, g_Height))
+	if (core.InitInstance(g_Width, g_Height))
 	{
-		device.CreateDevice();
-		device.Run();		
-		device.DeleteDeivce();
+		core.CreateDevice();
+		core.Run();		
+		core.DeleteDeivce();
 	}
 	return 0;
 }

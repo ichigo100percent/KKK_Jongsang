@@ -52,25 +52,4 @@ namespace Js
 
 		return TRUE;
 	}
-
-	void Window::Run()
-	{
-		MSG msg = { };
-
-		while (WM_QUIT != msg.message)
-		{
-			if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
-			{
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-			else
-			{
-				// 메세지가 없을 경우 여기서 처리
-				// 게임 로직이 들어가야 한다.
-
-				GameRun();
-			}
-		}
-	}
 }

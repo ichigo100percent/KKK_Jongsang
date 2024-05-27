@@ -110,6 +110,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -133,12 +134,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Js_Core.cpp" />
     <ClCompile Include="Js_Device.cpp" />
+    <ClCompile Include="Js_Input.cpp" />
+    <ClCompile Include="Js_Time.cpp" />
     <ClCompile Include="Js_Window.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Js_Core.h" />
     <ClInclude Include="Js_Device.h" />
+    <ClInclude Include="Js_Input.h" />
+    <ClInclude Include="Js_Time.h" />
     <ClInclude Include="Js_Window.h" />
     <ClInclude Include="std.h" />
   </ItemGroup>

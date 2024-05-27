@@ -2,7 +2,8 @@
 #include "Core.h"
 #include "Resources.h"
 
-//해당 전역변수가 존재함을 알리는 키워드 extern
+//해당 전역변수가 존재함을 알리는 키워드 
+
 extern J::Core core;
 
 namespace J::graphics

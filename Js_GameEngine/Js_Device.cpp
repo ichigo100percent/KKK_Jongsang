@@ -4,13 +4,13 @@
 namespace Js
 {
 	Device::Device() :
-					m_Device(nullptr),
-					m_Context(nullptr),
-					m_RenderTargetView(nullptr),
-					m_SwapChain(nullptr)
+		m_Device(nullptr),
+		m_Context(nullptr),
+		m_RenderTargetView(nullptr),
+		m_SwapChain(nullptr)
 	{
 
-	}	
+	}
 	void Device::CreateDevice()
 	{
 		CreateDeviceAndSwapChain();
@@ -19,7 +19,6 @@ namespace Js
 	}
 	void Device::CreateDeviceAndSwapChain()
 	{
-		CONST D3D_FEATURE_LEVEL pFeatureLevels = D3D_FEATURE_LEVEL_11_0;
 		DXGI_SWAP_CHAIN_DESC desc;
 		ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
 		{
@@ -35,6 +34,7 @@ namespace Js
 			desc.Windowed = true;
 		}
 
+		CONST D3D_FEATURE_LEVEL pFeatureLevels = D3D_FEATURE_LEVEL_11_0;
 		HRESULT hr = D3D11CreateDeviceAndSwapChain
 		(
 			nullptr,
@@ -67,7 +67,7 @@ namespace Js
 				pResource.Get(),
 				pDesc,
 				m_RenderTargetView.GetAddressOf());
-			
+
 			m_Context->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), nullptr);
 
 			CHECK(hr);
@@ -86,10 +86,14 @@ namespace Js
 		if (m_SwapChain) m_SwapChain.Reset();
 	}
 
-	void Device::GameRun()
+	void Device::PreRender()
 	{
+		float clearColor[4] = { 0.5f, 0.5f, 0.5f, 1.f };
 		m_Context->ClearRenderTargetView(m_RenderTargetView.Get(), clearColor);
-
-		m_SwapChain->Present(0, 0);
+	}
+	void Device::PostRender()
+	{
+		HRESULT hr = m_SwapChain->Present(0, 0);
+		CHECK(hr);
 	}
 }
